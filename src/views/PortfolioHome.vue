@@ -26,12 +26,9 @@ const selectProject = (id: string) => {
     
     <!-- Preamble Section -->
     <header class="text-center space-y-4 py-10">
-      <h1 class="text-4xl font-bold text-slate-900">Evan Elliott | Personal Projects Portfolio</h1>
+      <h1 class="text-4xl font-bold text-slate-900">Personal Projects Portfolio</h1>
       <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-        Welcome to my <strong>Personal Projects Portfolio</strong>!
-      </p>
-      <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-        I’m a <strong>Technical Lead</strong> specialising in <strong>Data Science & Engineering</strong>.
+        Hello! 👋 I’m Evan, a <strong>Technical Lead</strong> specialising in <strong>Data Science & Engineering</strong>.
       </p>
       <p class="text-lg text-slate-600 max-w-2xl mx-auto">
         I created this space to showcase how I architect <strong>production-grade solutions</strong>
@@ -71,7 +68,7 @@ const selectProject = (id: string) => {
         <!-- State: Default/Empty -->
         <div v-else class="flex items-center justify-center h-[500px] text-slate-400 italic">
           <div class="text-center">
-            <p>Select a project above to view technical details and animations.</p>
+            <p>Select a project above to explore my work in more detail 👆</p>
           </div>
         </div>
 

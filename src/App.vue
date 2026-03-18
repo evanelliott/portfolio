@@ -13,7 +13,7 @@ import { RouterView } from 'vue-router'
 
     <!-- Example Footer (optional) -->
     <footer class="text-center py-8 opacity-50 text-sm">
-      &copy; {{ new Date().getFullYear() }} Data Science Portfolio
+      &copy; {{ new Date().getFullYear() }} Evan Elliott. <i class="fas fa-copyright">No rights reserved.</i>
     </footer>
   </div>
 </template>
