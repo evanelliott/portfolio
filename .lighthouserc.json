@@ -2,7 +2,7 @@
   "ci": {
     "collect": {
       "staticDistDir": "./dist",
-      "url": ["/portfolio/"] 
+      "url": ["/"]
     },
     "upload": {
       "target": "temporary-public-storage"
