@@ -1,6 +1,7 @@
 import { mount, flushPromises } from '@vue/test-utils'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import MarkdownView from '../MarkdownView.vue'
+import type { Project } from '@/types/Project';
 import mermaid from 'mermaid'
 
 // 1. Mock External Dependencies
@@ -17,10 +18,14 @@ describe('MarkdownView.vue', () => {
     name: 'ETL Orchestrator',
     valueProposition: 'High-throughput data pipelines.',
     markdownFileName: 'project-0.md',
+    mainAnimation: 'etl-demo.gif',
     artifacts: { githubUrl: 'https://github.com', adrUrl: 'https://adr.com' },
     animations: [{ fileName: 'demo', description: 'Step 1' }],
     mermaidDiagram: 'graph TD; A-->B',
-    furtherReading: []
+    techStack: ['Python', 'Airflow', 'Docker'],
+    topics: ['Data Engineering', 'ETL', 'Orchestration'],
+    furtherReading: [],
+    date: '2024-01-01',
   }
 
   beforeEach(() => {
@@ -33,7 +38,7 @@ describe('MarkdownView.vue', () => {
 
   it('fetches and renders markdown on mount', async () => {
     const wrapper = mount(MarkdownView, {
-      props: { project: mockProject as any }
+      props: { project: mockProject as Project }
     })
 
     // Wait for async fetch and DOM updates
@@ -46,7 +51,7 @@ describe('MarkdownView.vue', () => {
 
   it('triggers the Mermaid.js engine after content is loaded', async () => {
     mount(MarkdownView, {
-      props: { project: mockProject as any }
+      props: { project: mockProject as Project }
     })
 
     await flushPromises()
@@ -57,7 +62,7 @@ describe('MarkdownView.vue', () => {
 
   it('displays the "Visual Demonstrations" section with correct descriptions', async () => {
     const wrapper = mount(MarkdownView, {
-      props: { project: mockProject as any }
+      props: { project: mockProject as Project }
     })
 
     await flushPromises()
@@ -70,7 +75,7 @@ describe('MarkdownView.vue', () => {
     global.fetch = vi.fn().mockRejectedValue(new Error('Network Error'))
     
     const wrapper = mount(MarkdownView, {
-      props: { project: mockProject as any }
+      props: { project: mockProject as Project }
     })
 
     await flushPromises()

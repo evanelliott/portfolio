@@ -27,7 +27,7 @@ const fetchAndRender = async () => {
     // Wait for Vue to update the DOM, then render Mermaid diagrams
     await nextTick();
     await mermaid.run();
-  } catch (error) {
+  } catch {
     markdownHtml.value = '<p class="text-red-500">Error loading project documentation.</p>';
   } finally {
     isLoading.value = false;
