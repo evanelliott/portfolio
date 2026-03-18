@@ -47,7 +47,7 @@ const selectProject = (id: string) => {
               I created this space to showcase how I architect <strong>production-grade solutions</strong>
               that bridge the gap between <strong>advanced analytics</strong> and <strong>robust engineering</strong>.
             </p>
-            <br>
+            <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.1);">
             <p>Select a project below to explore my work in more detail 👇</p>
           </div>
         </div>
