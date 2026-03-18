@@ -59,10 +59,11 @@
       "Docker (Containerisation)"
     ],
     "topics": [
-      "Star Schema Data Modeling",
-      "Data Storage Optimisation",
+      "Medallion Architecture",
+      "Data Modeling",
+      "Star Schema Design",
+      "Storage Optimisation",
       "Advanced SQL",
-      "SQL Query Plan Analysis",
       "SQL Query Optimisation"
     ],
     "date": "2025-11"
@@ -79,8 +80,16 @@
     },
     "animations": [
       {
-        "fileName": "feature-sync",
-        "description": "Synchronisation logic between offline training data and online serving cache."
+        "fileName": "makefile-highlight",
+        "description": "Senior-Grade Developer Experience (DX): Highlight your Makefile. A senior engineer cares about how easily another teammate can spin up the environment. Show the entire stack (DuckDB, MLflow, Streamlit) launching with one command."
+      },
+      {
+        "fileName": "point-in-time-join",
+        "description": "The \"Point-in-Time\" Join (Engineering Rigor): Demonstrate your SQL/DuckDB logic that ensures the model only \"sees\" team strengths as they existed before a match kicked off. This highlights a sophisticated understanding of temporal features that junior devs often miss."
+      },
+      {
+        "fileName": "feature-store-pattern",
+        "description": "The \"Local Feature Store\" Pattern (Architectural Design): Show how you’ve separated raw data ingestion from feature engineering using DuckDB. This highlights your ability to design systems that are modular and easy to migrate to cloud environments (like Snowflake/Databricks)."
       }
     ],
     "mermaidDiagram": "graph TD\n    subgraph Data_Layer [Data & Storage]\n        A[DuckDB] -->|Point-in-Time Joins| B(Feature Store)\n    end\n\n    subgraph Modeling_Layer [Modeling & Tracking]\n        B -->|Historical Match Data| C[Statsmodels / SciPy]\n        C -->|Poisson GLM Fitting| D{MLflow}\n        D -->|Coefficients & Metadata| E(Model Registry)\n    end\n\n    subgraph Inference_Layer [Inference & UI]\n        E -->|Stored Parameters| F[Streamlit Dashboard]\n        F -->|Monte Carlo Simulation| G(Match Outcome Probabilities)\n    end\n\n    subgraph Infrastructure [DevOps & DX]\n        H[Docker Compose] --- Data_Layer\n        H --- Modeling_Layer\n        H --- Inference_Layer\n        I[Multi-stage Docker Build] --> H\n        J[Makefile] -->|One-command Setup| H\n    end",
@@ -126,11 +135,16 @@
       "Docker (Containerisation)"
     ],
     "topics": [
-      "Monte Carlo Simulation",
+      "ML Lifecycle Management",
+      "Advanced Statistical Modeling",
+      "Predictive Analytics",
+      "ML Validation",
+      "Experiment Tracking",
+      "Vectorised Inference",
       "Uncertainty Quantification",
-      "Model Versioning",
-      "Model Serving",
-      "Monitoring & Drift Detection"
+      "Explainable ML",
+      "ML Deployment",
+      "ML Observability"
     ],
     "date": "2026-01"
   },

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { ref, watch, nextTick } from 'vue';
 import mermaid from 'mermaid';
 import type { Project } from '@/types/Project';
 import ProjectDemo from './ProjectDemo.vue';
@@ -17,6 +17,7 @@ mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
 const fetchAndRender = async () => {
   isLoading.value = true;
   try {
+    await nextTick();
     await mermaid.run();
   } catch {
     markdownHtml.value = '<p class="text-red-500">Error loading project documentation.</p>';
@@ -88,10 +89,10 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
     <section class="space-y-8">
       <h3 class="text-xl font-bold border-b pb-2">Visual Demonstrations</h3>
       <div v-for="(anim, index) in project.animations" :key="index" class="space-y-4">
-        <ProjectDemo :demoUrl="anim.fileName" :title="anim.description" />
         <p class="text-slate-600 text-sm leading-relaxed bg-slate-50 p-3 rounded-r-lg border-l-4 border-indigo-400">
           <strong>Step {{ index + 1 }}:</strong> {{ anim.description }}
         </p>
+        <ProjectDemo :demoUrl="anim.fileName" :title="anim.fileName" />
       </div>
     </section>
 
