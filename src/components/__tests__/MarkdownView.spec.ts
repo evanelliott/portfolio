@@ -3,6 +3,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import MarkdownView from '../MarkdownView.vue'
 import type { Project } from '@/types/Project';
 import mermaid from 'mermaid'
+import { nextTick } from 'process';
 
 // 1. Mock External Dependencies
 vi.mock('mermaid', () => ({
@@ -16,8 +17,8 @@ describe('MarkdownView.vue', () => {
   const mockProject = {
     id: '1',
     name: 'ETL Orchestrator',
+    emoji: '🔄',
     valueProposition: 'High-throughput data pipelines.',
-    markdownFileName: 'project-0.md',
     mainAnimation: 'etl-demo.gif',
     artifacts: { githubUrl: 'https://github.com', adrUrl: 'https://adr.com' },
     animations: [{ fileName: 'demo', description: 'Step 1' }],
@@ -43,8 +44,7 @@ describe('MarkdownView.vue', () => {
 
     // Wait for async fetch and DOM updates
     await flushPromises()
-
-    expect(global.fetch).toHaveBeenCalledWith('/portfolio/data/project-0.md')
+    // Verify that the markdown content is rendered
     expect(wrapper.html()).toContain('System Architecture</h3>')
     expect(wrapper.html()).toContain('GitHub Repo →</span>')
   })
@@ -71,15 +71,21 @@ describe('MarkdownView.vue', () => {
     expect(wrapper.text()).toContain('Step 1')
   })
 
-  it('handles fetch errors gracefully by showing an error message', async () => {
-    global.fetch = vi.fn().mockRejectedValue(new Error('Network Error'))
-    
+  it('handles mermaid errors by showing an error message', async () => {
+    // 1. Force mermaid.run to FAIL for this specific test
+    vi.mocked(mermaid.run).mockRejectedValueOnce(new Error('Mermaid Crash'));
+
+    // 2. Mount the component (pass the "Project #1" text as a prop if needed)
     const wrapper = mount(MarkdownView, {
       props: { project: mockProject as Project }
-    })
+    });
 
-    await flushPromises()
-    
-    expect(wrapper.text()).toContain('Error loading project documentation')
+    // 3. Trigger the logic (if it doesn't run on mount)
+    // await wrapper.vm.fetchAndRender(); 
+
+    await flushPromises();
+
+    // 4. Now it should contain the error message
+    expect(wrapper.text()).toContain('Error loading project documentation');
   })
 })

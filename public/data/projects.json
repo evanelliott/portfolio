@@ -4,7 +4,6 @@
     "name": "Data Lakehouse",
     "emoji": "🥇",
     "valueProposition": "A senior-level data engineering portfolio project demonstrating a local Modern Data Stack (MDS) implementation. It showcases multi-stage ETL orchestration, a federated query layer for disparate data sources (S3-compatible storage and DuckDB), and advanced performance observability using the Trino REST API.",
-    "markdownFileName": "project-1.md",
     "mainAnimation": "etl-hero-viz",
     "artifacts": {
       "githubUrl": "https://github.com",
@@ -73,7 +72,6 @@
     "name": "MLOps",
     "emoji": "🚀",
     "valueProposition": "A production-grade MLOps showcase that prioritizes architectural simplicity and statistical interpretability. It replaces standard 'black-box' classification with a Poisson-distributed Latent Strength Model, enabling high-fidelity Monte Carlo simulations for football match forecasting while maintaining a local-first, containerized developer experience.",
-    "markdownFileName": "project-2.md",
     "mainAnimation": "feature-store-hero",
     "artifacts": {
       "githubUrl": "https://github.com",
@@ -141,7 +139,6 @@
     "name": "Streaming Analytics",
     "emoji": "⚡",
     "valueProposition": "A high-throughput, local-first streaming architecture for browser resource telemetry. It implements a 'Kappa' architecture using the Chrome DevTools Protocol, Redpanda, and DuckDB to provide real-time, privacy-preserving insights into memory, network, and lifecycle performance without the overhead of traditional polling.",
-    "markdownFileName": "project-3.md",
     "mainAnimation": "iot-visualiser",
     "artifacts": {
       "githubUrl": "https://github.com",
@@ -211,7 +208,6 @@
     "name": "GenAI",
     "emoji": "🤖",
     "valueProposition": "An end-to-end security research pipeline that replaces regex-based static analysis with structural reasoning. By constructing a Code Property Graph (CPG) and enriching it with NVD/CWE intelligence, it enables a local LLM to identify complex logic flaws and data-flow vulnerabilities like 'Sinks' and 'Sources' with high precision.",
-    "markdownFileName": "project-4.md",
     "mainAnimation": "ledger-graph",
     "artifacts": {
       "githubUrl": "https://github.com",
@@ -285,7 +281,6 @@
     "name": "CI/CD",
     "emoji": "✅",
     "valueProposition": "This repository is the GitHub page that you are currently viewing! It is a high-performance, type-safe Single Page Application (SPA) designed as a dual-purpose artifact: a professional gallery for data engineering works and a living demonstration of production-grade CI/CD pipelines and optimized web architecture.",
-    "markdownFileName": "project-5.md",
     "mainAnimation": "migration-tracker",
     "artifacts": {
       "githubUrl": "https://github.com",

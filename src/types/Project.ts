@@ -25,7 +25,6 @@ export interface Project {
   valueProposition: string; // One-line "elevator pitch" for the CV
   
   // Content Pointers
-  markdownFileName: string; // The .md file in /public/data/ (e.g., 'pipeline-v1')
   mainAnimation: string;    // Primary hero animation file name
   
   // Structured Data Sections

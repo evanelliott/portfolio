@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, nextTick } from 'vue';
-import { marked } from 'marked';
+import { ref, watch } from 'vue';
 import mermaid from 'mermaid';
 import type { Project } from '@/types/Project';
 import ProjectDemo from './ProjectDemo.vue';
@@ -18,14 +17,6 @@ mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
 const fetchAndRender = async () => {
   isLoading.value = true;
   try {
-    const response = await fetch(`/portfolio/data/${props.project.markdownFileName}`);
-    const rawText = await response.text();
-    
-    // Convert Markdown to HTML
-    markdownHtml.value = await marked.parse(rawText);
-    
-    // Wait for Vue to update the DOM, then render Mermaid diagrams
-    await nextTick();
     await mermaid.run();
   } catch {
     markdownHtml.value = '<p class="text-red-500">Error loading project documentation.</p>';

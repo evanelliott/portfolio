@@ -14,7 +14,6 @@ const ProjectSchema = z.object({
   name: z.string().min(3),
   emoji: z.string().emoji(), // Validate that it's a single emoji character
   valueProposition: z.string().max(500), // Keep it punchy for the CV
-  markdownFileName: z.string().endsWith('.md'),
   mainAnimation: z.string().min(1),
   artifacts: z.object({
     githubUrl: z.string().url(),
