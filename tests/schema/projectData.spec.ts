@@ -2,7 +2,6 @@ import { describe, it, expect } from 'vitest'
 import { z } from 'zod'
 // Import the raw JSON data you created for your projects
 import projectsData from '../../public/data/projects.json'
-import { emoji } from 'zod/v4'
 
 /**
  * Project Data Schema (Zod)

@@ -3,7 +3,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import MarkdownView from '../MarkdownView.vue'
 import type { Project } from '@/types/Project';
 import mermaid from 'mermaid'
-import { nextTick } from 'process';
 
 // 1. Mock External Dependencies
 vi.mock('mermaid', () => ({
