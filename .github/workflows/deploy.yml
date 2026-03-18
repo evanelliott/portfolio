@@ -1,4 +1,4 @@
-name: Senior Portfolio CI/CD
+name: Personal Project Portfolio CI/CD
 
 on:
   push:
