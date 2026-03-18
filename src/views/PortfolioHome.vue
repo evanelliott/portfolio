@@ -26,7 +26,7 @@ const selectProject = (id: string) => {
 
     <!-- Preamble Section -->
     <header class="text-center space-y-4 py-10">
-      <h1 class="text-4xl font-bold text-slate-900">Personal Projects Portfolio</h1>
+      <h1 class="text-4xl font-bold text-slate-900">Project Portfolio</h1>
     </header>
     
     <!-- The Reactive Content Box -->
