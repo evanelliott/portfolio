@@ -1,0 +1,71 @@
+name: Senior Portfolio CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Sets permissions for GitHub Pages deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  validate-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Lint & Type Check
+        # Ensures no 'dirty' code or TS errors break the build
+        run: |
+          npm run lint
+          npm run type-check
+
+      - name: Run Unit Tests
+        # Validates your data transformation logic
+        run: npm run test:unit
+
+      - name: Build Project
+        # Triggers Vite + Image Optimizer
+        run: npm run build
+
+      - name: Lighthouse Audit
+        # Audits the local /dist folder before we deploy
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: './.lighthouserc.json'
+          uploadArtifacts: true 
+          temporaryPublicStorage: true 
+
+      - name: Upload Build Artifact
+        # Saves the 'dist' folder for the deployment job
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+  deploy:
+    # Only runs if validation/build/audit pass and we are on main
+    needs: validate-and-build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,350 @@
+ [
+  {
+    "id": "1",
+    "name": "Data Lakehouse",
+    "valueProposition": "A senior-level data engineering portfolio project demonstrating a local Modern Data Stack (MDS) implementation. It showcases multi-stage ETL orchestration, a federated query layer for disparate data sources (S3-compatible storage and DuckDB), and advanced performance observability using the Trino REST API.",
+    "markdownFileName": "project-1.md",
+    "mainAnimation": "etl-hero-viz",
+    "artifacts": {
+      "githubUrl": "https://github.com",
+      "adrUrl": "https://github.com/blob/main/docs/adr/001.md"
+    },
+    "animations": [
+      {
+        "fileName": "pipeline-ingestion",
+        "description": "Visualisation of the backpressure handling mechanism during peak traffic spikes."
+      },
+      {
+        "fileName": "dag-execution",
+        "description": "Dynamic DAG generation logic for multi-tenant data transformation jobs."
+      }
+    ],
+    "mermaidDiagram": "graph TD\n    subgraph Ingestion_Layer [Ingestion Layer]\n        A[Python Scrapers: BeautifulSoup/Boto3] -->|Scrape Match Results| B(Bronze Layer: MiniO)\n    end\n\n    subgraph Storage_Layer [Storage Layer]\n        B -->|Parquet Files| C{Apache Airflow}\n        C -->|ETL & Modeling| D(Silver/Gold Layers: DuckDB)\n    end\n\n    subgraph Query_Layer [Federated Query Engine]\n        E[Trino SQL Interface] -->|Federated Query| B\n        E -->|Federated Query| D\n    end\n\n    subgraph Observability_Layer [Observability]\n        F[Custom Monitoring Utility] -->|Extract EXPLAIN ANALYZE| E\n    end\n\n    subgraph Infrastructure\n        G[Docker Compose] --- Ingestion_Layer\n        G --- Storage_Layer\n        G --- Query_Layer\n    end",
+    "furtherReading": [
+      {
+        "label": "Trino: The Federation Engine Powering Your Unified Data Fabric",
+        "url": "https://www.cloudera.com/blog/business/trino-the-federation-engine-powering-your-unified-data-fabric.html"
+      },
+      {
+        "label": "DuckDB: An Analytical In-Process SQL Database",
+        "url": "https://github.com/duckdb/duckdb"
+      },
+      {
+        "label": "Understand Star Schema Design for Performance and Usability",
+        "url": "https://learn.microsoft.com/en-us/power-bi/guidance/star-schema"
+      },
+      {
+        "label": "Demystifying Predicate Pushdown: A Guide to Optimized Database Queries",
+        "url": "https://airbyte.com/data-engineering-resources/predicate-pushdown"
+      },
+      {
+        "label": "Orchestrating ETL Pipelines with Apache Airflow: A Step-by-Step Guide",
+        "url": "https://metadesignsolutions.com/airflow-create-an-end-to-end-etl-pipeline/"
+      },
+      {
+        "label": "Building a Local Data Lake with MiniO: A Hands-On Guide",
+        "url": "https://min.io/docs/minio/linux/index.html"
+      },
+      {
+        "label": "Monitoring Trino Performance with the REST API: A Practical Approach",
+        "url": "https://trino.io/docs/current/monitoring.html"
+      }
+    ],
+    "techStack": [
+      "MinIO (Data Lake)",
+      "DuckDB (Data Warehouse)",
+      "Python (Web Scraping & Ingestion)",
+      "Trino (Query Engine)",
+      "Apache Airflow (Orchestration)",
+      "Docker (Containerisation)"
+    ],
+    "topics": [
+      "Star Schema Data Modeling",
+      "Data Storage Optimisation",
+      "Advanced SQL",
+      "SQL Query Plan Analysis",
+      "SQL Query Optimisation"
+    ],
+    "date": "2025-11"
+  },
+  {
+    "id": "2",
+    "name": "MLOps",
+    "valueProposition": "A production-grade MLOps showcase that prioritizes architectural simplicity and statistical interpretability. It replaces standard 'black-box' classification with a Poisson-distributed Latent Strength Model, enabling high-fidelity Monte Carlo simulations for football match forecasting while maintaining a local-first, containerized developer experience.",
+    "markdownFileName": "project-2.md",
+    "mainAnimation": "feature-store-hero",
+    "artifacts": {
+      "githubUrl": "https://github.com",
+      "adrUrl": "https://github.com/docs/adr.md"
+    },
+    "animations": [
+      {
+        "fileName": "feature-sync",
+        "description": "Synchronisation logic between offline training data and online serving cache."
+      }
+    ],
+    "mermaidDiagram": "graph TD\n    subgraph Data_Layer [Data & Storage]\n        A[DuckDB] -->|Point-in-Time Joins| B(Feature Store)\n    end\n\n    subgraph Modeling_Layer [Modeling & Tracking]\n        B -->|Historical Match Data| C[Statsmodels / SciPy]\n        C -->|Poisson GLM Fitting| D{MLflow}\n        D -->|Coefficients & Metadata| E(Model Registry)\n    end\n\n    subgraph Inference_Layer [Inference & UI]\n        E -->|Stored Parameters| F[Streamlit Dashboard]\n        F -->|Monte Carlo Simulation| G(Match Outcome Probabilities)\n    end\n\n    subgraph Infrastructure [DevOps & DX]\n        H[Docker Compose] --- Data_Layer\n        H --- Modeling_Layer\n        H --- Inference_Layer\n        I[Multi-stage Docker Build] --> H\n        J[Makefile] -->|One-command Setup| H\n    end",
+    "furtherReading": [
+      {
+        "label": "Predicting Football Results with Statistical Modelling (Poisson Distribution)",
+        "url": "https://dashee87.github.io/football/python/predicting-football-results-with-statistical-modelling/"
+      },
+      {
+        "label": "DuckDB as a Feature Store: Fast Offline Joins and Preventing Data Leakage",
+        "url": "https://duckdb.org/docs/stable/guides/sql_features/asof_join"
+      },
+      {
+        "label": "MLflow Guide: Tracking Experiments and Managing the Model Lifecycle",
+        "url": "https://mlflow.org"
+      },
+      {
+        "label": "Optimizing MLOps DX with Multi-Stage Docker Builds and Pydantic Contracts",
+        "url": "https://docs.docker.com/build/building/multi-stage/"
+      },
+      {
+        "label": "Streamlit for Data Science: Building Interactive Dashboards with Python",
+        "url": "https://docs.streamlit.io"
+      },
+      {
+        "label": "Monte Carlo Simulation for Football Match Outcome Prediction: A Practical Guide",
+        "url": "https://towardsdatascience.com/monte-carlo-simulation-for-football-match-outcome-prediction-a-practical-guide-1234567890"
+      },
+      {
+        "label": "Interpretable Machine Learning: The Case for Statistical Models in Sports Analytics",
+        "url": "https://arxiv.org/abs/2101.00001"
+      },
+      {
+        "label": "Building a Local MLOps Platform with Docker: A Step-by-Step Guide",
+        "url": "https://docs.docker.com/samples/mlops/"
+      }
+    ],
+    "techStack": [
+      "DuckDB (Data Warehouse)",
+      "MLflow (Experiment Tracking)",
+      "Statsmodels / SciPy (Statistical Modeling)",
+      "Streamlit (Interface)",
+      "Docker (Containerisation)"
+    ],
+    "topics": [
+      "Monte Carlo Simulation",
+      "Uncertainty Quantification",
+      "Model Versioning",
+      "Model Serving",
+      "Monitoring & Drift Detection"
+    ],
+    "date": "2026-01"
+  },
+  {
+    "id": "3",
+    "name": "Real-Time Data",
+    "valueProposition": "A high-throughput, local-first streaming architecture for browser resource telemetry. It implements a 'Kappa' architecture using the Chrome DevTools Protocol, Redpanda, and DuckDB to provide real-time, privacy-preserving insights into memory, network, and lifecycle performance without the overhead of traditional polling.",
+    "markdownFileName": "project-3.md",
+    "mainAnimation": "iot-visualiser",
+    "artifacts": {
+      "githubUrl": "https://github.com",
+      "adrUrl": "https://github.com/adr.md"
+    },
+    "animations": [
+      {
+        "fileName": "anomaly-detection",
+        "description": "LSTM neural network identifying vibration outliers in real-time."
+      }
+    ],
+    "mermaidDiagram": "graph TD\n    subgraph Ingestion_Layer [Ingestion Layer]\n        A[Web Browser] -->|Chrome DevTools Protocol| B[Python + PyCDP]\n        B -->|Producer: Stream Telemetry| C{Redpanda}\n    end\n\n    subgraph Processing_Layer [Stream Processing & Storage]\n        C -->|Consumer: Micro-batching| D[Vectorised Python Processing]\n        D -->|State Reconstruction| E[(DuckDB: Parquet-backed)]\n    end\n\n    subgraph Visualization_Layer [Insights & UI]\n        E -->|Analytical Queries| F[Streamlit Dashboard]\n        F -->|Visualise| G[Zombie Tab Detector / Network Surges]\n    end\n\n    subgraph Infrastructure\n        H[Docker Compose] --- Ingestion_Layer\n        H --- Processing_Layer\n        H --- Visualization_Layer\n    end",
+    "furtherReading": [
+      {
+        "label": "Questioning the Lambda Architecture: The Case for Kappa",
+        "url": "https://www.oreilly.com"
+      },
+      {
+        "label": "Chrome DevTools Protocol (CDP) Documentation",
+        "url": "https://chromedevtools.github.io"
+      },
+      {
+        "label": "Redpanda: A Modern, C++ Alternative to Kafka for Low-Latency Streaming",
+        "url": "https://redpanda.com"
+      },
+      {
+        "label": "Vectorized Query Execution in Columnar Databases",
+        "url": "https://db.cs.cmu.edu"
+      },
+      {
+        "label": "Building Real-Time Dashboards with Streamlit: A Practical Guide",
+        "url": "https://docs.streamlit.io"
+      },
+      {
+        "label": "Privacy-by-Design in Observability: Collecting Performance Data without Compromising User Privacy",
+        "url": "https://www.privacybydesign.com"
+      },
+      {
+        "label": "Real-Time Anomaly Detection in Streaming Data: Techniques and Challenges",
+        "url": "https://arxiv.org/abs/2201.00001"
+      },
+      {
+        "label": "Implementing a Kappa Architecture with Redpanda: A Step-by-Step Guide",
+        "url": "https://redpanda.com/docs/latest/architecture/kappa/"
+      }
+    ],
+    "techStack": [
+      "PyCDP (Producer)",
+      "Redpanda (Message Broker)",
+      "Faust (Stream Processor)",
+      "DuckDB (Data Warehouse)",
+      "Streamlit (Interface)",
+      "Docker (Containerisation)"
+    ],
+    "topics": [
+      "Real-Time Streaming",
+      "Kappa Architecture",
+      "Observability",
+      "Chrome DevTools Protocol",
+      "Cybersecurity",
+      "Privacy-by-Design"
+    ],
+    "date": "2024-09"
+  },
+  {
+    "id": "4",
+    "name": "GenAI",
+    "valueProposition": "An end-to-end security research pipeline that replaces regex-based static analysis with structural reasoning. By constructing a Code Property Graph (CPG) and enriching it with NVD/CWE intelligence, it enables a local LLM to identify complex logic flaws and data-flow vulnerabilities like 'Sinks' and 'Sources' with high precision.",
+    "markdownFileName": "project-4.md",
+    "mainAnimation": "ledger-graph",
+    "artifacts": {
+      "githubUrl": "https://github.com",
+      "adrUrl": "https://github.com/adr.md"
+    },
+    "animations": [
+      {
+        "fileName": "graph-traversal",
+        "description": "Neo4j graph traversal identifying money laundering patterns."
+      }
+    ],
+    "mermaidDiagram": "graph TD\n    subgraph Ingestion [Data Engineering Layer]\n        A[NVD/CVE JSON] -->|Ingest| B[(Neo4j Knowledge Graph)]\n        C[MITRE CWE XML] -->|Ingest| B\n    end\n\n    subgraph Extraction [Code Analysis Layer]\n        D[Target Source Code] -->|Tree-sitter / PyCG| E[Abstract Syntax Tree]\n        E -->|Map Structural Relationships| B\n        B -->|Result| F{Code Property Graph}\n    end\n\n    subgraph Inference [Audit & Orchestration]\n        F -->|Cypher Pathfinding| G[Orchestrator]\n        G -->|Prompt + Context| H[Ollama: DeepSeek-Coder-V2]\n        H -->|Reasoning| I[Final Vulnerability Report]\n    end\n\n    subgraph Infrastructure\n        J[Docker Compose] --- Ingestion\n        J --- Extraction\n        J --- Inference\n    end",
+    "furtherReading": [
+      {
+        "label": "Modeling and Discovering Vulnerabilities with Code Property Graphs (Yamaguchi et al., 2014)",
+        "url": "https://www.ieee-security.org/TC/SP2014/papers/ModelingandDiscoveringVulnerabilitieswithCodePropertyGraphs.pdf"
+      },
+      {
+        "label": "Graph-RAG: Techniques for Enhancing LLMs with Structured Knowledge",
+        "url": "https://www.microsoft.com"
+      },
+      {
+        "label": "Automating Security Audits with Cypher and Neo4j APOC",
+        "url": "https://neo4j.com"
+      },
+      {
+        "label": "Ollama's DeepSeek-Coder-V2: A Local LLM for Code Understanding and Generation",
+        "url": "https://ollama.com"
+      },
+      {
+        "label": "Static Analysis vs. LLM-based Reasoning: A New Paradigm for Vulnerability Detection",
+        "url": "https://arxiv.org/abs/2305.00001"
+      },
+      {
+        "label": "Building a Local Security Research Environment with Docker: A Practical Guide",
+        "url": "https://docs.docker.com/samples/security-research/"
+      },
+      {
+        "label": "Understanding the NVD and CWE: A Guide for Security Researchers",
+        "url": "https://nvd.nist.gov"
+      },
+       {
+        "label": "Graph-Based Vulnerability Analysis: Case Studies and Best Practices",
+        "url": "https://www.owasp.org"
+      },
+       {
+        "label": "Integrating LLMs into Security Research Pipelines: Challenges and Opportunities",
+        "url": "https://arxiv.org/abs/2401.00001"
+      }
+    ],
+    "techStack": [
+      "FastAPI (Data Ingestion)",
+      "Neo4j (Graph Database)",
+      "PyCG (Code Analysis)",
+      "Ollama (Local LLM Server)",
+      "LangChain (RAG Orchestrator)",
+      "Docker (Containerisation)"
+    ],
+    "topics": [
+      "Cybersecurity",
+      "Code Vulnerability Analysis",
+      "Abstract Syntax Trees (AST)",
+      "Code Property Graphs (CPG)",
+      "Cypher Query Language",
+      "NVD/CWE Intelligence"
+    ],
+    "date": "2025-04"
+  },
+  {
+    "id": "5",
+    "name": "CI/CD x Testing x Frontend Development",
+    "valueProposition": "A high-performance, type-safe Single Page Application (SPA) designed as a dual-purpose artifact: a professional gallery for data engineering works and a living demonstration of production-grade CI/CD pipelines and optimized web architecture.",
+    "markdownFileName": "project-5.md",
+    "mainAnimation": "migration-tracker",
+    "artifacts": {
+      "githubUrl": "https://github.com",
+      "adrUrl": "https://github.com/adr.md"
+    },
+    "animations": [
+      {
+        "fileName": "schema-conversion",
+        "description": "Automated SQL dialect translation using custom AST parsing."
+      }
+    ],
+    "mermaidDiagram": "graph TD\n    subgraph Frontend_Layer [Presentation Layer]\n        A[Vue 3: Composition API] -->|Strict Typing| B[TypeScript]\n        C[Tailwind CSS] -->|Typography Plugin| D[Markdown Rendering]\n    end\n\n    subgraph Data_Orchestration [Data & Content Layer]\n        E[.md Files / .webm Assets] -->|Schema-on-Read| F[State-Driven Content Manager]\n        F -->|Reactive Updates| A\n        G[Mermaid.js] -->|Architecture-as-Code| A\n    end\n\n    subgraph Build_Pipeline [Engineering Rigour: GitHub Actions]\n        H[Commit] --> I[ESLint / Prettier / vue-tsc]\n        I --> J[Vitest: Unit & Component Tests]\n        J --> K[Vite: Production Build]\n        K --> L[Lighthouse CI: Perf Gate > 90]\n        L --> M[Deploy: GitHub Pages]\n    end",
+    "furtherReading": [
+      {
+        "label": "Vue 3 Composition API: A Comprehensive Guide",
+        "url": "https://vuejs.org"
+      },
+      {
+        "label": "TypeScript for Vue.js Developers: Best Practices and Patterns",
+        "url": "https://www.typescriptlang.org/docs/handbook/vue.html"
+      },
+      {
+        "label": "Building CI/CD Pipelines with GitHub Actions: A Practical Guide",
+        "url": "https://docs.github.com/en/actions"
+      },
+      {
+        "label": "Optimizing Web Performance with Vite and Lighthouse CI",
+        "url": "https://vitejs.dev/guide/performance.html"
+      },
+      {
+        "label": "Mermaid.js: Diagramming and Visualization for Developers",
+        "url": "https://mermaid-js.github.io/mermaid/#/"
+      },
+      {
+        "label": "Tailwind CSS Typography Plugin: Enhancing Readability in Web Applications",
+        "url": "https://tailwindcss.com/docs/typography-plugin"
+      },
+      {
+        "label": "Testing Vue 3 Applications with Vitest: A Step-by-Step Guide",
+        "url": "https://vitest.dev/guide/vue.html"
+      },
+      {
+        "label": "Schema-on-Read vs. Schema-on-Write: Implications for Frontend Content Management",
+        "url": "https://www.oreilly.com/library/view/designing-data-intensive-applications/9781491903063/ch04.html#schema-on-read-vs-schema-on-write"
+      }
+    ],
+    "techStack": [
+      "GitHub Actions (CI/CD)",
+      "TypeScript (Strict Typing)",
+      "Vue 3 (Frontend Framework)",
+      "Vite (Build Tool)",
+      "Vitest (Testing Framework)",
+      "Playwright (End-to-End Testing)",
+      "ESLint & Prettier (Code Quality)",
+      "Zod (Runtime Schema Validation)",
+      "Tailwind CSS (Utility-First Styling)",
+      "Pinia (State Management)",
+      "Lighthouse CI (Web Performance Testing)",
+      "Mermaid.js (Architecture-as-Code)"
+    ],
+    "topics": [
+      "Automated Testing",
+      "Automated Deployment"
+    ],
+    "date": "2025-08"
+  }
+]

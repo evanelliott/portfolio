@@ -1,0 +1,39 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "tests/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "compilerOptions": {
+    "types": ["node", "vitest/globals", "@playwright/test"],
+    "composite": true,
+    "tsBuildInfoFile": "./node_modules/.cache/tsbuildinfo",
+    
+    // 1. Senior-Grade Strictness
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // 2. Module Resolution & Compatibility
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true,
+    "resolveJsonModule": true, // Allows importing project-1.json directly
+    "isolatedModules": true,
+    "useDefineForClassFields": true,
+
+    // 3. Path Aliasing (Must match vite.config.ts)
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+    // 4. Output & Quality
+    "noEmit": true, // Vite handles the emit; TS only handles type-checking
+    "jsx": "preserve",
+    "allowJs": true,
+    "esModuleInterop": true
+  }
+}

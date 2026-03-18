@@ -1,0 +1,50 @@
+# 1. Dependency Directories
+node_modules/
+jspm_packages/
+
+# 2. Build Artifacts & Output
+dist/
+dist-ssr/
+*.local
+
+# 3. Environment & Secrets (CRITICAL)
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# 4. Logs & Debugging
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# 5. Testing & Coverage Reports
+/tests/e2e/test-results/
+/tests/e2e/playwright-report/
+/tests/e2e/blob-report/
+/playwright-report/
+/test-results/
+coverage/
+*.lcov
+
+# 6. TypeScript & IDE Cache
+.tsbuildinfo
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# 7. OS Generated Files
+.DS_Store
+Thumbs.db
+
+# 8. Project Specific
+.lh/
+.history/
