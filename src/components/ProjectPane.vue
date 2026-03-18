@@ -44,10 +44,9 @@ defineEmits<{
         class="text-xs font-mono font-bold tracking-widest uppercase mb-2 block"
         :class="isActive ? 'text-indigo-600' : 'text-slate-400'"
       >
-        Project #{{ project.id }}
+        Project #{{ project.id }}: 
       </span>
 
-    <hr>
       <!-- Project Name -->
       <span 
         class="text-xs font-mono font-bold tracking-widest uppercase mb-2 block"
@@ -55,32 +54,6 @@ defineEmits<{
       >
         <b>{{ project.name }}</b>
       </span>
-
-    <hr>
-      <!-- Tech Tags -->
-      <ul class="flex flex-wrap gap-1.5 mt-auto">
-        <li 
-          v-for="tag in project.techStack" 
-          :key="tag"
-          class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-tight"
-          :class="isActive ? 'bg-indigo-100 text-indigo-700' : 'bg-slate-200 text-slate-600'"
-        >
-          {{ tag }}
-      </li>
-    </ul>
-
-    <hr>
-      <!-- Tech Tags -->
-      <ul class="flex flex-wrap gap-1.5 mt-auto">
-        <li 
-          v-for="tag in project.topics" 
-          :key="tag"
-          class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-tight"
-          :class="isActive ? 'bg-indigo-100 text-indigo-700' : 'bg-slate-200 text-slate-600'"
-        >
-          {{ tag }}
-      </li>
-    </ul>
 
       <!-- Active Indicator Arrow -->
       <div 

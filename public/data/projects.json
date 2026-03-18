@@ -278,8 +278,8 @@
   },
   {
     "id": "5",
-    "name": "CI/CD x Testing x Frontend Development",
-    "valueProposition": "A high-performance, type-safe Single Page Application (SPA) designed as a dual-purpose artifact: a professional gallery for data engineering works and a living demonstration of production-grade CI/CD pipelines and optimized web architecture.",
+    "name": "CI/CD",
+    "valueProposition": "This repository is the GitHub page that you are currently viewing! It is a high-performance, type-safe Single Page Application (SPA) designed as a dual-purpose artifact: a professional gallery for data engineering works and a living demonstration of production-grade CI/CD pipelines and optimized web architecture.",
     "markdownFileName": "project-5.md",
     "mainAnimation": "migration-tracker",
     "artifacts": {

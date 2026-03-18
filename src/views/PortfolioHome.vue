@@ -26,11 +26,16 @@ const selectProject = (id: string) => {
     
     <!-- Preamble Section -->
     <header class="text-center space-y-4 py-10">
-      <h1 class="text-4xl font-bold text-slate-900">Portfolio Showcase</h1>
+      <h1 class="text-4xl font-bold text-slate-900">Evan Elliott | Personal Projects Portfolio</h1>
       <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-        Welcome. I am a Senior Individual Contributor specialising in 
-        <strong>Data Science & Engineering</strong>. This SPA demonstrates my 
-        technical stack across data orchestration, testing, and modern web CI/CD.
+        Welcome to my <strong>Personal Projects Portfolio</strong>!
+      </p>
+      <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+        I’m a <strong>Technical Lead</strong> specialising in <strong>Data Science & Engineering</strong>.
+      </p>
+      <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+        I created this space to showcase how I architect <strong>production-grade solutions</strong>
+        that bridge the gap between <strong>advanced analytics</strong> and <strong>robust engineering</strong>.
       </p>
     </header>
 
@@ -51,6 +56,7 @@ const selectProject = (id: string) => {
         
         <!-- State: Project Selected -->
         <div v-if="activeProject" :key="activeProject.id" class="flex flex-col md:flex-row h-full">
+          <br>
           <!-- Animation Column -->
           <div class="md:w-1/2 p-6 bg-slate-50">
              <ProjectDemo :demoUrl="activeProject.mainAnimation" :title="activeProject.name" />
