@@ -40,6 +40,8 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
       </p>
     </section>
 
+    <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.1);">
+    
     <!-- 2. Artifacts (GitHub & ADR) -->
     <section class="flex gap-4 border-y border-slate-100 py-4">
       <a :href="project.artifacts.githubUrl" target="_blank" class="btn-artifact">
@@ -51,6 +53,8 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
       </a>
     </section>
 
+    <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.1);">
+
     <!-- 3. Tech Stack -->
     <section v-if="project.techStack.length" class="bg-slate-900 text-white p-6 rounded-xl">
       <h3 class="text-lg font-bold mb-3">Tech Stack</h3>
@@ -60,6 +64,8 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
         </li>
       </ul>
     </section>
+
+    <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.1);">
 
     <!-- 4. Topics -->
     <section v-if="project.topics.length" class="bg-slate-900 text-white p-6 rounded-xl">
@@ -76,6 +82,8 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
       v-html="markdownHtml" 
       class="prose prose-slate max-w-none prose-headings:text-slate-800"
     ></article>
+
+    <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.1);">
     
     <!-- 6. System Architecture (Mermaid) -->
     <section v-if="project.mermaidDiagram" class="space-y-4">
@@ -84,6 +92,8 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
         {{ project.mermaidDiagram }}
       </div>
     </section>
+
+    <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.1);">
 
     <!-- 7. Ordered Animations Section -->
     <section class="space-y-8">
@@ -95,6 +105,8 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
         <ProjectDemo :demoUrl="anim.fileName" :title="anim.fileName" />
       </div>
     </section>
+
+    <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.1);">
 
     <!-- 8. Further Reading -->
     <section v-if="project.furtherReading.length" class="bg-slate-900 text-white p-6 rounded-xl">

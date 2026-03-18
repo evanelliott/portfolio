@@ -23,18 +23,37 @@ const selectProject = (id: string) => {
 
 <template>
   <main class="max-w-6xl mx-auto p-6 space-y-12">
-    
+
     <!-- Preamble Section -->
     <header class="text-center space-y-4 py-10">
       <h1 class="text-4xl font-bold text-slate-900">Personal Projects Portfolio</h1>
-      <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-        Hello! 👋 I’m Evan, a <strong>Technical Lead</strong> specialising in <strong>Data Science & Engineering</strong>.
-      </p>
-      <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-        I created this space to showcase how I architect <strong>production-grade solutions</strong>
-        that bridge the gap between <strong>advanced analytics</strong> and <strong>robust engineering</strong>.
-      </p>
     </header>
+    
+    <!-- The Reactive Content Box -->
+    <section class="border-2 border-slate-100 rounded-2xl bg-white shadow-sm overflow-hidden min-h-[500px]">
+      <Transition name="fade" mode="out-in">
+        
+        <!-- State: Project Selected -->
+        <div v-if="activeProject" :key="activeProject.id" class="flex flex-col md:flex-row h-full">
+        </div>
+
+        <!-- State: Default/Empty -->
+        <div v-else class="flex items-center justify-center h-[500px] text-slate-400 italic">
+          <div class="text-center">
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+              Hello! 👋 I’m Evan, a <strong>Technical Lead</strong> specialising in <strong>Data Science & Engineering</strong>.
+            </p>
+            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+              I created this space to showcase how I architect <strong>production-grade solutions</strong>
+              that bridge the gap between <strong>advanced analytics</strong> and <strong>robust engineering</strong>.
+            </p>
+            <br>
+            <p>Select a project below to explore my work in more detail 👇</p>
+          </div>
+        </div>
+
+      </Transition>
+    </section>
 
     <!-- Project Selection Grid (The 5 Panes) -->
     <section class="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -53,7 +72,7 @@ const selectProject = (id: string) => {
         
         <!-- State: Project Selected -->
         <div v-if="activeProject" :key="activeProject.id" class="flex flex-col md:flex-row h-full">
-          <br>
+          <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.1);">
           <!-- Animation Column -->
           <div class="md:w-1/2 p-6 bg-slate-50">
              <ProjectDemo :demoUrl="activeProject.mainAnimation" :title="activeProject.name" />
@@ -68,7 +87,7 @@ const selectProject = (id: string) => {
         <!-- State: Default/Empty -->
         <div v-else class="flex items-center justify-center h-[500px] text-slate-400 italic">
           <div class="text-center">
-            <p>Select a project above to explore my work in more detail 👆</p>
+            <br>
           </div>
         </div>
 
