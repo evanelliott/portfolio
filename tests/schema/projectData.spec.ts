@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { z } from 'zod'
 // Import the raw JSON data you created for your projects
 import projectsData from '../../public/data/projects.json'
+import { emoji } from 'zod/v4'
 
 /**
  * Project Data Schema (Zod)
@@ -11,6 +12,7 @@ import projectsData from '../../public/data/projects.json'
 const ProjectSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(3),
+  emoji: z.string().emoji(), // Validate that it's a single emoji character
   valueProposition: z.string().max(500), // Keep it punchy for the CV
   markdownFileName: z.string().endsWith('.md'),
   mainAnimation: z.string().min(1),

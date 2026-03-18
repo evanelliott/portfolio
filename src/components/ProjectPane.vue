@@ -39,20 +39,12 @@ defineEmits<{
           : 'bg-slate-50 border-transparent hover:border-slate-200 shadow-sm'
       ]"
     >
-      <!-- Project ID / Index Indicator -->
+      <!-- Project ID / Name / Emoji -->
       <span 
         class="text-xs font-mono font-bold tracking-widest uppercase mb-2 block"
         :class="isActive ? 'text-indigo-600' : 'text-slate-400'"
       >
-        Project #{{ project.id }}: 
-      </span>
-
-      <!-- Project Name -->
-      <span 
-        class="text-xs font-mono font-bold tracking-widest uppercase mb-2 block"
-        :class="isActive ? 'text-indigo-600' : 'text-slate-400'"
-      >
-        <b>{{ project.name }}</b>
+        Project #{{ project.id }}: <b>{{ project.name }}</b> {{ project.emoji }}
       </span>
 
       <!-- Active Indicator Arrow -->

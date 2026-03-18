@@ -21,6 +21,7 @@ export interface FurtherReading {
 export interface Project {
   id: string;           // Unique identifier for selection state
   name: string;         // Official project title
+  emoji: string;        // Single emoji representing the project theme
   valueProposition: string; // One-line "elevator pitch" for the CV
   
   // Content Pointers
