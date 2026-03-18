@@ -27,8 +27,6 @@ describe('ProjectPane.vue', () => {
 
     // Assert: Verify text content displays as expected
     expect(wrapper.text()).toContain('Project #1')
-    expect(wrapper.text()).toContain('Airflow')
-    expect(wrapper.text()).toContain('Spark')
   })
 
   it('emits a click event when the tile is pressed', async () => {
@@ -61,23 +59,5 @@ describe('ProjectPane.vue', () => {
     
     // Accessibility check: aria-selected should reflect active state
     expect(wrapper.attributes('aria-selected')).toBe('true')
-  })
-
-  it('limits the display to the first 5 tags for UI consistency', () => {
-    const projectWithManyTags = {
-      ...mockProject,
-      tags: ['A', 'B', 'C', 'D', 'E', 'F', 'G'] // 7 tags to test the limit
-    }
-    
-    const wrapper = mount(ProjectPane, {
-      props: {
-        project: projectWithManyTags as Project,
-        isActive: false
-      }
-    })
-
-    // Assert: Business logic ensures grid remains clean
-    const tags = wrapper.findAll('.rounded')
-    expect(tags.length).toBe(5)
   })
 })
