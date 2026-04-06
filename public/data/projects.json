@@ -5,7 +5,7 @@
     "tagline": "Local demo of a Modern Data Stack (MDS) implementation",
     "useCase": "Football data integration and analytics",
     "emoji": "🥇",
-    "valueProposition": "A senior-level data engineering portfolio project demonstrating a local Modern Data Stack (MDS) implementation. It showcases multi-stage ETL orchestration, a federated query layer for disparate data sources (S3-compatible storage and DuckDB), and advanced performance observability using the Trino REST API.",
+    "valueProposition": "This production-grade Data Lakehouse integrates disparate data sources into a single, high-integrity analytical platform. Combining a Medallion Architecture and Star Schema design, the system transforms raw multi-source JSON into sophisticated Gold-layer tables. The data model uses fact tables for match events, and SCD Type 2 dimensions to track temporal changes in player market values and injury status. Following industry best practices, the implementation leverages scheduled maintenance routines as well as advanced table optimisations.",
     "mainAnimation": "etl-hero-viz",
     "artifacts": {
       "githubUrl": "https://github.com",
@@ -21,8 +21,8 @@
         "description": "Dynamic DAG generation logic for multi-tenant data transformation jobs."
       }
     ],
-    "mermaidDiagram": "graph TD\n    subgraph Ingestion_Layer [Ingestion Layer]\n        A[Python Scrapers: BeautifulSoup/Boto3] -->|Scrape Match Results| B(Bronze Layer: MiniO)\n    end\n\n    subgraph Storage_Layer [Storage Layer]\n        B -->|Parquet Files| C{Apache Airflow}\n        C -->|ETL & Modeling| D(Silver/Gold Layers: DuckDB)\n    end\n\n    subgraph Query_Layer [Federated Query Engine]\n        E[Trino SQL Interface] -->|Federated Query| B\n        E -->|Federated Query| D\n    end\n\n    subgraph Observability_Layer [Observability]\n        F[Custom Monitoring Utility] -->|Extract EXPLAIN ANALYZE| E\n    end\n\n    subgraph Infrastructure\n        G[Docker Compose] --- Ingestion_Layer\n        G --- Storage_Layer\n        G --- Query_Layer\n    end",
-    "furtherReading": [
+  "mermaidDiagram": "graph LR\n    subgraph \"Data Sources (External)\"\n        US[Understat]\n        FB[FBref]\n        TM[Transfermarkt]\n        PI[Premier Injuries]\n    end\n\n    subgraph \"Data Lakehouse (Apache Iceberg / S3)\"\n        direction TB\n        subgraph \"Bronze Layer: Raw Landing\"\n            B1[(Immutable Raw JSON)]\n        end\n\n        subgraph \"Silver Layer: Cleansed & Integrated\"\n            S1[Entity Resolution]\n            S2[Data Contracts]\n            S1 --> S2\n            S2 --> S3[(Master-Mapped Tables)]\n        end\n\n        subgraph \"Gold Layer: Analytical Star Schema\"\n            G1[Fact Match Events]\n            G2[Dim Players - SCD Type 2]\n            G3[Incremental Materialization]\n        end\n    end\n\n    US & FB & TM & PI --> B1\n    B1 --> S1\n    S3 --> G1\n    S3 --> G2\n    G1 & G2 --> G3\n    G3 --> Dash[Scouting Dashboards]\n\n    style B1 fill:#f96,stroke:#333\n    style S3 fill:#6cf,stroke:#333\n    style G3 fill:#9f9,stroke:#333",
+  "furtherReading": [
       {
         "label": "Trino: The Federation Engine Powering Your Unified Data Fabric",
         "url": "https://www.cloudera.com/blog/business/trino-the-federation-engine-powering-your-unified-data-fabric.html"
@@ -53,20 +53,21 @@
       }
     ],
     "techStack": [
-      "MinIO (Data Lake)",
-      "DuckDB (Data Warehouse)",
-      "Python (Web Scraping & Ingestion)",
-      "Trino (Query Engine)",
+      "Python (Web Scraping & Data Ingestion)",
+      "MinIO (Object Storage)",
+      "Apache Iceberg (Data Lakehouse Format)",
+      "Apache Spark & Trino (Query Engines)",
       "Apache Airflow (Orchestration)",
       "Docker (Containerisation)"
     ],
     "topics": [
       "Medallion Architecture",
-      "Data Modeling",
-      "Star Schema Design",
+      "Advanced Data Modeling",
+      "Data Integration",
+      "Deterministic Entity Resolution",
       "Storage Optimisation",
-      "Advanced SQL",
-      "SQL Query Optimisation"
+      "SQL Query Optimisation",
+      "Table Maintenance & Compaction"
     ],
     "date": "2025-11"
   },
