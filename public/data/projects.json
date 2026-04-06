@@ -221,7 +221,7 @@
     "id": "4",
     "name": "GenAI",
     "emoji": "🤖",
-    "valueProposition": "An end-to-end security research pipeline that replaces regex-based static analysis with structural reasoning. By constructing a Code Property Graph (CPG) and enriching it with NVD/CWE intelligence, it enables a local LLM to identify complex logic flaws and data-flow vulnerabilities like 'Sinks' and 'Sources' with high precision.",
+    "valueProposition": "An AI-fuelled code analysis system that moves beyond traditional static analysis to perform structural reasoning on source code. By transforming raw code into a multidimensional Code Property Graph (CPG), the system enables a local LLM to query the codebase's architecture. This allows for the automated detection of anti-patterns related to architecture, testing and security.",
     "mainAnimation": "ledger-graph",
     "artifacts": {
       "githubUrl": "https://github.com",
@@ -233,7 +233,7 @@
         "description": "Neo4j graph traversal identifying money laundering patterns."
       }
     ],
-    "mermaidDiagram": "graph TD\n    subgraph Ingestion [Data Engineering Layer]\n        A[NVD/CVE JSON] -->|Ingest| B[(Neo4j Knowledge Graph)]\n        C[MITRE CWE XML] -->|Ingest| B\n    end\n\n    subgraph Extraction [Code Analysis Layer]\n        D[Target Source Code] -->|Tree-sitter / PyCG| E[Abstract Syntax Tree]\n        E -->|Map Structural Relationships| B\n        B -->|Result| F{Code Property Graph}\n    end\n\n    subgraph Inference [Audit & Orchestration]\n        F -->|Cypher Pathfinding| G[Orchestrator]\n        G -->|Prompt + Context| H[Ollama: DeepSeek-Coder-V2]\n        H -->|Reasoning| I[Final Vulnerability Report]\n    end\n\n    subgraph Infrastructure\n        J[Docker Compose] --- Ingestion\n        J --- Extraction\n        J --- Inference\n    end",
+    "mermaidDiagram": "graph TD\n    subgraph 'Ingestion & Transformation'\n        A[Source Code] --> B[Joern CPG Generator]\n        B --> C{OpenCode Framework}\n    end\n\n    subgraph 'Storage & Enrichment'\n        C --> D[(Neo4j Graph DB)]\n        E[NVD/CWE Metadata] --> D\n    end\n\n    subgraph 'Intelligence Layer'\n        D <--> F[Custom Python Orchestrator]\n        F <--> G[Ollama: Local LLM]\n    end\n\n    subgraph 'Analysis Outputs'\n        F --> H[Security Vulnerabilities]\n        F --> I[Architectural Issues]\n        F --> J[Test Coverage Gaps]\n    end\n\n    style G fill:#f96,stroke:#333,stroke-width:2px\n    style D fill:#45a3e5,stroke:#333,stroke-width:2px",
     "furtherReading": [
       {
         "label": "Modeling and Discovering Vulnerabilities with Code Property Graphs (Yamaguchi et al., 2014)",
@@ -273,20 +273,20 @@
       }
     ],
     "techStack": [
-      "FastAPI (Data Ingestion)",
-      "Neo4j (Graph Database)",
-      "PyCG (Code Analysis)",
-      "Ollama (Local LLM Server)",
-      "LangChain (RAG Orchestrator)",
+      "Joern: (Code Property Graph Extractor)",
+      "Neo4j: (Graph Database)",
+      "Ollama: (Local LLM Server)",
+      "OpenCode: (Orchestration Harness)",
       "Docker (Containerisation)"
     ],
     "topics": [
-      "Cybersecurity",
-      "Code Vulnerability Analysis",
-      "Abstract Syntax Trees (AST)",
-      "Code Property Graphs (CPG)",
-      "Cypher Query Language",
-      "NVD/CWE Intelligence"
+      "LLM Integration",
+      "Advanced GraphRAG Engineering",
+      "Security-First System Design",
+      "Complex Data Modeling",
+      "Data Enrichment",
+      "Graph-Based Code Analysis",
+      "Performance Optimisation"
     ],
     "date": "2025-04"
   },
