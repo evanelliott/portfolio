@@ -34,7 +34,12 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
   <div class="space-y-12">
     <!-- 1. Header & Value Prop -->
     <section>
-      <h2 class="text-3xl font-bold text-slate-900">{{ project.name }}</h2>
+      <h3 class="text-3xl font-bold text-slate-900">{{ project.name }}</h3>
+      <p class="text-xl text-indigo-600 font-medium mt-2 italic">
+        <b>{{ project.tagline }}</b>
+        <br>
+        <b><i>Use Case: {{ project.useCase }}</i></b>
+      </p>
       <p class="text-xl text-indigo-600 font-medium mt-2 italic">
         <i>{{ project.valueProposition }}</i>
       </p>
@@ -44,7 +49,7 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
 
     <!-- 2. Tech Stack -->
     <section v-if="project.techStack.length" class="bg-slate-900 text-white p-6 rounded-xl">
-      <h3 class="text-lg font-bold mb-3">Tech Stack</h3>
+      <h4 class="text-lg font-bold mb-3">Tech Stack</h4>
       <ul class="list-disc list-inside space-y-2">
         <li v-for="technology in project.techStack" :key="technology">
             {{ technology }}
@@ -56,7 +61,7 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
 
     <!-- 3. Topics -->
     <section v-if="project.topics.length" class="bg-slate-900 text-white p-6 rounded-xl">
-      <h3 class="text-lg font-bold mb-3">Topics</h3>
+      <h4 class="text-lg font-bold mb-3">Topics</h4>
       <ul class="list-disc list-inside space-y-2">
         <li v-for="topic in project.topics" :key="topic">
             {{ topic }}
@@ -74,7 +79,7 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
     
     <!-- 5. System Architecture (Mermaid) -->
     <section v-if="project.mermaidDiagram" class="space-y-4">
-      <h3 class="text-xl font-bold">System Architecture</h3>
+      <h4 class="text-xl font-bold">System Architecture</h4>
       <div class="mermaid bg-white p-4 rounded-lg border border-slate-200">
         {{ project.mermaidDiagram }}
       </div>
@@ -84,7 +89,7 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
 
     <!-- 6. Ordered Animations Section -->
     <section class="space-y-8">
-      <h3 class="text-xl font-bold border-b pb-2">Visual Demonstrations</h3>
+      <h4 class="text-xl font-bold border-b pb-2">Visual Demonstrations</h4>
       <div v-for="(anim, index) in project.animations" :key="index" class="space-y-4">
         <p class="text-slate-600 text-sm leading-relaxed bg-slate-50 p-3 rounded-r-lg border-l-4 border-indigo-400">
           <strong>Step {{ index + 1 }}:</strong> {{ anim.description }}
@@ -110,7 +115,7 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
 
     <!-- 8. Further Reading -->
     <section v-if="project.furtherReading.length" class="bg-slate-900 text-white p-6 rounded-xl">
-      <h3 class="text-lg font-bold mb-3">Further Reading</h3>
+      <h4 class="text-lg font-bold mb-3">Further Reading</h4>
       <ul class="list-disc list-inside space-y-2">
         <li v-for="link in project.furtherReading" :key="link.url">
           <a :href="link.url" target="_blank" class="hover:text-indigo-300 transition-colors">

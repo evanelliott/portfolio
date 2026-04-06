@@ -74,7 +74,7 @@ const selectProject = (id: string) => {
           <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.1);">
           <!-- Animation Column -->
           <div class="md:w-1/2 p-6 bg-slate-50">
-             <ProjectDemo :demoUrl="activeProject.mainAnimation" :title="activeProject.name" />
+             <!-- <ProjectDemo :demoUrl="activeProject.mainAnimation" :title="activeProject.name" /> -->
           </div>
           
           <!-- Markdown Column (Scrollable) -->
