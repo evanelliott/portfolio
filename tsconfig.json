@@ -1,6 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "tests/**/*"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "tests/**/*", "tailwind.config.js"],
   "exclude": ["node_modules", "dist"],
   "compilerOptions": {
     "types": ["node", "vitest/globals", "@playwright/test"],

@@ -4,7 +4,7 @@ import { RouterView } from 'vue-router'
 
 <template>
   <!-- Main Layout Shell -->
-  <div class="min-h-screen bg-gray-50 dark:bg-slate-900 text-slate-900 dark:text-white">
+  <div class="min-h-screen bg-gray-50 text-slate-900">
     
     <!-- This renders your PortfolioHome.vue or other routes -->
     <main class="container mx-auto px-4 py-8">
