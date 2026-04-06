@@ -29,8 +29,9 @@ const selectProject = (id: string) => {
       <p class="text-lg text-slate-600 max-w-2xl mx-auto">
         <b>Evan Elliott</b>
         <br>
-        <b>Technical Lead | Data Science & Engineering Specialist</b>
+        <b>Technical Lead | Data Science & Engineering</b>
       </p>
+      <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.1);">
     </header>
     
     <!-- The Reactive Content Box -->
