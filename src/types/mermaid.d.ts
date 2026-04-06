@@ -1,9 +1,10 @@
+// filepath: src/types/mermaid.d.ts
 declare module 'mermaid' {
   export interface MermaidConfig {
     startOnLoad?: boolean;
     theme?: 'default' | 'forest' | 'dark' | 'neutral' | string;
     securityLevel?: 'strict' | 'loose' | 'antiscript';
-    [key: string]: any;
+    [key: string]: unknown;
   }
 
   export function initialize(config: MermaidConfig): void;
@@ -14,7 +15,7 @@ declare module 'mermaid' {
     initialize: (config: MermaidConfig) => void;
     run: () => Promise<void>;
     contentLoaded: () => void;
-    [key: string]: any;
+    [key: string]: unknown;
   };
   
   export default mermaid;
