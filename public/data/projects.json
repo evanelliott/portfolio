@@ -158,7 +158,7 @@
     "name": "Stream Processing",
     "tagline": "A local demo of an architecture for event-driven streaming and real-time insights",
     "useCase": "Monitoring web browser activity for performance and security insights",
-    "emoji": "⚡",
+    "emoji": "🏎️",
     "valueProposition": "A high-throughput, local-first streaming architecture for browser resource telemetry. It implements a 'Kappa' architecture using the Chrome DevTools Protocol, Redpanda, and DuckDB to provide real-time, privacy-preserving insights into memory, network, and lifecycle performance without the overhead of traditional polling.",
     "mainAnimation": "iot-visualiser",
     "artifacts": {

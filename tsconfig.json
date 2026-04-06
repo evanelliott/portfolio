@@ -25,7 +25,6 @@
     "useDefineForClassFields": true,
 
     // 3. Path Aliasing (Must match vite.config.ts)
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },

@@ -1,3 +1,8 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* 1. GitHub Typography & Colors */
 :root {
   /* The official GitHub System Font Stack */

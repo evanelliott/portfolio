@@ -1,5 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import tailwindcss from '@tailwindcss/postcss'
+import autoprefixer from 'autoprefixer'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 import { fileURLToPath, URL } from 'node:url'
 
@@ -31,7 +33,7 @@ export default defineConfig({
       svg: {
         multipass: true,
         plugins: [
-          { name: 'removeViewBox', active: false },
+          { name: 'removeViewBox' },
           { name: 'sortAttrs' },
         ],
       },
@@ -41,16 +43,17 @@ export default defineConfig({
     }),
   ],
 
+  css: {
+    postcss: {
+      plugins: [tailwindcss(), autoprefixer()],
+    },
+  },
+
   resolve: {
     // 3. Path Aliasing: Maintains clean imports (e.g., import X from '@/components/X')
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  },
-
-  css: {
-    // Force Vite to use PostCSS for the transformation so Tailwind can run
-    transformer: 'postcss', 
   },
 
   build: {
