@@ -11,8 +11,10 @@ import projectsData from '../../public/data/projects.json'
 const ProjectSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(3),
+  tagline: z.string().max(200),
+  useCase: z.string().max(200),
   emoji: z.string().emoji(), // Validate that it's a single emoji character
-  valueProposition: z.string().max(500), // Keep it punchy for the CV
+  valueProposition: z.string().max(1000), // Keep it punchy for the CV
   mainAnimation: z.string().min(1),
   artifacts: z.object({
     githubUrl: z.string().url(),

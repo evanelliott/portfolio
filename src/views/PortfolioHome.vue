@@ -3,7 +3,6 @@ import { ref, computed } from 'vue';
 import type { Project } from '@/types/Project';
 import projectsData from '@/../public/data/projects.json';
 import ProjectPane from '@/components/ProjectPane.vue';
-import ProjectDemo from '@/components/ProjectDemo.vue';
 import MarkdownView from '@/components/MarkdownView.vue';
 
 // 1. Data State: Your 5 projects
