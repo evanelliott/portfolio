@@ -2,7 +2,7 @@
   {
     "id": "1",
     "name": "Data Lakehouse",
-    "tagline": "Local demo of a Modern Data Stack (MDS) implementation",
+    "tagline": "A local demo of a Modern Data Stack (MDS)",
     "useCase": "Football data integration and analytics",
     "emoji": "🥇",
     "valueProposition": "This production-grade Data Lakehouse integrates disparate data sources into a single, high-integrity analytical platform. Combining a Medallion Architecture and Star Schema design, the system transforms raw multi-source JSON into sophisticated Gold-layer tables. The data model uses fact tables for match events, and SCD Type 2 dimensions to track temporal changes in player market values and injury status. Following industry best practices, the implementation leverages scheduled maintenance routines as well as advanced table optimisations.",
@@ -74,7 +74,7 @@
   {
     "id": "2",
     "name": "MLOps",
-    "tagline": "Local demo of a production-grade MLOps platform",
+    "tagline": "A local demo of a production-grade MLOps platform",
     "useCase": "Football match forecasting",
     "emoji": "🚀",
     "valueProposition": "A production-grade MLOps showcase that prioritizes architectural simplicity and statistical interpretability. It replaces standard 'black-box' classification with a Poisson-distributed Latent Strength Model, enabling high-fidelity Monte Carlo simulations for football match forecasting while maintaining a local-first, containerized developer experience.",
@@ -155,8 +155,8 @@
   },
   {
     "id": "3",
-    "name": "Streaming Analytics",
-    "tagline": "Local demo of a high-throughput, event-driven streaming architecture",
+    "name": "Stream Processing",
+    "tagline": "A local demo of an architecture for event-driven streaming and real-time insights",
     "useCase": "Monitoring web browser activity for performance and security insights",
     "emoji": "⚡",
     "valueProposition": "A high-throughput, local-first streaming architecture for browser resource telemetry. It implements a 'Kappa' architecture using the Chrome DevTools Protocol, Redpanda, and DuckDB to provide real-time, privacy-preserving insights into memory, network, and lifecycle performance without the overhead of traditional polling.",
@@ -227,7 +227,7 @@
   {
     "id": "4",
     "name": "GenAI",
-    "tagline": "Retrieval Augmented Generation (RAG) system for contextual LLM responses",
+    "tagline": "A Retrieval Augmented Generation (RAG) system for contextual LLM responses",
     "useCase": "Source code analysis and vulnerability detection",
     "emoji": "🤖",
     "valueProposition": "This LLM-augmented code analysis system moves beyond traditional static analysis to perform structural reasoning on source code. By transforming raw code into a multidimensional Code Property Graph (CPG), the system enables a local LLM to query the codebase's contents. This allows for the automated detection of anti-patterns related to architecture, testing and security.",
@@ -302,7 +302,7 @@
   {
     "id": "5",
     "name": "CI/CD",
-    "tagline": "Production-grade CI/CD pipeline for a GitHub repository",
+    "tagline": "A production-grade CI/CD pipeline for a GitHub repository",
     "useCase": "The portfolio web page which you are currently viewing!",
     "emoji": "✅",
     "valueProposition": "This is a high-performance, type-safe Single Page Application (SPA) designed as a dual-purpose artifact: a professional gallery for data engineering works and a living demonstration of production-grade CI/CD pipelines and optimized web architecture.",

@@ -35,9 +35,8 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
     <!-- 1. Header & Value Prop -->
     <section>
       <h3 class="text-3xl font-bold text-slate-900">{{ project.name }}</h3>
+      <h4 class="text-2xl font-bold text-slate-900">{{ project.tagline }}</h4>
       <p class="text-xl text-indigo-600 font-medium mt-2 italic">
-        <b>{{ project.tagline }}</b>
-        <br>
         <b><i>Use Case: {{ project.useCase }}</i></b>
       </p>
       <p class="text-xl text-indigo-600 font-medium mt-2 italic">
