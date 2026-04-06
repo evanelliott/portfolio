@@ -26,7 +26,12 @@ const selectProject = (id: string) => {
 
     <!-- Preamble Section -->
     <header class="text-center space-y-4 py-10">
-      <h1 class="text-4xl font-bold text-slate-900">Project Portfolio</h1>
+      <h2 class="text-4xl font-bold text-slate-900">Project Portfolio</h2>
+      <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+        <b>Evan Elliott</b>
+        <br>
+        <b>Technical Lead | Data Science & Engineering Specialist</b>
+      </p>
     </header>
     
     <!-- The Reactive Content Box -->
@@ -41,14 +46,8 @@ const selectProject = (id: string) => {
         <div v-else class="flex items-center justify-center h-[500px] text-slate-400 italic">
           <div class="text-center">
             <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-              Hello! 👋 I’m Evan, a <strong>Technical Lead</strong> specialising in <strong>Data Science & Engineering</strong>.
+              Select a project below to explore my work in more detail 👇
             </p>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
-              I created this space to showcase how I architect <strong>production-grade solutions</strong>
-              that bridge the gap between <strong>advanced analytics</strong> and <strong>robust engineering</strong>.
-            </p>
-            <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.1);">
-            <p>Select a project below to explore my work in more detail 👇</p>
           </div>
         </div>
 
