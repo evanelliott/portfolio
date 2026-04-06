@@ -34,28 +34,15 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
   <div class="space-y-12">
     <!-- 1. Header & Value Prop -->
     <section>
-      <h2 class="text-3xl font-bold text-slate-900">Project #{{ project.id }}: {{ project.name }}</h2>
+      <h2 class="text-3xl font-bold text-slate-900">{{ project.name }}</h2>
       <p class="text-xl text-indigo-600 font-medium mt-2 italic">
         <i>{{ project.valueProposition }}</i>
       </p>
     </section>
 
     <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.1);">
-    
-    <!-- 2. Artifacts (GitHub & ADR) -->
-    <section class="flex gap-4 border-y border-slate-100 py-4">
-      <a :href="project.artifacts.githubUrl" target="_blank" class="btn-artifact">
-        <span class="font-bold text-sm">GitHub Repo →</span>
-      </a>
-      <br />
-      <a :href="project.artifacts.adrUrl" target="_blank" class="btn-artifact">
-        <span class="font-bold text-sm">Architecture Design Record (ADR) →</span>
-      </a>
-    </section>
 
-    <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.1);">
-
-    <!-- 3. Tech Stack -->
+    <!-- 2. Tech Stack -->
     <section v-if="project.techStack.length" class="bg-slate-900 text-white p-6 rounded-xl">
       <h3 class="text-lg font-bold mb-3">Tech Stack</h3>
       <ul class="list-disc list-inside space-y-2">
@@ -67,7 +54,7 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
 
     <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.1);">
 
-    <!-- 4. Topics -->
+    <!-- 3. Topics -->
     <section v-if="project.topics.length" class="bg-slate-900 text-white p-6 rounded-xl">
       <h3 class="text-lg font-bold mb-3">Topics</h3>
       <ul class="list-disc list-inside space-y-2">
@@ -77,7 +64,7 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
       </ul>
     </section>
 
-    <!-- 5. Dynamic Markdown Content (The Body) -->
+    <!-- 4. Dynamic Markdown Content (The Body) -->
     <article 
       v-html="markdownHtml" 
       class="prose prose-slate max-w-none prose-headings:text-slate-800"
@@ -85,7 +72,7 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
 
     <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.1);">
     
-    <!-- 6. System Architecture (Mermaid) -->
+    <!-- 5. System Architecture (Mermaid) -->
     <section v-if="project.mermaidDiagram" class="space-y-4">
       <h3 class="text-xl font-bold">System Architecture</h3>
       <div class="mermaid bg-white p-4 rounded-lg border border-slate-200">
@@ -95,7 +82,7 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
 
     <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.1);">
 
-    <!-- 7. Ordered Animations Section -->
+    <!-- 6. Ordered Animations Section -->
     <section class="space-y-8">
       <h3 class="text-xl font-bold border-b pb-2">Visual Demonstrations</h3>
       <div v-for="(anim, index) in project.animations" :key="index" class="space-y-4">
@@ -104,6 +91,19 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
         </p>
         <ProjectDemo :demoUrl="anim.fileName" :title="anim.fileName" />
       </div>
+    </section>
+
+    <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.1);">
+    
+    <!-- 7. Artifacts (GitHub & ADR) -->
+    <section class="flex gap-4 border-y border-slate-100 py-4">
+      <a :href="project.artifacts.githubUrl" target="_blank" class="btn-artifact">
+        <span class="font-bold text-sm">GitHub Repo →</span>
+      </a>
+      <br />
+      <a :href="project.artifacts.adrUrl" target="_blank" class="btn-artifact">
+        <span class="font-bold text-sm">Architecture Design Record (ADR) →</span>
+      </a>
     </section>
 
     <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.1);">
