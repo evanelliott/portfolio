@@ -16,6 +16,8 @@ describe('MarkdownView.vue', () => {
   const mockProject = {
     id: '1',
     name: 'ETL Orchestrator',
+    tagline: 'Automated data pipelines for seamless integration.',
+    useCase: 'Building a scalable ETL pipeline to integrate multiple data sources.',
     emoji: '🔄',
     valueProposition: 'High-throughput data pipelines.',
     mainAnimation: 'etl-demo.gif',
