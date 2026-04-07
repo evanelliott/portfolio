@@ -46,7 +46,7 @@ describe('MarkdownView.vue', () => {
     // Wait for async fetch and DOM updates
     await flushPromises()
     // Verify that the markdown content is rendered
-    expect(wrapper.html()).toContain('System Architecture </h4>')
+    expect(wrapper.html()).toContain('System Architecture </h2>')
     expect(wrapper.html()).toContain('GITHUB</a>')
   })
 
