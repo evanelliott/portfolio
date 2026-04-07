@@ -32,21 +32,21 @@ defineEmits<{
     <!-- Selection Indicator: Vertical bar that appears when active -->
     <div 
       v-if="isActive"
-      class="absolute left-0 top-0 bottom-0 w-1 bg-indigo-500 rounded-full"
+      class="absolute left-4 top-1 bottom-1 w-1 bg-indigo-500 rounded-full"
     ></div>
 
     <!-- Card Container -->
     <div 
-      class="h-full p-2 rounded-xl border transition-all"
+      class="h-full p-1.5 rounded-xl border transition-all"
       :class="[
         isActive 
-          ? 'bg-white border-indigo-100 shadow-sm ml-3' 
-          : 'bg-transparent border-transparent hover:bg-slate-100 ml-3'
+          ? 'bg-white border-indigo-100 shadow-sm ml-6 mr-0' 
+          : 'bg-transparent border-transparent hover:bg-slate-100 ml-6 mr-0'
       ]"
     >
       <!-- Project Emoji & Name -->
-      <div class="flex items-center gap-2">
-        <span class="text-[10px]">{{ project.emoji }}</span>
+      <div class="flex flex-col items-center gap-0">
+        <span class="text-[12px]">{{ project.emoji }}</span>
         <span 
           class="text-[10px] font-bold tracking-tight block leading-tight"
           :class="isActive ? 'text-indigo-600' : 'text-slate-600'"

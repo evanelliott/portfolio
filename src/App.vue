@@ -41,18 +41,18 @@ onUnmounted(() => {
 
 <template>
   <!-- h-screen + overflow-hidden prevents the browser from ever showing a scrollbar -->
-  <div class="flex flex-col h-screen bg-gray-50 text-slate-900 overflow-hidden">
+  <div class="flex flex-col h-screen text-slate-900 overflow-hidden">
     
     <!-- HEADER -->
     <header class="w-full bg-white shrink-0 z-50">
-      <div class="max-w-7xl mx-auto px-6 flex flex-col justify-start">
-        <h2 class="font-bold uppercase tracking-[0.15em] leading-none pt-0 text-[12px] text-slate-400">
+      <div class="max-w-7xl mx-auto px-4 flex flex-col justify-start">
+        <h2 class="font-bold uppercase tracking-[0.15em] leading-none pt-0 text-[12px] text-slate-900">
           Project Portfolio
         </h2>
-        <div v-if="!isPortrait" class="flex items-center gap-3 -mt-1 pb-2 text-[10px] text-slate-600">
-          <b class="text-slate-900 font-semibold tracking-tight">Evan Elliott</b>
-          <span class="border-l border-slate-200 pl-3 leading-none">Technical Lead</span>
-          <span class="border-l border-slate-200 pl-3 leading-none text-slate-500">
+        <div v-if="!isPortrait" class="flex items-center gap-2 -mt-3 pb-2 text-[10px] text-slate-600">
+          <b class="font-semibold tracking-tight">Evan Elliott</b>
+          <span class="border-l pl-2 leading-none">Technical Lead</span>
+          <span class="border-l pl-2 leading-none">
             Data Science & Engineering Specialist (Remote)
           </span>
         </div>
@@ -60,22 +60,25 @@ onUnmounted(() => {
     </header>
 
     <!-- MAIN CONTENT AREA: No overflow here -->
-    <div class="flex-1 flex max-w-7xl w-full mx-auto px-3 py-2 gap-4 overflow-hidden">
+    <div class="flex-1 flex max-w-7xl w-full mx-auto px-0 py-0 gap-2 overflow-hidden">
       
       <!-- PORTRAIT PROMPT -->
       <div v-if="isPortrait" class="flex-1 flex flex-col items-center justify-center p-10 text-center">
         <div class="rotate-icon text-5xl mb-6">📱</div>
-        <p class="text-slate-800 font-bold text-lg">Landscape Mode Recommended</p>
+        <!-- <p class="text-slate-400 font-bold text-lg">Rotate to landscape</p> -->
+        <h2 class="font-bold uppercase tracking-[0.15em] leading-none pt-0 text-[12px] text-slate-400">
+          Please rotate
+        </h2>
       </div>
 
       <!-- LANDSCAPE CONTENT -->
       <template v-else>
         <!-- SIDEBAR -->
-        <aside class="w-1/4 max-w-70 ml-3 mt-1 shrink-0">
-          <h3 class="text-[9px] font-bold text-slate-300 uppercase tracking-widest mb-2 px-0">
+        <aside class="w-1/5 max-w-70 -ml-4 mt-4 shrink-0">
+          <!-- <h3 class="text-[9px] font-bold text-slate-300 uppercase tracking-widest mb-2 px-2">
             Select Project
-          </h3>
-          <nav class="space-y-0">
+          </h3> -->
+          <nav class="space-y-3">
             <ProjectPane 
               v-for="project in projects" 
               :key="project.id"
@@ -102,7 +105,7 @@ onUnmounted(() => {
     </div>
     
     <!-- FOOTER: Always visible at the bottom -->
-    <footer class="w-full bg-white border-t border-slate-200 py-3 px-6 text-center shrink-0">
+    <footer class="w-full bg-white border-none border-slate-200 py-0 px-0 text-center shrink-0">
       <div class="max-w-7xl mx-auto text-[7px] text-slate-400 tracking-widest uppercase">
         &copy; {{ new Date().getFullYear() }} Evan Elliott. No rights reserved.
       </div>
@@ -127,7 +130,7 @@ onUnmounted(() => {
 @keyframes rotate-device {
   0% { transform: rotate(0deg); }
   30% { transform: rotate(-90deg); }
-  60% { transform: rotate(-90deg); }
+  70% { transform: rotate(-90deg); }
   100% { transform: rotate(0deg); }
 }
 

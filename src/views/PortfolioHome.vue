@@ -22,15 +22,18 @@ const activeProject = computed(() =>
 
       <!-- Text Area: This is where the scrollbar lives IF text is too long -->
 
-      <div class="flex-1 overflow-y-auto p-8 md:p-12 prose prose-slate prose-sm max-w-none custom-scrollbar scroll-pt-0">
+      <div class="flex-1 overflow-y-auto p-4 md:p-4 prose prose-slate prose-sm max-w-none custom-scrollbar scroll-pt-0">
         <MarkdownView :project="activeProject" />
       </div>
 
     </div>
     
     <!-- Empty State -->
-    <div v-else class="flex items-center justify-center h-full text-slate-400 italic">
-      👈 Select a project to view details
+    <div v-else class="flex items-center justify-center h-full text-[12px] text-slate-400 italic">
+      <!-- 👈 Select a project to view details -->
+        <h2 class="tracking-[0em] leading-none pt-0 text-[12px] text-slate-400">
+          👈 Select a project to view details
+        </h2>
     </div>
   </section>
 </template>
@@ -49,15 +52,15 @@ const activeProject = computed(() =>
 }
 
 /* Ensure the prose (Markdown) takes up available space */
-.prose :where(h1, h2, h3, h4) {
+.prose :where(h1, h2, h3) {
   position: sticky;
-  top: -2rem; /* Matches the top padding of your container */
+  top: -1rem; /* Matches the top padding of your container */
   background-color: white; /* Prevents text from overlapping behind the header */
-  z-index: 100;
+  z-index: 10;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  margin-top: 4rem;
-  border-bottom: 1px solid #f1f5f9; /* Optional: adds a subtle line when stuck */
+  margin-top: 1rem;
+  border-bottom: 2px solid #f1f5f9; /* Optional: adds a subtle line when stuck */
 }
 
 </style>
