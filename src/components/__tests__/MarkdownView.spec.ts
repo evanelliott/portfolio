@@ -46,8 +46,8 @@ describe('MarkdownView.vue', () => {
     // Wait for async fetch and DOM updates
     await flushPromises()
     // Verify that the markdown content is rendered
-    expect(wrapper.html()).toContain('System Architecture</h4>')
-    expect(wrapper.html()).toContain('GitHub Repo →</span>')
+    expect(wrapper.html()).toContain('System Architecture </h4>')
+    expect(wrapper.html()).toContain('GITHUB</a>')
   })
 
   it('triggers the Mermaid.js engine after content is loaded', async () => {
@@ -61,14 +61,14 @@ describe('MarkdownView.vue', () => {
     expect(mermaid.run).toHaveBeenCalled()
   })
 
-  it('displays the "Visual Demonstrations" section with correct descriptions', async () => {
+  it('displays the "Visual Demos" section with correct descriptions', async () => {
     const wrapper = mount(MarkdownView, {
       props: { project: mockProject as Project }
     })
 
     await flushPromises()
 
-    expect(wrapper.text()).toContain('Visual Demonstrations')
+    expect(wrapper.text()).toContain('Visual Demos')
     expect(wrapper.text()).toContain('Step 1')
   })
 

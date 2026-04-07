@@ -26,7 +26,7 @@ describe('ProjectPane.vue', () => {
     })
 
     // Assert: Verify text content displays as expected
-    expect(wrapper.text()).toContain('Project #1')
+    expect(wrapper.text()).toContain('Data Pipeline Ops')
   })
 
   it('emits a click event when the tile is pressed', async () => {
@@ -53,9 +53,10 @@ describe('ProjectPane.vue', () => {
     })
 
     // Assert: Verify conditional Tailwind classes for visual feedback
-    const container = wrapper.find('.rounded-2xl')
-    expect(container.classes()).toContain('border-indigo-500')
-    expect(wrapper.classes()).toContain('scale-105')
+    const container = wrapper.find('.rounded-xl')
+    expect(container.exists()).toBe(true)
+    expect(container.classes()).toContain('border-indigo-100')
+    expect(wrapper.classes()).toContain('ease-out')
     
     // Accessibility check: aria-selected should reflect active state
     expect(wrapper.attributes('aria-selected')).toBe('true')

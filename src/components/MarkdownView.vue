@@ -13,6 +13,8 @@ const isLoading = ref(true);
 
 mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
 
+const hasError = ref(false);
+
 const fetchAndRender = async () => {
   isLoading.value = true;
   try {
@@ -30,7 +32,8 @@ const fetchAndRender = async () => {
     await mermaid.run();
 
   } catch {
-    markdownHtml.value = '<p class="text-red-500">Error loading project documentation.</p>';
+    hasError.value = true; // Set this flag
+    markdownHtml.value = 'Error loading project documentation.';
   } finally {
     isLoading.value = false;
   }
@@ -91,13 +94,21 @@ watch(() => props.project.id, fetchAndRender, { immediate: true });
     
     <!-- 3. ARCHITECTURE (Now Sticky) -->
     <section v-if="project.mermaidDiagram" class="pt-4">
-      <h4 class="sticky top-0 bg-white z-10 text-[9px] font-bold uppercase tracking-widest text-slate-300 py-3 border-b border-slate-50 mb-3">
+      <h4 class="sticky top-0 bg-white z-10 ...">
         System Architecture
       </h4>
-      <div class="mermaid scale-90 origin-top-left p-4 rounded-lg bg-white border border-slate-100">
+      
+      <!-- Show error message if hasError is true -->
+      <div v-if="hasError" class="text-red-500 p-4 border border-red-100 rounded-lg text-xs">
+        {{ markdownHtml }}
+      </div>
+
+      <!-- Otherwise show the diagram -->
+      <div v-else class="mermaid scale-90 origin-top-left p-4 rounded-lg bg-white border border-slate-100">
         {{ project.mermaidDiagram }}
       </div>
     </section>
+
 
     <!-- 4. VISUAL DEMOS (Now Sticky) -->
     <section v-if="project.animations?.length" class="pt-6 space-y-6">
