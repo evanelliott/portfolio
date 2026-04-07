@@ -2,17 +2,16 @@
 import type { Project } from '@/types/Project';
 
 /**
- * ProjectPane represents a single 'tile' in the 5-pane grid.
- * It displays high-level metadata and acts as the trigger for the main view.
+ * ProjectPane represents a single 'tile' in the sidebar.
  */
 interface Props {
   project: Project;
-  isActive: boolean; // Managed by PortfolioHome.vue
+  isActive: boolean; // Passed from App.vue
 }
 
 defineProps<Props>();
 
-// Define the click event to notify the parent
+// Define the click event to notify the parent (App.vue)
 defineEmits<{
   (e: 'click'): void;
 }>();
@@ -23,49 +22,52 @@ defineEmits<{
     @click="$emit('click')"
     type="button"
     :aria-selected="isActive"
-    class="relative flex-1 w-full text-left transition-all duration-300 ease-out group"
+    class="relative w-full text-left transition-all duration-200 ease-out group"
     :class="[
       isActive 
-        ? 'scale-105 z-10' 
-        : 'hover:translate-y-[-4px] opacity-70 hover:opacity-100'
+        ? 'translate-x-1' 
+        : 'opacity-70 hover:opacity-100'
     ]"
->
+  >
+    <!-- Selection Indicator: Vertical bar that appears when active -->
+    <div 
+      v-if="isActive"
+      class="absolute left-0 top-0 bottom-0 w-1 bg-indigo-500 rounded-full"
+    ></div>
+
     <!-- Card Container -->
     <div 
-      class="h-full p-5 rounded-2xl border-2 transition-colors"
+      class="h-full p-2 rounded-xl border transition-all"
       :class="[
         isActive 
-          ? 'bg-white border-indigo-500 shadow-xl' 
-          : 'bg-slate-50 border-transparent hover:border-slate-200 shadow-sm'
+          ? 'bg-white border-indigo-100 shadow-sm ml-3' 
+          : 'bg-transparent border-transparent hover:bg-slate-100 ml-3'
       ]"
     >
-      <!-- Project ID / Name / Emoji -->
-      <span 
-        class="text-xs font-mono font-bold tracking-widest uppercase mb-2 block"
-        :class="isActive ? 'text-indigo-600' : 'text-slate-400'"
-      >
-        Project #{{ project.id }}: <b>{{ project.name }}</b> {{ project.emoji }}
-      </span>
-
-      <!-- Active Indicator Arrow -->
-      <div 
-        v-if="isActive" 
-        class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-indigo-500 rotate-45"
-      ></div>
+      <!-- Project Emoji & Name -->
+      <div class="flex items-center gap-2">
+        <span class="text-[10px]">{{ project.emoji }}</span>
+        <span 
+          class="text-[10px] font-bold tracking-tight block leading-tight"
+          :class="isActive ? 'text-indigo-600' : 'text-slate-600'"
+        >
+          {{ project.name }}
+        </span>
+      </div>
     </div>
   </button>
 </template>
 
 <style scoped>
-/* Ensure the line-clamp works for the value proposition */
+/* Ensure smooth movement when selected */
+button {
+  outline: none;
+}
+
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-/* Smooth tooltip transition */
-.group:hover .group-hover\:opacity-100 {
-  transition-delay: 100ms;
 }
 </style>

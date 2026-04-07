@@ -23,7 +23,7 @@ body {
   color: var(--text-primary);
   background-color: var(--bg-default);
   margin: 0;
-  padding: 2rem;
+  padding: 0rem;
   -webkit-font-smoothing: antialiased;
 }
 

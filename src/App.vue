@@ -1,30 +1,141 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import { ref, onMounted, onUnmounted } from 'vue';
+import { RouterView } from 'vue-router';
+import projectsData from '@/../public/data/projects.json';
+import ProjectPane from '@/components/ProjectPane.vue';
+import type { Project } from '@/types/Project';
+
+const projects = ref<Project[]>(projectsData);
+const selectedId = ref<string | null>(null);
+
+const selectProject = (id: string) => {
+  selectedId.value = id;
+};
+
+// 1. Define the media query for portrait orientation
+const portraitQuery = window.matchMedia("(orientation: portrait)");
+const isPortrait = ref(portraitQuery.matches);
+
+// 2. Define a robust handler for orientation changes
+const handleOrientationChange = (event: MediaQueryListEvent | MediaQueryList) => {
+  // We only show the prompt if it's portrait AND on a mobile-sized screen
+  const isSmallScreen = window.innerWidth < 700; 
+  isPortrait.value = event.matches && isSmallScreen;
+};
+
+onMounted(() => {
+  // Initial check
+  handleOrientationChange(portraitQuery);
+  
+  // Modern browsers use 'change' event on the MediaQueryList
+  // We also keep 'resize' as a fallback for window size changes
+  portraitQuery.addEventListener('change', handleOrientationChange);
+  window.addEventListener('resize', () => handleOrientationChange(portraitQuery));
+});
+
+onUnmounted(() => {
+  portraitQuery.removeEventListener('change', handleOrientationChange);
+  window.removeEventListener('resize', () => handleOrientationChange(portraitQuery));
+});
 </script>
 
 <template>
-  <!-- Main Layout Shell -->
-  <div class="min-h-screen bg-gray-50 text-slate-900">
+  <!-- h-screen + overflow-hidden prevents the browser from ever showing a scrollbar -->
+  <div class="flex flex-col h-screen bg-gray-50 text-slate-900 overflow-hidden">
     
-    <!-- This renders your PortfolioHome.vue or other routes -->
-    <main class="container mx-auto px-4 py-8">
-      <RouterView />
-    </main>
+    <!-- HEADER -->
+    <header class="w-full bg-white shrink-0 z-50">
+      <div class="max-w-7xl mx-auto px-6 flex flex-col justify-start">
+        <h2 class="font-bold uppercase tracking-[0.15em] leading-none pt-0 text-[12px] text-slate-400">
+          Project Portfolio
+        </h2>
+        <div v-if="!isPortrait" class="flex items-center gap-3 -mt-1 pb-2 text-[10px] text-slate-600">
+          <b class="text-slate-900 font-semibold tracking-tight">Evan Elliott</b>
+          <span class="border-l border-slate-200 pl-3 leading-none">Technical Lead</span>
+          <span class="border-l border-slate-200 pl-3 leading-none text-slate-500">
+            Data Science & Engineering Specialist (Remote)
+          </span>
+        </div>
+      </div>
+    </header>
 
-    <!-- Example Footer (optional) -->
-    <footer class="text-center py-8 opacity-50 text-sm">
-      <hr style="border: none; height: 1px; background-color: rgba(0, 0, 0, 0.2);">
-      <i class="fas fa-copyright">&copy; {{ new Date().getFullYear() }} Evan Elliott. No rights reserved.</i>
+    <!-- MAIN CONTENT AREA: No overflow here -->
+    <div class="flex-1 flex max-w-7xl w-full mx-auto px-3 py-2 gap-4 overflow-hidden">
+      
+      <!-- PORTRAIT PROMPT -->
+      <div v-if="isPortrait" class="flex-1 flex flex-col items-center justify-center p-10 text-center">
+        <div class="rotate-icon text-5xl mb-6">📱</div>
+        <p class="text-slate-800 font-bold text-lg">Landscape Mode Recommended</p>
+      </div>
+
+      <!-- LANDSCAPE CONTENT -->
+      <template v-else>
+        <!-- SIDEBAR -->
+        <aside class="w-1/4 max-w-70 ml-3 mt-1 shrink-0">
+          <h3 class="text-[9px] font-bold text-slate-300 uppercase tracking-widest mb-2 px-0">
+            Select Project
+          </h3>
+          <nav class="space-y-0">
+            <ProjectPane 
+              v-for="project in projects" 
+              :key="project.id"
+              :project="project"
+              :is-active="selectedId === project.id"
+              @click="selectProject(project.id)"
+            />
+          </nav>
+        </aside>
+
+        <!-- VIEWPORT: Grows to fill space, but doesn't allow overflow -->
+        <main class="grow min-w-0 overflow-hidden">
+          <RouterView v-slot="{ Component }">
+            <Transition name="page" mode="out-in">
+              <component 
+                :is="Component" 
+                :selectedId="selectedId" 
+                :projects="projects"
+              />
+            </Transition>
+          </RouterView>
+        </main>
+      </template>
+    </div>
+    
+    <!-- FOOTER: Always visible at the bottom -->
+    <footer class="w-full bg-white border-t border-slate-200 py-3 px-6 text-center shrink-0">
+      <div class="max-w-7xl mx-auto text-[7px] text-slate-400 tracking-widest uppercase">
+        &copy; {{ new Date().getFullYear() }} Evan Elliott. No rights reserved.
+      </div>
     </footer>
   </div>
 </template>
 
+
+
 <style>
-/* Global transitions or Tailwind 4 Typography overrides can go here */
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
+}
+
+/* Animated Rotation Symbol */
+.rotate-icon {
+  font-size: 4rem;
+  animation: rotate-device 2s ease-in-out infinite;
+}
+
+@keyframes rotate-device {
+  0% { transform: rotate(0deg); }
+  30% { transform: rotate(-90deg); }
+  60% { transform: rotate(-90deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
 }
 </style>
