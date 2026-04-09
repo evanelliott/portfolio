@@ -32,7 +32,7 @@ const selectVideo = (index: number) => {
         </div>
       </div>
 
-      <div class="flex flex-wrap justify-end gap-1 max-w-[33%] shrink-0 pb-1">
+      <div class="flex flex-wrap justify-end gap-1 max-w-[40%] shrink-0 pb-1">
         <span v-for="tech in project.stack" :key="tech" 
               class="px-1.5 py-0.5 bg-indigo-200 text-indigo-600 text-[8px] tracking-[0.1em] font-mono font-semibold rounded border border-indigo-600 whitespace-nowrap">
           {{ tech }}
@@ -124,7 +124,7 @@ const selectVideo = (index: number) => {
               <transition name="fade" mode="out-in">
                 <div :key="activeVideoIndex" class="w-full h-full">
                   <ProjectDemo 
-                    :url="project.videos[activeVideoIndex].url || 'https://www.w3schools.com/html/mov_bbb.mp4'"
+                    :url="project.videos[activeVideoIndex].url || 'https://lorem.video/720p'"
                     :title="project.videos[activeVideoIndex].title" 
                   />
                 </div>
