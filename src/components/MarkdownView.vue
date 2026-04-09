@@ -1,41 +1,11 @@
 <script setup lang="ts">
-import { ref, watch, nextTick } from 'vue';
-import mermaid from 'mermaid';
+import { ref } from 'vue';
 import ProjectDemo from './ProjectDemo.vue';
 import type { Project } from '@/types/Project';
 
 const props = defineProps<{
   project: Project 
 }>();
-
-const markdownHtml = ref('');
-const isLoading = ref(true);
-const hasError = ref(false);
-
-mermaid.initialize({ 
-  startOnLoad: false, 
-  theme: 'neutral',
-  securityLevel: 'loose',
-});
-
-const fetchAndRender = async () => {
-  isLoading.value = true;
-  hasError.value = false;
-  try {
-    await nextTick();
-    const el = document.querySelector('.mermaid');
-    if (el && props.project.mermaidDiagram) {
-      el.removeAttribute('data-processed');
-      el.textContent = props.project.mermaidDiagram;
-      await mermaid.run();
-    }
-  } catch (err) {
-    hasError.value = true;
-    markdownHtml.value = 'Error rendering architecture diagram: ' + (err as Error).message;
-  } finally {
-    isLoading.value = false;
-  }
-};
 
 // Track which video is currently playing
 const activeVideoIndex = ref(0);
@@ -44,7 +14,6 @@ const selectVideo = (index: number) => {
   activeVideoIndex.value = index;
 };
 
-watch(() => props.project.title, fetchAndRender, { immediate: true });
 </script>
 
 <template>

@@ -28,7 +28,7 @@ describe('ProjectPane.vue', () => {
 
     // Assert: Verify internal name and headline display as expected
     expect(wrapper.text()).toContain('GenAI')
-    expect(wrapper.text()).toContain('LLM-Powered Code Property Graph')
+    expect(wrapper.text()).toContain('🤖')
   })
 
   it('emits a click event when the tile is pressed', async () => {
