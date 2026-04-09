@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import ProjectDemo from './ProjectDemo.vue';
 import type { Project } from '@/types/Project';
 
-const props = defineProps<{
+defineProps<{
   project: Project 
 }>();
 
