@@ -7,7 +7,7 @@
       class="w-full h-auto object-cover"
       loading="lazy"
       type="video/mp4"
-      controls autoplay loop muted 
+      controls loop muted 
     />
   </div>
 </template>
