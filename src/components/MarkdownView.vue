@@ -167,12 +167,12 @@ const selectVideo = (index: number) => {
         <!-- 4. ARTIFACTS -->
         <footer v-if="project.artifacts" class="pt-0">
           <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 flex items-center gap-4 border-b border-slate-100">
-            <h4 class="px-3 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">Artifact Repository</h4>
+            <h4 class="px-4 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">Artifact Repository</h4>
           </div>
           <div class="bg-slate-100 p-6 flex flex-col md:flex-row justify-between items-center gap-4 shadow-2xl shadow-indigo-200">
             <div class="text-center md:text-left space-y-1">
               <!-- <h4 class="font-bold text-[12px]">Technical Artifacts</h4> -->
-              <p class="text-slate-600 text-[10px] font-medium">Review the codebase and technical documentation.</p>
+              <p class="text-slate-600 text-[10px] font-medium">Review the codebase and technical documentation:</p>
             </div>
             <div class="flex gap-8">
               <a :href="project.artifacts.githubUrl" target="_blank" class="btn-artifact">Github Repository</a>
