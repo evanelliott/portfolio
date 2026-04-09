@@ -62,7 +62,7 @@ onUnmounted(() => {
     </header>
 
     <!-- MAIN CONTENT AREA: No overflow here -->
-    <div class="flex-1 flex max-w-7xl w-full mx-auto px-0 py-0 gap-2 overflow-hidden">
+    <div class="flex-1 flex max-w-7xl w-full mx-auto px-1 py-0 gap-2 overflow-hidden">
       
       <!-- PORTRAIT PROMPT -->
       <div v-if="isPortrait" class="flex-1 flex flex-col items-center justify-center p-10 text-center">
@@ -76,7 +76,7 @@ onUnmounted(() => {
       <!-- LANDSCAPE CONTENT -->
       <template v-else>
         <!-- SIDEBAR -->
-        <aside class="w-1/9 max-w-70 -ml-4 mt-4 shrink-0">
+        <aside class="w-1/9 max-w-70 -ml-5 mt-4 shrink-0">
           <!-- <h3 class="text-[9px] font-bold text-slate-300 uppercase tracking-widest mb-2 px-2">
             Select Project
           </h3> -->

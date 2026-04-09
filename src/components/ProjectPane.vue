@@ -40,7 +40,7 @@ defineEmits<{
       class="h-full p-1.5 rounded-xl border transition-all"
       :class="[
         isActive 
-          ? 'bg-white border-indigo-100 shadow-sm ml-6 mr-0' 
+          ? 'bg-white border-indigo-600 shadow-sm ml-6 mr-0' 
           : 'bg-transparent border-transparent hover:bg-slate-100 ml-6 mr-0'
       ]"
     >
