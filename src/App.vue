@@ -46,10 +46,10 @@ onUnmounted(() => {
     <!-- HEADER -->
     <header class="w-full shrink-0 z-50">
       <div class="max-w-7xl mx-auto px-2 flex flex-col justify-start">
-        <div class="flex items-center gap-4 mt-2 mb-4">
-        <h4 class="font-bold tracking-[0em] leading-none pt-0 text-[18px] text-slate-900">
-          Project Portfolio
-        </h4>
+        <div :class="['flex items-center gap-4 mt-2 mb-4', isPortrait ? 'justify-center' : 'justify-start']">
+          <h4 :class="['font-bold tracking-[0em] leading-none pt-0 text-[18px] text-slate-900', isPortrait ? 'text-center' : 'text-left']">
+            Project Portfolio
+          </h4>
         </div>
         <div v-if="!isPortrait" class="flex items-center gap-2 -mt-3 pb-2 text-[10px] font-semibold text-slate-600">
           <span class="font-bold leading-none">Evan Elliott</span>
@@ -68,8 +68,8 @@ onUnmounted(() => {
       <div v-if="isPortrait" class="flex-1 flex flex-col items-center justify-center p-10 text-center">
         <div class="rotate-icon text-5xl mb-6">📱</div>
         <!-- <p class="text-slate-400 font-bold text-lg">Rotate to landscape</p> -->
-        <h2 class="font-bold tracking-[0.15em] leading-none pt-0 text-[12px] text-slate-400">
-          Rotate
+        <h2 class="font-bold tracking-[0.15em] leading-none pt-0 text-[12px] text-slate-600">
+          Please rotate
         </h2>
       </div>
 
