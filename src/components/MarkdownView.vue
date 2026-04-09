@@ -34,7 +34,7 @@ const selectVideo = (index: number) => {
 
       <div class="flex flex-wrap justify-end gap-1 max-w-[33%] shrink-0 pb-1">
         <span v-for="tech in project.stack" :key="tech" 
-              class="px-1.5 py-0.5 bg-slate-50 text-slate-500 text-[8px] tracking-[0.1em] font-mono font-semibold rounded border border-slate-400 whitespace-nowrap">
+              class="px-1.5 py-0.5 bg-indigo-200 text-indigo-600 text-[8px] tracking-[0.1em] font-mono font-semibold rounded border border-indigo-600 whitespace-nowrap">
           {{ tech }}
         </span>
       </div>
