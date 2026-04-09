@@ -133,7 +133,7 @@ const selectVideo = (index: number) => {
               <!-- Active Video Overlay Info -->
               <div class="absolute top-0 left-0 right-0 p-4 bg-gradient-to-b from-slate-950/90 to-transparent">
                 <h4 class="text-slate-50 text-[16px] font-bold">{{ project.videos[activeVideoIndex].title }}</h4>
-                <p class="text-slate-300 text-[12px] font-semibold mb-0 max-w-2xl">{{ project.videos[activeVideoIndex].desc }}</p>
+                <p class="text-slate-300 text-[12px] font-semibold mb-24 max-w-2xl">{{ project.videos[activeVideoIndex].desc }}</p>
               </div>
             </div>
 
