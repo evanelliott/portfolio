@@ -2,7 +2,7 @@
   <div class="rounded-lg overflow-hidden shadow-xl">
     <!-- WebP animations work just like standard images -->
     <video 
-      :src="demoUrl" 
+      :src="url" 
       :alt="title"
       class="w-full h-auto object-cover"
       loading="lazy"
@@ -13,7 +13,7 @@
 </template>
 <script setup lang="ts">
 defineProps<{
-  demoUrl: string;
+  url: string;
   title: string;
 }>();
 </script>

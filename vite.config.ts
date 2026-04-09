@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { visualizer } from "rollup-plugin-visualizer";
 import tailwindcss from '@tailwindcss/postcss'
 import autoprefixer from 'autoprefixer'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
@@ -40,6 +41,11 @@ export default defineConfig({
       // Fallback for standard formats
       png: { quality: 80 },
       jpeg: { quality: 75 },
+    }),
+
+    visualizer({
+      open: true, // 2. This opens the report in your browser automatically
+      filename: "bundle-report.html",
     }),
   ],
 

@@ -14,8 +14,9 @@ export interface DesignRationale {
 }
 
 export interface ProjectVideo {
-  title: string; // Used as the reference for the video file and heading
+  title: string; // Used as the heading
   desc: string;  // Detailed engineering context for the clip
+  url?: string;  // Optional URL for the video source
 }
 
 export interface ProjectArtifacts {
@@ -26,14 +27,16 @@ export interface ProjectArtifacts {
 export interface Project {
   // Identification
   id: string;        // Used for selection state (e.g., "1", "2")
-  emoji: string;     // A single emoji representing the project (e.g., "⚽")
-  title: string;     // Project name (e.g., "Football Data Lakehouse")
-  headline: string;  // High-level role/goal (e.g., "End-to-End Sports Analytics")
+  name: string;      // Internal name/category (e.g., "GenAI" or "MLOps")
+  title: string;     // Full display title
+  emoji: string;     // A single emoji (e.g., "🤖")
+  headline: string;  // High-level role/goal
   
   // Executive Summary
-  summary: string;   // The "Why" and "What" (formerly useCase)
+  summary: string;   // The "Why" and "What"
   stack: string[];   // e.g., ["Spark", "Trino"]
   kpis: ProjectKPI[];
+  imageUrl: string;  // Path or URL to the project cover image
   
   // The "Brain" (Architecture)
   mermaidDiagram: string;

@@ -155,7 +155,7 @@ watch(() => props.project.title, fetchAndRender, { immediate: true });
               <transition name="fade" mode="out-in">
                 <div :key="activeVideoIndex" class="w-full h-full">
                   <ProjectDemo 
-                    :demoUrl="project.videos[activeVideoIndex].url" 
+                    :url="project.videos[activeVideoIndex].url || 'https://www.w3schools.com/html/mov_bbb.mp4'"
                     :title="project.videos[activeVideoIndex].title" 
                   />
                 </div>

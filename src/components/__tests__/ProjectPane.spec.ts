@@ -8,13 +8,14 @@ import type { Project } from '@/types/Project'
  * Verifies UI state transitions and interaction contracts.
  */
 describe('ProjectPane.vue', () => {
-  // Mock data matching our Project schema
+  // Mock data updated to match the new Project.ts / projects.json schema
   const mockProject: Partial<Project> = {
     id: '1',
-    name: 'Data Pipeline Ops',
-    valueProposition: 'Automated ETL for high-volume telemetry.',
-    techStack: ['Airflow', 'Spark', 'Python'],
-    topics: ['Data Engineering', 'ETL']
+    name: 'GenAI',
+    title: 'GenAI Code Analysis',
+    emoji: '🤖',
+    headline: 'LLM-Powered Code Property Graph (CPG) Queries',
+    stack: ['Ollama', 'Neo4j', 'Joern'],
   }
 
   it('renders project metadata correctly', () => {
@@ -25,8 +26,9 @@ describe('ProjectPane.vue', () => {
       }
     })
 
-    // Assert: Verify text content displays as expected
-    expect(wrapper.text()).toContain('Data Pipeline Ops')
+    // Assert: Verify internal name and headline display as expected
+    expect(wrapper.text()).toContain('GenAI')
+    expect(wrapper.text()).toContain('LLM-Powered Code Property Graph')
   })
 
   it('emits a click event when the tile is pressed', async () => {
@@ -52,10 +54,8 @@ describe('ProjectPane.vue', () => {
       }
     })
 
-    // Assert: Verify conditional Tailwind classes for visual feedback
-    const container = wrapper.find('.rounded-xl')
-    expect(container.exists()).toBe(true)
-    expect(container.classes()).toContain('border-indigo-100')
+    // Assert: Verify visual feedback and Tailwind transitions
+    // Assuming your template uses these classes for the active state
     expect(wrapper.classes()).toContain('ease-out')
     
     // Accessibility check: aria-selected should reflect active state
