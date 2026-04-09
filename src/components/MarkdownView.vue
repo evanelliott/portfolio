@@ -47,7 +47,7 @@ const selectVideo = (index: number) => {
         
         <!-- EXECUTIVE SUMMARY -->
         <div class="grid grid-cols-1 md:grid-cols-1 gap-4 pt-0">
-          <div class="sticky top-0 z-20 bg-slate-200 mt-0 py-1 flex items-center gap-4 border-b border-slate-200">
+          <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 flex items-center gap-4 border-b border-slate-100">
             <h4 class="px-4 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">Executive Summary</h4>
             <div class="h-[1px] w-full"></div>
           </div>
@@ -89,7 +89,7 @@ const selectVideo = (index: number) => {
         <!-- 2. ARCHITECTURAL BLUEPRINT -->
         <section class="mt-0 bg-slate-000 space-y-8">
           <!-- Sticky Section Header: Sticks to the top of the main container -->
-          <div class="sticky top-0 z-20 bg-slate-200 mt-0 py-1 flex items-center gap-4 border-b border-slate-200">
+          <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 flex items-center gap-4 border-b border-slate-100">
             <h4 class="px-4 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">Architectural Blueprints</h4>
           </div>
           
@@ -114,7 +114,7 @@ const selectVideo = (index: number) => {
 
         <!-- 3. IMPLEMENTATION CINEMA -->
         <section v-if="project.videos?.length" class="mt-0 pb-0 space-y-2">
-          <div class="sticky top-0 z-20 bg-slate-200 py-1 flex items-center gap-4 border-b border-slate-200">
+          <div class="sticky top-0 z-20 bg-slate-100 py-1 flex items-center gap-4 border-b border-slate-100">
             <h4 class="px-4 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">Deep-Dive Cinema</h4>
           </div>
 
@@ -166,10 +166,10 @@ const selectVideo = (index: number) => {
         
         <!-- 4. ARTIFACTS -->
         <footer v-if="project.artifacts" class="pt-0">
-          <div class="sticky top-0 z-20 bg-slate-200 mt-0 py-1 flex items-center gap-4 border-b border-slate-200">
+          <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 flex items-center gap-4 border-b border-slate-100">
             <h4 class="px-3 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">Artifact Repository</h4>
           </div>
-          <div class="bg-slate-200 p-6 flex flex-col md:flex-row justify-between items-center gap-4 shadow-2xl shadow-indigo-200">
+          <div class="bg-slate-100 p-6 flex flex-col md:flex-row justify-between items-center gap-4 shadow-2xl shadow-indigo-200">
             <div class="text-center md:text-left space-y-1">
               <!-- <h4 class="font-bold text-[12px]">Technical Artifacts</h4> -->
               <p class="text-slate-600 text-[10px] font-medium">Review the codebase and technical documentation.</p>
