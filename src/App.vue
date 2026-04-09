@@ -41,16 +41,18 @@ onUnmounted(() => {
 
 <template>
   <!-- h-screen + overflow-hidden prevents the browser from ever showing a scrollbar -->
-  <div class="flex flex-col h-screen text-slate-900 overflow-hidden">
+  <div class="flex flex-col h-screen bg-slate-300 text-slate-900 overflow-hidden">
     
     <!-- HEADER -->
-    <header class="w-full bg-white shrink-0 z-50">
-      <div class="max-w-7xl mx-auto px-4 flex flex-col justify-start">
-        <h2 class="font-bold uppercase tracking-[0.15em] leading-none pt-0 text-[12px] text-slate-900">
+    <header class="w-full shrink-0 z-50">
+      <div class="max-w-7xl mx-auto px-2 flex flex-col justify-start">
+        <div class="flex items-center gap-4 mt-2 mb-4">
+        <h4 class="font-bold tracking-[0em] leading-none pt-0 text-[18px] text-slate-900">
           Project Portfolio
-        </h2>
-        <div v-if="!isPortrait" class="flex items-center gap-2 -mt-3 pb-2 text-[10px] text-slate-600">
-          <b class="font-semibold tracking-tight">Evan Elliott</b>
+        </h4>
+        </div>
+        <div v-if="!isPortrait" class="flex items-center gap-2 -mt-3 pb-2 text-[10px] font-semibold text-slate-600">
+          <span class="font-bold leading-none">Evan Elliott</span>
           <span class="border-l pl-2 leading-none">Technical Lead</span>
           <span class="border-l pl-2 leading-none">
             Data Science & Engineering Specialist (Remote)
@@ -66,19 +68,19 @@ onUnmounted(() => {
       <div v-if="isPortrait" class="flex-1 flex flex-col items-center justify-center p-10 text-center">
         <div class="rotate-icon text-5xl mb-6">📱</div>
         <!-- <p class="text-slate-400 font-bold text-lg">Rotate to landscape</p> -->
-        <h2 class="font-bold uppercase tracking-[0.15em] leading-none pt-0 text-[12px] text-slate-400">
-          Please rotate
+        <h2 class="font-bold tracking-[0.15em] leading-none pt-0 text-[12px] text-slate-400">
+          Rotate
         </h2>
       </div>
 
       <!-- LANDSCAPE CONTENT -->
       <template v-else>
         <!-- SIDEBAR -->
-        <aside class="w-1/5 max-w-70 -ml-4 mt-4 shrink-0">
+        <aside class="w-1/9 max-w-70 -ml-4 mt-4 shrink-0">
           <!-- <h3 class="text-[9px] font-bold text-slate-300 uppercase tracking-widest mb-2 px-2">
             Select Project
           </h3> -->
-          <nav class="space-y-3">
+          <nav class="space-y-1">
             <ProjectPane 
               v-for="project in projects" 
               :key="project.id"
@@ -105,8 +107,8 @@ onUnmounted(() => {
     </div>
     
     <!-- FOOTER: Always visible at the bottom -->
-    <footer class="w-full bg-white border-none border-slate-200 py-0 px-0 text-center shrink-0">
-      <div class="max-w-7xl mx-auto text-[7px] text-slate-400 tracking-widest uppercase">
+    <footer class="w-full border-none border-slate-200 py-0 px-0 text-center shrink-0">
+      <div class="max-w-7xl mx-auto text-[7px] text-slate-700 tracking-widest">
         &copy; {{ new Date().getFullYear() }} Evan Elliott. No rights reserved.
       </div>
     </footer>

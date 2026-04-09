@@ -1,11 +1,13 @@
 <template>
   <div class="rounded-lg overflow-hidden shadow-xl">
     <!-- WebP animations work just like standard images -->
-    <img 
+    <video 
       :src="demoUrl" 
       :alt="title"
       class="w-full h-auto object-cover"
       loading="lazy"
+      type="video/mp4"
+      controls autoplay loop muted 
     />
   </div>
 </template>

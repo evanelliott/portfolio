@@ -46,10 +46,10 @@ defineEmits<{
     >
       <!-- Project Emoji & Name -->
       <div class="flex flex-col items-center gap-0">
-        <span class="text-[12px]">{{ project.emoji }}</span>
+        <span class="text-[15px]">{{ project.emoji }}</span>
         <span 
-          class="text-[10px] font-bold tracking-tight block leading-tight"
-          :class="isActive ? 'text-indigo-600' : 'text-slate-600'"
+          class="text-[8px] font-bold tracking-tight block text-center leading-tight"
+          :class="isActive ? 'text-indigo-600' : 'text-slate-900'"
         >
           {{ project.name }}
         </span>

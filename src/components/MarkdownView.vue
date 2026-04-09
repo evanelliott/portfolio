@@ -1,156 +1,258 @@
 <script setup lang="ts">
 import { ref, watch, nextTick } from 'vue';
 import mermaid from 'mermaid';
-import type { Project } from '@/types/Project';
 import ProjectDemo from './ProjectDemo.vue';
+import type { Project } from '@/types/Project';
 
 const props = defineProps<{
-  project: Project
+  project: Project 
 }>();
 
 const markdownHtml = ref('');
 const isLoading = ref(true);
-
-mermaid.initialize({ startOnLoad: false, theme: 'neutral' });
-
 const hasError = ref(false);
+
+mermaid.initialize({ 
+  startOnLoad: false, 
+  theme: 'neutral',
+  securityLevel: 'loose',
+});
 
 const fetchAndRender = async () => {
   isLoading.value = true;
+  hasError.value = false;
   try {
     await nextTick();
-
-    // 1. Find the element and strip the 'processed' flag
     const el = document.querySelector('.mermaid');
-    if (el) {
+    if (el && props.project.mermaidDiagram) {
       el.removeAttribute('data-processed');
-      // 2. Force the new diagram text into the div before rendering
       el.textContent = props.project.mermaidDiagram;
+      await mermaid.run();
     }
-
-    // 3. Your existing call now works every time
-    await mermaid.run();
-
-  } catch {
-    hasError.value = true; // Set this flag
-    markdownHtml.value = 'Error loading project documentation.';
+  } catch (err) {
+    hasError.value = true;
+    markdownHtml.value = 'Error rendering architecture diagram: ' + (err as Error).message;
   } finally {
     isLoading.value = false;
   }
 };
 
+// Track which video is currently playing
+const activeVideoIndex = ref(0);
 
-watch(() => props.project.id, fetchAndRender, { immediate: true });
+const selectVideo = (index: number) => {
+  activeVideoIndex.value = index;
+};
+
+watch(() => props.project.title, fetchAndRender, { immediate: true });
 </script>
 
-
 <template>
-  <div class="space-y-0 pb-4 text-slate-700">
+  <!-- ROOT: Must be flex-col and h-full to create the scrolling context -->
+  <div class="flex flex-col h-full px-0 overflow-hidden bg-white">
     
-    <!-- 1. PROJECT OVERVIEW (Header no longer sticky) -->
-    <section class="space-y-2">
-      <h2 class="text-[9px] font-bold uppercase tracking-widest text-slate-300 mb-2">Project Overview</h2>
-      <div class="flex flex-wrap gap-1.5">
-        <p class="text-sm text-slate-500 leading-snug italic">
-          {{ project.tagline }}
-        </p>
+    <!-- 1. FIXED TOP HEADER -->
+    <!-- This stays at the top and does not scroll -->
+    <header class="z-30 bg-white border-b-2 border-slate-400 px-2 h-12 flex justify-between items-center shrink-0">
+      <div class="flex items-baseline gap-3 py-4 min-w-0">
+        <div>
+          <h4 class="text-sm font-bold text-slate-900 leading-none">
+            {{ project.title }}
+          </h4>
+          <p class="text-[10px] text-indigo-600 font-bold mt-0">{{ project.headline }}</p>
+        </div>
       </div>
 
-      <!-- INSIGHTS GRID -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <div class="p-3 rounded-lg bg-slate-50 border border-slate-100">
-          <h5 class="text-[9px] font-bold uppercase text-slate-400 mb-1">Use Case</h5>
-          <p class="text-xs leading-relaxed">{{ project.useCase }}</p>
+      <div class="flex flex-wrap justify-end gap-1 max-w-[33%] shrink-0 pb-1">
+        <span v-for="tech in project.stack" :key="tech" 
+              class="px-1.5 py-0.5 bg-slate-50 text-slate-500 text-[8px] tracking-[0.1em] font-mono font-semibold rounded border border-slate-400 whitespace-nowrap">
+          {{ tech }}
+        </span>
+      </div>
+    </header>
+
+    <!-- 2. SCROLLABLE VIEWPORT -->
+    <!-- This is the container that allows sticky headers to work -->
+    <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full">
+      <div class="max-w-5xl mx-auto px-0 pb-0 space-y-16 text-slate-700">
+        
+        <!-- EXECUTIVE SUMMARY -->
+        <div class="grid grid-cols-1 md:grid-cols-1 gap-4 pt-0">
+          <div class="sticky top-0 z-20 bg-slate-200 mt-0 py-1 flex items-center gap-4 border-b border-slate-200">
+            <h4 class="px-4 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">Executive Summary</h4>
+            <div class="h-[1px] w-full"></div>
+          </div>
+          
+          <div class="px-6 space-x-3">
+            
+            <div class="flex md:flex-row gap-6">
+              <div class="w-2/5 space-y-4">
+
+                <div class="">
+                  <div class="space-y-2">
+                    <p class="text-[10px] leading-relaxed text-slate-600">
+                      {{ project.summary }}
+                    </p>
+                  </div>
+                </div>
+                
+                <div class="md:col-span-5 grid grid-cols-2 gap-3">
+                  <div v-for="kpi in project.kpis" :key="kpi.label" 
+                      class="p-2 bg-slate-100 rounded-xl border border-slate-400 flex flex-col justify-center text-center">
+                    <span class="text-[10px] font-black text-indigo-600 leading-none">{{ kpi.value }}</span>
+                    <span class="text-[9px] font-bold tracking-tighter text-slate-400 mt-1">{{ kpi.label }}</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="w-3/5 min-w-0 overflow-hidden md:flex">
+                <div>
+                  <img :src="project.imageUrl" alt="Project screenshot" class="rounded-lg border border-slate-100 shadow-sm">
+                </div>
+              </div>
+            </div>
+
+          </div>
+
         </div>
-        <div class="p-3 rounded-lg bg-slate-50 border border-slate-100">
-          <h5 class="text-[9px] font-bold uppercase text-slate-400 mb-1">Value Proposition</h5>
-          <p class="text-xs leading-relaxed font-medium">"{{ project.valueProposition }}"</p>
-        </div>
-        <!-- TAGS AREA -->
-        <div class="p-3 rounded-lg bg-slate-50 border border-slate-100">
-          <div v-if="project.techStack.length">
-            <h5 class="text-[9px] font-bold uppercase text-slate-400 mb-1">Tech Stack</h5>
-            <div class="flex flex-wrap gap-1.5">
-              <span v-for="tech in project.techStack" :key="tech" 
-                    class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] font-mono rounded border border-slate-200">
-                {{ tech }}
-              </span>
+
+        <!-- 2. ARCHITECTURAL BLUEPRINT -->
+        <section class="mt-0 bg-slate-000 space-y-8">
+          <!-- Sticky Section Header: Sticks to the top of the main container -->
+          <div class="sticky top-0 z-20 bg-slate-200 mt-0 py-1 flex items-center gap-4 border-b border-slate-200">
+            <h4 class="px-4 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">Architectural Blueprints</h4>
+          </div>
+          
+          <div class="px-6">
+            <div class="px-32">
+              <img :src="project.imageUrl" alt="Project screenshot" class="rounded-lg border border-slate-100 shadow-sm">
             </div>
           </div>
-        </div>
-        <div class="p-3 rounded-lg bg-slate-50 border border-slate-100">
-          <div v-if="project.topics.length">
-            <h5 class="text-[9px] font-bold uppercase text-slate-400 mb-1">Topics</h5>
-            <div class="flex flex-wrap gap-1.5">
-              <span v-for="topic in project.topics" :key="topic" 
-                    class="px-2 py-0.5 bg-white border border-slate-200 text-slate-500 text-[10px] rounded-md">
-                {{ topic }}
-              </span>
+
+          <div class="grid grid-cols-3 md:grid-cols-3 px-6 gap-8">
+            <div v-for="item in project.rationale" :key="item.title" class="space-y-2">
+              <h4 class="text-[10px] font-semibold text-slate-900 tracking-tight flex items-center gap-2">
+                <span class="w-1.5 h-1.5 bg-indigo-500 rounded-full"></span>
+                {{ item.title }}
+              </h4>
+              <p class="text-[10px] leading-relaxed text-slate-500 italic">
+                {{ item.description }}
+              </p>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- 3. ARCHITECTURE (Now Sticky) -->
-    <section v-if="project.mermaidDiagram" class="pt-4">
-      <h2 class="text-[9px] font-bold uppercase text-slate-400 mb-1">
-        System Architecture
-      </h2>
-      
-      <!-- Show error message if hasError is true -->
-      <div v-if="hasError" class="text-red-500 p-4 border border-red-100 rounded-lg text-xs">
-        {{ markdownHtml }}
-      </div>
+        </section>
 
-      <!-- Otherwise show the diagram -->
-      <div v-else class="mermaid scale-90 origin-top-left p-4 rounded-lg bg-white border border-slate-100">
-        {{ project.mermaidDiagram }}
-      </div>
-    </section>
+        <!-- 3. IMPLEMENTATION CINEMA -->
+        <section v-if="project.videos?.length" class="mt-0 pb-0 space-y-2">
+          <div class="sticky top-0 z-20 bg-slate-200 py-1 flex items-center gap-4 border-b border-slate-200">
+            <h4 class="px-4 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">Deep-Dive Cinema</h4>
+          </div>
 
+          <div class="px-12 space-y-2">
+            <!-- MAIN VIEWER -->
+            <div class="group relative aspect-video w-full overflow-hidden rounded-3xl bg-slate-900 shadow-2xl border-3 border-slate-400">
+              <transition name="fade" mode="out-in">
+                <div :key="activeVideoIndex" class="w-full h-full">
+                  <ProjectDemo 
+                    :demoUrl="project.videos[activeVideoIndex].url" 
+                    :title="project.videos[activeVideoIndex].title" 
+                  />
+                </div>
+              </transition>
+              
+              <!-- Active Video Overlay Info -->
+              <div class="absolute top-0 left-0 right-0 p-4 bg-gradient-to-b from-slate-950/90 to-transparent">
+                <h4 class="text-slate-50 text-[16px] font-bold">{{ project.videos[activeVideoIndex].title }}</h4>
+                <p class="text-slate-300 text-[12px] font-semibold mb-12 max-w-2xl">{{ project.videos[activeVideoIndex].desc }}</p>
+              </div>
+            </div>
 
-    <!-- 4. VISUAL DEMOS (Now Sticky) -->
-    <section v-if="project.animations?.length" class="pt-6 space-y-6">
-      <h4 class="sticky top-0 bg-white z-10 text-[9px] font-bold uppercase tracking-widest text-slate-300 py-3 border-b border-slate-50 mb-2">
-        Visual Demos
-      </h4>
-      <div v-for="(anim, index) in project.animations" :key="index" class="space-y-3">
-        <p class="text-[11px] text-slate-500 flex gap-2 items-start leading-snug">
-          <span class="font-bold text-indigo-500">{{ index + 1 }}.</span>
-          {{ anim.description }}
-        </p>
-        <div class="rounded-lg overflow-hidden border border-slate-200 shadow-sm max-w-3xl">
-          <ProjectDemo :demoUrl="anim.fileName" :title="anim.fileName" />
-        </div>
+            <!-- THUMBNAIL STRIP (The "Filmstrip") -->
+            <div class="flex gap-4 overflow-x-auto pb-0 no-scrollbar">
+              <button 
+                v-for="(video, index) in project.videos" 
+                :key="index"
+                @click="selectVideo(Number(index))"
+                :class="[
+                  'relative shrink-0 w-36 aspect-video rounded-xl overflow-hidden border-2 transition-all duration-300 text-left',
+                  activeVideoIndex === index 
+                    ? 'border-indigo-500 ring-4 ring-indigo-500/20 scale-95' 
+                    : 'border-slate-200 opacity-60 hover:opacity-100'
+                ]"
+              >
+                <!-- Thumbnail Placeholder (Can be an img if you have thumbs) -->
+                <div class="absolute inset-0 bg-slate-800 flex items-center justify-center">
+                   <span class="text-[10px] font-bold text-slate-500 tracking-tighter px-4 text-center">
+                     {{ video.title }}
+                   </span>
+                </div>
+                
+                <!-- Active Indicator -->
+                <div v-if="activeVideoIndex === index" class="absolute top-2 right-2 w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></div>
+              </button>
+            </div>
+          </div>
+        </section>
+        
+        <!-- 4. ARTIFACTS -->
+        <footer v-if="project.artifacts" class="pt-0">
+          <div class="sticky top-0 z-20 bg-slate-200 mt-0 py-1 flex items-center gap-4 border-b border-slate-200">
+            <h4 class="px-3 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">Artifact Repository</h4>
+          </div>
+          <div class="bg-slate-200 p-6 flex flex-col md:flex-row justify-between items-center gap-4 shadow-2xl shadow-indigo-200">
+            <div class="text-center md:text-left space-y-1">
+              <!-- <h4 class="font-bold text-[12px]">Technical Artifacts</h4> -->
+              <p class="text-slate-600 text-[10px] font-medium">Review the codebase and technical documentation.</p>
+            </div>
+            <div class="flex gap-8">
+              <a :href="project.artifacts.githubUrl" target="_blank" class="btn-artifact">Github Repository</a>
+              <a :href="project.artifacts.adrUrl" target="_blank" class="btn-artifact">Architecture Design Record</a>
+            </div>
+          </div>
+        </footer>
       </div>
-    </section>
-    
-    <!-- 5. ARTIFACTS -->
-    <section class="flex-col gap-2 pt-8 border-t border-slate-100">
-      <h4 class="sticky top-0 bg-white z-0 text-[9px] font-bold uppercase tracking-widest text-slate-300 py-3 border-b border-slate-50 mb-2">
-        Links
-      </h4>
-      <div class="flex flex-wrap gap-1.5">
-        <a :href="project.artifacts.githubUrl" target="_blank" class="btn-artifact-sm">GITHUB</a>
-        <a :href="project.artifacts.adrUrl" target="_blank" class="btn-artifact-sm">ADR</a>
-      </div>
-    </section>
+    </main>
   </div>
 </template>
 
 <style scoped>
 @reference "tailwindcss";
 
-.btn-artifact-sm {
-  @apply px-3 py-1.5 bg-slate-900 text-white hover:bg-indigo-600 rounded text-[9px] font-bold tracking-widest transition-all;
+.btn-artifact {
+  @apply px-4 py-2 bg-slate-400 text-white hover:bg-white hover:text-slate-900 rounded-lg text-[10px] font-black tracking-widest transition-all;
 }
 
-:deep(.prose) {
-  font-size: 1rem;
-  line-height: 1.5;
+:deep(.mermaid svg) {
+  height: auto !important;
+  max-width: 100% !important;
 }
 
+/* Scoped scrollbar styling */
+main::-webkit-scrollbar {
+  width: 10px;
+}
+main::-webkit-scrollbar-thumb {
+  background: #4f39f6;
+  border-radius: 5px;
+}
 
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
 
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Hide scrollbar for the filmstrip but allow scrolling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 </style>

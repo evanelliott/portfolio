@@ -17,12 +17,12 @@ const activeProject = computed(() =>
 
 <template>
   <!-- h-full ensures this matches the main viewport height -->
-  <section class="border-2 border-slate-100 rounded-2xl bg-white shadow-sm overflow-hidden h-full">
+  <section class="border-3 border-slate-400 rounded-2xl bg-white shadow-sm overflow-hidden h-full">
     <div v-if="activeProject" class="flex flex-col md:flex-row h-full">
 
       <!-- Text Area: This is where the scrollbar lives IF text is too long -->
 
-      <div class="flex-1 overflow-y-auto p-4 md:p-4 prose prose-slate prose-sm max-w-none custom-scrollbar scroll-pt-0">
+      <div class="flex-1 overflow-y-auto p-1 md:p-1 prose prose-slate prose-sm max-w-none custom-scrollbar scroll-pt-0">
         <MarkdownView :project="activeProject" />
       </div>
 
@@ -54,7 +54,7 @@ const activeProject = computed(() =>
 /* Ensure the prose (Markdown) takes up available space */
 .prose :where(h1, h2, h3) {
   position: sticky;
-  top: -1rem; /* Matches the top padding of your container */
+  top: -4rem; /* Matches the top padding of your container */
   background-color: white; /* Prevents text from overlapping behind the header */
   z-index: 10;
   padding-top: 0.5rem;
