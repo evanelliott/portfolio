@@ -2,30 +2,30 @@
   {
     "id": "1",
     "name": "GenAI",
-    "title": "GenAI Code Analysis",
+    "title": "GenAI Security, Architecture & Test Assistant",
     "emoji": "🤖",
-    "headline": "LLM-Powered Code Property Graph (CPG) Queries",
-    "summary": "A sophisticated source code analysis tool that combines static analysis with LLMs. Allows for semantic querying of codebases to find vulnerabilities and identify design patterns.",
-    "stack": ["Ollama", "Neo4j", "Joern", "OpenCode", "Docker"],
+    "headline": "Agentic GraphRAG for Automated Code Audits & Testing",
+    "summary": "A local-first intelligence suite for security, architecture, and testing. Combines Code Property Graphs (CPG) with specialized AI agents to to automate security audits, architectural reviews, and test suite generation.",
+    "stack": ["OpenCode", "Ollama", "LangChain", "FastAPI", "Pydantic", "Neo4j", "Docker"],
     "kpis": [
-      { "value": "Graph-Based", "label": "Context" }, 
-      { "value": "Local LLM", "label": "Privacy" }
+      { "value": "Multi-Agent", "label": "Orchestration" }, 
+      { "value": "Local-First", "label": "Security" }
     ],
     "imageUrl": "https://placehold.co/600x400",
     "rationale": [
-      { "title": "Graph Representation", "description": "Using Joern to parse code into Neo4j CPGs, enabling complex traversal of data flows."},
-      { "title": "Local Inference", "description": "Ollama serves the GenAI model locally, ensuring sensitive source code never leaves the development environment." },
-      { "title": "Semantic Search", "description": "Bridging the gap between structural graph queries and natural language intent." }
+      { "title": "Model Context Protocol (MCP)", "description": "Exposing Cypher query patterns as structured tools for LLMs via a unified FastAPI service." },
+      { "title": "Specialized Subagents", "description": "Defining a team of agents specialising in security, architecture, and testing to provide deep, domain-specific code insights." },
+      { "title": "Structured Evidence Extraction", "description": "Using Pydantic models to turn raw graph data into high-integrity structures that improve agent reasoning." }
     ],
     "videos": [
-      { "title": "Graph Traversals", "desc": "Visualising data flow through Neo4j.", "url": "https://lorem.video/720p" },
-      { "title": "AI Prompting", "desc": "Asking the LLM to find logic flaws in the graph.", "url": "https://lorem.video/720p" },
-      { "title": "Joern Ingestion", "desc": "Converting raw source code into a Property Graph.", "url": "https://lorem.video/720p" }
+      { "title": "Security Taint Analysis", "desc": "Watching the SecurityResearcher trace user input to a sink.", "url": "https://lorem.video" },
+      { "title": "Automated Test Generation", "desc": "TestEngineer generating integration tests based on graph-discovered paths.", "url": "https://lorem.video" },
+      { "title": "Architectural Auditing", "desc": "Detecting circular dependencies and 'spaghetti' patterns via the Architect.", "url": "https://lorem.video" }
     ],
-    "mermaidDiagram": "graph TD\n    Code[Source Code] -->|Joern| CPG[(Neo4j Graph)]\n    CPG --> LLM[Ollama / GenAI]\n    LLM --> User[Semantic Query Results]",
+    "mermaidDiagram": "graph TD\n    Code[Source Code] -->|Joern| CPG[(Neo4j Graph)]\n    subgraph \"Unified Service (MCP)\"\n        CPG --> Tool[Cypher Tool Provider]\n        Tool --> Schema[Pydantic Structured Output]\n    end\n    subgraph \"OpenCode UI\"\n        Schema --> Agent1[Security Specialist]\n        Schema --> Agent2[Staff Architect]\n        Schema --> Agent3[Test Engineer]\n    end\n    Agent3 -->|Writes| Tests[Unit & Integration Tests]\n    User[Developer] -->|Natural Language| OpenCode",
     "artifacts": {
       "githubUrl": "https://github.com",
-      "adrUrl": "https://github.com/docs/adr.md"
+      "adrUrl": "https://github.com"
     }
   },
   {
