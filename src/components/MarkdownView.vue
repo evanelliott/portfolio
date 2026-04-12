@@ -24,7 +24,7 @@ const selectVideo = (index: number) => {
     <!-- This stays at the top and does not scroll -->
     <header class="z-30 bg-white border-b-2 border-slate-400 px-2 h-12 flex justify-between items-center shrink-0">
       <div class="flex items-baseline gap-3 py-4 min-w-0">
-        <div>
+        <div class="space-y-0.5">
           <h4 class="text-sm font-bold text-slate-900 leading-none">
             {{ project.title }}
           </h4>
