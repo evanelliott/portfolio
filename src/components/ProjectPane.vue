@@ -22,33 +22,34 @@ defineEmits<{
     @click="$emit('click')"
     type="button"
     :aria-selected="isActive"
-    class="relative w-full text-left transition-all duration-200 ease-out group"
+    class="relative w-full h-full flex flex-col text-left transition-all duration-200 ease-out group"
     :class="[
       isActive 
         ? 'translate-x-1' 
-        : 'opacity-70 hover:opacity-100'
+        : 'opacity-100 hover:opacity-100'
     ]"
   >
-    <!-- Selection Indicator: Vertical bar that appears when active -->
+    <!-- Selection Indicator -->
     <div 
       v-if="isActive"
-      class="absolute left-4 top-1 bottom-1 w-1 bg-indigo-500 rounded-full"
+      class="absolute left-4 top-1 bottom-1 w-1 bg-indigo-600 rounded-full"
     ></div>
 
     <!-- Card Container -->
+    <!-- Added 'flex items-center justify-center' to center content vertically and horizontally -->
     <div 
-      class="h-full p-1.5 rounded-xl border transition-all"
+      class="flex-1 flex items-center justify-center p-1.5 rounded-md border-2 transition"
       :class="[
         isActive 
-          ? 'bg-white border-indigo-600 shadow-sm ml-6 mr-0' 
-          : 'bg-slate-50 border-transparent hover:bg-slate-100 ml-6 mr-0'
+          ? 'border-indigo-600 bg-indigo-200 shadow-sm ml-6 mr-0' 
+          : 'border-slate-600 bg-white hover:bg-indigo-100 ml-6 mr-0'
       ]"
     >
       <!-- Project Emoji & Name -->
-      <div class="flex flex-col items-center gap-0">
-        <span class="text-[15px]">{{ project.emoji }}</span>
+      <div class="flex flex-col items-center gap-1">
+        <span class="text-[15px] leading-none">{{ project.emoji }}</span>
         <span 
-          class="text-[8px] font-bold tracking-tight block text-center leading-tight"
+          class="text-[8px] font-bold block text-center leading-tight"
           :class="isActive ? 'text-indigo-600' : 'text-slate-900'"
         >
           {{ project.name }}
@@ -57,6 +58,7 @@ defineEmits<{
     </div>
   </button>
 </template>
+
 
 <style scoped>
 /* Ensure smooth movement when selected */

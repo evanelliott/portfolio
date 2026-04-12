@@ -52,14 +52,14 @@ onUnmounted(() => {
     <header class="w-full shrink-0 z-50">
       <div class="max-w-7xl mx-auto px-2 flex flex-col justify-start">
         <div :class="['flex items-center gap-4 mt-2 mb-4', isPortrait ? 'justify-center' : 'justify-start']">
-          <h4 :class="['font-bold tracking-[0em] leading-none pt-0 text-[18px] text-slate-900', isPortrait ? 'text-center' : 'text-left']">
+          <h4 :class="['font-bold leading-none pt-0 text-[18px]', isPortrait ? 'text-center' : 'text-left']">
             Project Portfolio
           </h4>
         </div>
-        <div v-if="!isPortrait" class="flex items-center gap-2 -mt-3 pb-2 text-[10px] font-black text-slate-600">
+        <div v-if="!isPortrait" class="flex items-center gap-2 -mt-3 pb-2 text-[10px] font-bold">
           <span class="leading-none">Evan Elliott</span>
-          <span class="border-l pl-1.5 leading-none">Technical Lead</span>
-          <span class="border-l pl-1.5 leading-none">
+          <span class="border-l pl-2 leading-none">Technical Lead</span>
+          <span class="border-l pl-2 leading-none">
             Data Science & Engineering Specialist (Remote)
           </span>
         </div>
@@ -72,32 +72,37 @@ onUnmounted(() => {
       <!-- PORTRAIT PROMPT -->
       <div v-if="isPortrait" class="flex-1 flex flex-col items-center justify-center p-10 text-center">
         <div class="rotate-icon text-5xl mb-6">📱</div>
-        <!-- <p class="text-slate-400 font-bold text-lg">Rotate to landscape</p> -->
-        <h2 class="font-bold tracking-[0.15em] leading-none pt-0 text-[12px] text-slate-600">
-          Please rotate
-        </h2>
+        <h2 class="font-bold leading-none pt-0 text-[12px]">Rotate</h2>
       </div>
 
       <!-- LANDSCAPE CONTENT -->
       <template v-else>
         <!-- SIDEBAR -->
-        <aside class="w-1/9 max-w-70 -ml-5 mt-4 shrink-0">
-          <!-- <h3 class="text-[9px] font-bold text-slate-300 uppercase tracking-widest mb-2 px-2">
-            Select Project
-          </h3> -->
-          <nav class="space-y-1">
+        <aside class="w-1/8 max-w-70 -ml-6 mt-0 shrink-0 flex flex-col"> 
+          <!-- Added 'flex flex-col' to the aside to help define the height context -->
+          
+          <nav class="flex flex-col h-full space-y-1"> 
+            <!-- 
+              1. 'flex flex-col' makes the nav a flexbox
+              2. 'h-full' ensures the nav stretches to the bottom of the sidebar
+            -->
             <ProjectPane 
               v-for="project in projects" 
-              :key="project.id"
-              :project="project"
-              :isActive="selectedId === project.id"
-              @click="handleProjectSelect(project.id)" 
+              :key="project.id" 
+              :project="project" 
+              :isActive="selectedId === project.id" 
+              @click="handleProjectSelect(project.id)"
+              class="flex-1" 
             />
+            <!-- 
+              3. 'flex-1' tells each ProjectPane to grow and shrink equally 
+                to fill the available vertical space.
+            -->
           </nav>
         </aside>
 
         <!-- VIEWPORT: Grows to fill space, but doesn't allow overflow -->
-        <main class="grow min-w-0 overflow-hidden">
+        <main class="grow min-w-0 overflow-hidden ">
           <RouterView v-slot="{ Component }">
             <Transition name="page" mode="out-in">
               <component 
@@ -113,7 +118,7 @@ onUnmounted(() => {
     
     <!-- FOOTER: Always visible at the bottom -->
     <footer class="w-full border-none border-slate-200 py-0 px-0 text-center shrink-0">
-      <div class="max-w-7xl mx-auto text-[7px] text-slate-700 tracking-widest">
+      <div class="max-w-7xl mx-auto text-[7px]">
         &copy; {{ new Date().getFullYear() }} Evan Elliott. No rights reserved.
       </div>
     </footer>

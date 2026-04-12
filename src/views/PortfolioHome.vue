@@ -14,7 +14,7 @@ const activeProject = computed(() =>
 </script>
 
 <template>
-  <section class="border-3 border-slate-600 bg-white overflow-hidden h-full">
+  <section class="border-2 rounded-md border-slate-600 bg-white overflow-hidden h-full">
     <div v-if="activeProject" class="flex flex-col md:flex-row h-full">
       <div class="flex-1 overflow-y-auto p-0 md:p-0 prose prose-slate prose-sm max-w-none custom-scrollbar scroll-pt-0">
         <MarkdownView :project="activeProject" />
@@ -22,47 +22,64 @@ const activeProject = computed(() =>
     </div>
     
     <!-- Updated Empty State with info about sections -->
-    <div v-else class="flex flex-col items-start justify-start h-full px-8 pt-0 text-center">
-        <!-- Main Call to Action -->
-        <div class="mb-8 justify-center">
-          <h2 class="text-[14px] font-black text-slate-800 flex items-center gap-3">
-            <span class="animate-pulse inline-block">👈</span> Select a project to begin
-          </h2>
-          <div class="h-0.5 w-48 bg-slate-400 mx-auto mt-2 rounded-full"></div>
-        </div>
+    <div v-else class="flex flex-col items-start justify-start h-full px-0 pt-0 text-start">
 
-        <!-- Technical Modules List -->
-        <div class="text-left max-w-md border-slate-200 pl-0 py-1 space-y-2">
-          <p class="text-[12px] font-bold text-indigo-600 mb-2">
-            Includes:
-          </p>
-          
-          <div class="space-y-2">
-            <div class="space-y-0.5">
-              <p class="text-[11px] font-bold text-slate-700 leading-none">Executive Summary</p>
-              <p class="text-[10px] text-slate-400 font-medium leading-tight italic">Core impact and KPI breakdown.</p>
-            </div>
-
-            <div class="space-y-0.5">
-              <p class="text-[11px] font-bold text-slate-700 leading-none">Architectural Blueprints</p>
-              <p class="text-[10px] text-slate-400 font-medium leading-tight italic">Visual overview of the system structure and logic.</p>
-            </div>
-
-            <div class="space-y-0.5">
-              <p class="text-[11px] font-bold text-slate-700 leading-none">Deep Dive Cinema</p>
-              <p class="text-[10px] text-slate-400 font-medium leading-tight italic">A collection of videos exploring the project in detail.</p>
-            </div>
-
-            <div class="space-y-0.5">
-              <p class="text-[11px] font-bold text-slate-700 leading-none">Technical Artifacts</p>
-              <p class="text-[10px] text-slate-400 font-medium leading-tight italic">Links to source code and documentation.</p>
-            </div>
+      <!-- 1. FIXED TOP HEADER -->
+      <!-- This stays at the top and does not scroll -->
+      <header class="z-30 bg-white border-b-2 border-slate-400 px-2 h-12 flex justify-start items-center w-full">
+        <div class="flex items-baseline gap-3 py-4 min-w-0">
+          <div>
+            <h4 class="text-sm font-bold text-slate-900 leading-none">
+              👈 Select a project to begin
+            </h4>
+            <!-- <p class="text-[10px] text-indigo-600 font-bold mt-0">Includes:</p> -->
           </div>
         </div>
+      </header>
+
+      <!-- 2. SCROLLABLE VIEWPORT -->
+      <!-- This is the container that allows sticky headers to work -->
+      <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full w-full">
+        <div class="max-w-5xl mx-auto px-0 pb-0 space-y-4 text-slate-700">
+          
+          <!-- EXECUTIVE SUMMARY -->
+          <section class="mt-0 pb-0 space-y-1">
+            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
+              <h4 class="px-2 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">➤ Executive Summary</h4>
+            </div>
+            <p class="text-[10px] italic px-6 leading-relaxed text-slate-600">Core impact and KPI breakdown.</p>
+          </section>
+
+          <!-- 2. ARCHITECTURAL BLUEPRINT -->
+          <section class="mt-0 pb-0 space-y-1">
+            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
+              <h4 class="px-2 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">➤ Architectural Blueprints</h4>
+            </div>
+            <p class="text-[10px] italic px-6 leading-relaxed text-slate-600">Visual overview of the system structure and logic.</p>
+          </section>
+
+          <!-- 3. IMPLEMENTATION CINEMA -->
+          <section class="mt-0 pb-0 space-y-1">
+            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
+              <h4 class="px-2 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">➤ Deep-Dive Cinema</h4>
+            </div>
+            <p class="text-[10px] italic px-6 leading-relaxed text-slate-600">A collection of videos exploring the project in detail.</p>
+          </section>
+          
+          <!-- 4. ARTIFACTS -->
+          <section class="mt-0 pb-0 space-y-1">
+            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
+              <h4 class="px-2 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">➤ Artifacts</h4>
+            </div>
+            <p class="text-[10px] italic px-6 leading-relaxed text-slate-600">Links to source code and documentation.</p>
+          </section>
+        </div>
+      </main>
     </div>
 
   </section>
 </template>
+
 
 <style scoped>
 /* Keeping your original transitions and scrollbar logic exactly as they were */
