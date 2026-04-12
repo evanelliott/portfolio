@@ -104,7 +104,7 @@ const selectVideo = (index: number) => {
                 <span class="w-1.5 h-1.5 bg-indigo-600 rounded-full"></span>
                 {{ item.title }}
               </h4>
-              <p class="text-[10px] text-slate-600 italic">
+              <p class="text-[10px] text-slate-600">
                 {{ item.description }}
               </p>
             </div>

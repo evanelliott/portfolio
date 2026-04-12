@@ -47,7 +47,7 @@ const activeProject = computed(() =>
             <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
               <h4 class="px-2 text-[10px] font-bold">➤ Executive Summary</h4>
             </div>
-            <p class="text-[10px] italic px-6 text-slate-600">Core impact and KPI breakdown.</p>
+            <p class="text-[10px] px-6">Core impact and KPI breakdown.</p>
           </section>
 
           <!-- 2. ARCHITECTURAL BLUEPRINT -->
@@ -55,7 +55,7 @@ const activeProject = computed(() =>
             <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
               <h4 class="px-2 text-[10px] font-bold">➤ Architectural Blueprints</h4>
             </div>
-            <p class="text-[10px] italic px-6 text-slate-600">Visual overview of the system structure and logic.</p>
+            <p class="text-[10px] px-6">Visual overview of the system structure and logic.</p>
           </section>
 
           <!-- 3. IMPLEMENTATION CINEMA -->
@@ -63,7 +63,7 @@ const activeProject = computed(() =>
             <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
               <h4 class="px-2 text-[10px] font-bold">➤ Deep-Dive Cinema</h4>
             </div>
-            <p class="text-[10px] italic px-6 text-slate-600">A collection of videos exploring the project in detail.</p>
+            <p class="text-[10px] px-6">A collection of videos exploring the project in detail.</p>
           </section>
           
           <!-- 4. ARTIFACTS -->
@@ -71,7 +71,7 @@ const activeProject = computed(() =>
             <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
               <h4 class="px-2 text-[10px] font-bold">➤ Artifacts</h4>
             </div>
-            <p class="text-[10px] italic px-6 text-slate-600">Links to source code and documentation.</p>
+            <p class="text-[10px] px-6">Links to source code and documentation.</p>
           </section>
         </div>
       </main>
