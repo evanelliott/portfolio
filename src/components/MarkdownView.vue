@@ -66,7 +66,7 @@ const selectVideo = (index: number) => {
                 
                 <div class="md:col-span-5 grid grid-cols-2 gap-3">
                   <div v-for="kpi in project.kpis" :key="kpi.label" 
-                      class="p-2 bg-slate-100 rounded-xl border border-slate-400 flex flex-col justify-center text-center">
+                      class="p-2 bg-slate-100 rounded-xl border border-slate-200 flex flex-col justify-center text-center">
                     <span class="text-[10px] font-bold text-indigo-600 leading-none">{{ kpi.value }}</span>
                     <span class="text-[9px] font-semibold text-slate-600 mt-1">{{ kpi.label }}</span>
                   </div>
