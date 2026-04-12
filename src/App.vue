@@ -8,8 +8,13 @@ import type { Project } from '@/types/Project';
 const projects = ref<Project[]>(projectsData);
 const selectedId = ref<string | null>(null);
 
-const selectProject = (id: string) => {
-  selectedId.value = id;
+const handleProjectSelect = (id: string) => {
+  // If the clicked ID is already the selectedId, set it back to null
+  if (selectedId.value === id) {
+    selectedId.value = null;
+  } else {
+    selectedId.value = id;
+  }
 };
 
 // 1. Define the media query for portrait orientation
@@ -51,10 +56,10 @@ onUnmounted(() => {
             Project Portfolio
           </h4>
         </div>
-        <div v-if="!isPortrait" class="flex items-center gap-2 -mt-3 pb-2 text-[10px] font-semibold text-slate-600">
-          <span class="font-bold leading-none">Evan Elliott</span>
-          <span class="border-l pl-2 leading-none">Technical Lead</span>
-          <span class="border-l pl-2 leading-none">
+        <div v-if="!isPortrait" class="flex items-center gap-2 -mt-3 pb-2 text-[10px] font-black text-slate-600">
+          <span class="leading-none">Evan Elliott</span>
+          <span class="border-l pl-1.5 leading-none">Technical Lead</span>
+          <span class="border-l pl-1.5 leading-none">
             Data Science & Engineering Specialist (Remote)
           </span>
         </div>
@@ -85,8 +90,8 @@ onUnmounted(() => {
               v-for="project in projects" 
               :key="project.id"
               :project="project"
-              :is-active="selectedId === project.id"
-              @click="selectProject(project.id)"
+              :isActive="selectedId === project.id"
+              @click="handleProjectSelect(project.id)" 
             />
           </nav>
         </aside>

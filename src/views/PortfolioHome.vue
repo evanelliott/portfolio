@@ -14,27 +14,26 @@ const activeProject = computed(() =>
 </script>
 
 <template>
-  <section class="border-3 border-slate-600 rounded-2xl bg-white overflow-hidden h-full">
+  <section class="border-3 border-slate-600 bg-white overflow-hidden h-full">
     <div v-if="activeProject" class="flex flex-col md:flex-row h-full">
-      <div class="flex-1 overflow-y-auto p-1 md:p-1 prose prose-slate prose-sm max-w-none custom-scrollbar scroll-pt-0">
+      <div class="flex-1 overflow-y-auto p-0 md:p-0 prose prose-slate prose-sm max-w-none custom-scrollbar scroll-pt-0">
         <MarkdownView :project="activeProject" />
       </div>
-      <div class="sticky bottom-0 h-1/10 w-full bg-gradient-to-t from-slate-600 to-transparent pointer-events-none z-50"></div>
     </div>
     
     <!-- Updated Empty State with info about sections -->
-    <div v-else class="flex flex-col items-center justify-start h-full px-0 pt-1 text-center">
+    <div v-else class="flex flex-col items-start justify-start h-full px-8 pt-0 text-center">
         <!-- Main Call to Action -->
-        <div class="mb-4">
-          <h2 class="text-[13px] font-black text-slate-800 flex items-center gap-3">
-            <span class="animate-pulse">👈</span> Select a project to begin
+        <div class="mb-8 justify-center">
+          <h2 class="text-[14px] font-black text-slate-800 flex items-center gap-3">
+            <span class="animate-pulse inline-block">👈</span> Select a project to begin
           </h2>
-          <div class="h-1 w-12 bg-indigo-500 mx-auto mt-2 rounded-full"></div>
+          <div class="h-0.5 w-48 bg-slate-400 mx-auto mt-2 rounded-full"></div>
         </div>
 
         <!-- Technical Modules List -->
         <div class="text-left max-w-md border-slate-200 pl-0 py-1 space-y-2">
-          <p class="text-[10px] font-black text-indigo-600 uppercase tracking-[0.2em] mb-2">
+          <p class="text-[12px] font-bold text-indigo-600 mb-2">
             Includes:
           </p>
           

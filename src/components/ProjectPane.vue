@@ -41,7 +41,7 @@ defineEmits<{
       :class="[
         isActive 
           ? 'bg-white border-indigo-600 shadow-sm ml-6 mr-0' 
-          : 'bg-transparent border-transparent hover:bg-slate-100 ml-6 mr-0'
+          : 'bg-slate-50 border-transparent hover:bg-slate-100 ml-6 mr-0'
       ]"
     >
       <!-- Project Emoji & Name -->

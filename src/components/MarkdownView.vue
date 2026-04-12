@@ -32,7 +32,7 @@ const selectVideo = (index: number) => {
         </div>
       </div>
 
-      <div class="flex flex-wrap justify-end gap-1 max-w-[40%] shrink-0 pb-1">
+      <div class="flex flex-wrap justify-end gap-1 max-w-[40%] shrink-0 pb-0">
         <span v-for="tech in project.stack" :key="tech" 
               class="px-1.5 py-0.5 bg-indigo-200 text-indigo-600 text-[8px] tracking-[0.1em] font-mono font-semibold rounded border border-indigo-600 whitespace-nowrap">
           {{ tech }}
@@ -181,6 +181,8 @@ const selectVideo = (index: number) => {
           </div>
         </footer>
       </div>
+      
+      <div class="sticky bottom-0 h-1/10 w-full bg-gradient-to-t from-slate-600 to-transparent pointer-events-none z-50"></div>
     </main>
   </div>
 </template>
