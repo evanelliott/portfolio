@@ -44,7 +44,7 @@ const activeProject = computed(() =>
           
           <!-- EXECUTIVE SUMMARY -->
           <section class="mt-0 pb-0 space-y-1">
-            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
+            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-4 border-b border-slate-100">
               <h4 class="px-2 text-[10px] font-bold">➤ Executive Summary</h4>
             </div>
             <p class="text-[10px] px-6">Core impact and KPI breakdown.</p>
@@ -52,7 +52,7 @@ const activeProject = computed(() =>
 
           <!-- 2. ARCHITECTURAL BLUEPRINT -->
           <section class="mt-0 pb-0 space-y-1">
-            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
+            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-4 border-b border-slate-100">
               <h4 class="px-2 text-[10px] font-bold">➤ Architectural Blueprints</h4>
             </div>
             <p class="text-[10px] px-6">Visual overview of the system structure and logic.</p>
@@ -60,7 +60,7 @@ const activeProject = computed(() =>
 
           <!-- 3. IMPLEMENTATION CINEMA -->
           <section class="mt-0 pb-0 space-y-1">
-            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
+            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-4 border-b border-slate-100">
               <h4 class="px-2 text-[10px] font-bold">➤ Deep-Dive Cinema</h4>
             </div>
             <p class="text-[10px] px-6">A collection of videos exploring the project in detail.</p>
@@ -68,7 +68,7 @@ const activeProject = computed(() =>
           
           <!-- 4. ARTIFACTS -->
           <section class="mt-0 pb-0 space-y-1">
-            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
+            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-4 border-b border-slate-100">
               <h4 class="px-2 text-[10px] font-bold">➤ Artifacts</h4>
             </div>
             <p class="text-[10px] px-6">Links to source code and documentation.</p>

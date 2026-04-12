@@ -47,7 +47,7 @@ const selectVideo = (index: number) => {
         
         <!-- EXECUTIVE SUMMARY -->
         <div class="grid grid-cols-1 md:grid-cols-1 gap-4 pt-0">
-          <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
+          <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 mr-2 flex items-center gap-4 border-b border-slate-100">
             <h4 class="px-2 text-[10px] font-bold">➤ Executive Summary</h4>
           </div>
           
@@ -88,7 +88,7 @@ const selectVideo = (index: number) => {
         <!-- 2. ARCHITECTURAL BLUEPRINT -->
         <section class="mt-0 bg-slate-000 space-y-8">
           <!-- Sticky Section Header: Sticks to the top of the main container -->
-          <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
+          <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 mr-2 flex items-center gap-4 border-b border-slate-100">
             <h4 class="px-2 text-[10px] font-bold">➤ Architectural Blueprints</h4>
           </div>
           
@@ -113,7 +113,7 @@ const selectVideo = (index: number) => {
 
         <!-- 3. IMPLEMENTATION CINEMA -->
         <section v-if="project.videos?.length" class="mt-0 pb-0 space-y-2">
-          <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
+          <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-2 flex items-center gap-4 border-b border-slate-100">
             <h4 class="px-2 text-[10px] font-bold">➤ Deep-Dive Cinema</h4>
           </div>
 
@@ -165,7 +165,7 @@ const selectVideo = (index: number) => {
         
         <!-- 4. ARTIFACTS -->
         <footer v-if="project.artifacts" class="pt-0">
-          <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
+          <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 mr-2 flex items-center gap-4 border-b border-slate-100">
             <h4 class="px-2 text-[10px] font-bold">➤ Artifacts</h4>
           </div>
           <div class="bg-slate-100 p-6 flex flex-col md:flex-row justify-between items-center gap-4 shadow-2xl shadow-indigo-200">
