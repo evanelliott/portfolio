@@ -26,11 +26,11 @@ const activeProject = computed(() =>
 
       <!-- 1. FIXED TOP HEADER -->
       <!-- This stays at the top and does not scroll -->
-      <header class="z-30 bg-white border-b-2 border-slate-400 px-2 h-12 flex justify-start items-center w-full">
+      <header class="z-30 bg-white border-b-2 border-slate-600 px-2 h-12 flex justify-start items-center w-full">
         <div class="flex items-baseline gap-3 py-4 min-w-0">
           <div>
-            <h4 class="text-sm font-bold text-slate-900 leading-none">
-              👈 Select a project to begin
+            <h4 class="text-sm font-bold leading-none">
+              <span class="pointing-finger">👈</span> Select a project to begin
             </h4>
             <!-- <p class="text-[10px] text-indigo-600 font-bold mt-0">Includes:</p> -->
           </div>
@@ -40,38 +40,38 @@ const activeProject = computed(() =>
       <!-- 2. SCROLLABLE VIEWPORT -->
       <!-- This is the container that allows sticky headers to work -->
       <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full w-full">
-        <div class="mx-auto px-0 pb-0 space-y-4 text-slate-700">
+        <div class="mx-auto px-0 pb-0 space-y-4">
           
           <!-- EXECUTIVE SUMMARY -->
           <section class="mt-0 pb-0 space-y-1">
             <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
-              <h4 class="px-2 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">➤ Executive Summary</h4>
+              <h4 class="px-2 text-[10px] font-bold">➤ Executive Summary</h4>
             </div>
-            <p class="text-[10px] italic px-6 leading-relaxed text-slate-600">Core impact and KPI breakdown.</p>
+            <p class="text-[10px] italic px-6 text-slate-600">Core impact and KPI breakdown.</p>
           </section>
 
           <!-- 2. ARCHITECTURAL BLUEPRINT -->
           <section class="mt-0 pb-0 space-y-1">
             <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
-              <h4 class="px-2 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">➤ Architectural Blueprints</h4>
+              <h4 class="px-2 text-[10px] font-bold">➤ Architectural Blueprints</h4>
             </div>
-            <p class="text-[10px] italic px-6 leading-relaxed text-slate-600">Visual overview of the system structure and logic.</p>
+            <p class="text-[10px] italic px-6 text-slate-600">Visual overview of the system structure and logic.</p>
           </section>
 
           <!-- 3. IMPLEMENTATION CINEMA -->
           <section class="mt-0 pb-0 space-y-1">
             <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
-              <h4 class="px-2 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">➤ Deep-Dive Cinema</h4>
+              <h4 class="px-2 text-[10px] font-bold">➤ Deep-Dive Cinema</h4>
             </div>
-            <p class="text-[10px] italic px-6 leading-relaxed text-slate-600">A collection of videos exploring the project in detail.</p>
+            <p class="text-[10px] italic px-6 text-slate-600">A collection of videos exploring the project in detail.</p>
           </section>
           
           <!-- 4. ARTIFACTS -->
           <section class="mt-0 pb-0 space-y-1">
             <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
-              <h4 class="px-2 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">➤ Artifacts</h4>
+              <h4 class="px-2 text-[10px] font-bold">➤ Artifacts</h4>
             </div>
-            <p class="text-[10px] italic px-6 leading-relaxed text-slate-600">Links to source code and documentation.</p>
+            <p class="text-[10px] italic px-6 text-slate-600">Links to source code and documentation.</p>
           </section>
         </div>
       </main>
@@ -112,4 +112,19 @@ const activeProject = computed(() =>
   background: #4f39f6;
   border-radius: 5px;
 }
+
+.pointing-finger {
+  display: inline-block; /* Required for transform to work */
+  animation: nudge-left 1.5s infinite ease-in-out;
+}
+
+@keyframes nudge-left {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-6px); /* Moves 6px towards the sidebar */
+  }
+}
+
 </style>
