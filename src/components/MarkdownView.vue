@@ -47,7 +47,7 @@ const selectVideo = (index: number) => {
         
         <!-- EXECUTIVE SUMMARY -->
         <div class="grid grid-cols-1 md:grid-cols-1 gap-4 pt-0">
-          <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 flex items-center gap-4 border-b border-slate-100">
+          <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
             <h4 class="px-2 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">➤ Executive Summary</h4>
             <div class="h-[1px] w-full"></div>
           </div>
@@ -89,7 +89,7 @@ const selectVideo = (index: number) => {
         <!-- 2. ARCHITECTURAL BLUEPRINT -->
         <section class="mt-0 bg-slate-000 space-y-8">
           <!-- Sticky Section Header: Sticks to the top of the main container -->
-          <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 flex items-center gap-4 border-b border-slate-100">
+          <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
             <h4 class="px-2 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">➤ Architectural Blueprints</h4>
           </div>
           
@@ -114,7 +114,7 @@ const selectVideo = (index: number) => {
 
         <!-- 3. IMPLEMENTATION CINEMA -->
         <section v-if="project.videos?.length" class="mt-0 pb-0 space-y-2">
-          <div class="sticky top-0 z-20 bg-slate-100 py-1 flex items-center gap-4 border-b border-slate-100">
+          <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
             <h4 class="px-2 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">➤ Deep-Dive Cinema</h4>
           </div>
 
@@ -166,7 +166,7 @@ const selectVideo = (index: number) => {
         
         <!-- 4. ARTIFACTS -->
         <footer v-if="project.artifacts" class="pt-0">
-          <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 flex items-center gap-4 border-b border-slate-100">
+          <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 mr-1 flex items-center gap-4 border-b border-slate-100">
             <h4 class="px-2 text-[10px] font-bold tracking-[0em] text-slate-800 whitespace-nowrap">➤ Artifacts</h4>
           </div>
           <div class="bg-slate-100 p-6 flex flex-col md:flex-row justify-between items-center gap-4 shadow-2xl shadow-indigo-200">
@@ -197,16 +197,6 @@ const selectVideo = (index: number) => {
   max-width: 100% !important;
 }
 
-/* Scoped scrollbar styling */
-main::-webkit-scrollbar {
-  background: #f1f5f9;
-  width: 5px;
-}
-main::-webkit-scrollbar-thumb {
-  background: #4f39f6;
-  border-radius: 5px;
-}
-
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
@@ -224,5 +214,10 @@ main::-webkit-scrollbar-thumb {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.scroll-container-fade {
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
 }
 </style>
