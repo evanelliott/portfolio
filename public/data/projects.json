@@ -18,9 +18,9 @@
       { "title": "Structured Evidence Extraction", "description": "Using Pydantic models to turn raw graph data into high-integrity structures that improve agent reasoning." }
     ],
     "videos": [
-      { "title": "Architectural Auditing", "desc": "Detecting circular dependencies and 'spaghetti' patterns via the Architect.", "url": "https://lorem.video" },
-      { "title": "Automated Test Generation", "desc": "TestEngineer generating integration tests based on graph-discovered paths.", "url": "https://lorem.video" },
-      { "title": "Security Taint Analysis", "desc": "Watching the SecurityResearcher trace user input to a sink.", "url": "https://lorem.video" }
+      { "title": "Architectural Auditing", "desc": "Detecting circular dependencies and 'spaghetti' patterns via the Architect.", "url": "https://lorem.video/720p" },
+      { "title": "Automated Test Generation", "desc": "TestEngineer generating integration tests based on graph-discovered paths.", "url": "https://lorem.video/720p" },
+      { "title": "Security Taint Analysis", "desc": "Watching the SecurityResearcher trace user input to a sink.", "url": "https://lorem.video/720p" }
     ],
     "mermaidDiagram": "graph TD\n    Code[Source Code] -->|Joern| CPG[(Neo4j Graph)]\n    subgraph \"Unified Service (MCP)\"\n        CPG --> Tool[Cypher Tool Provider]\n        Tool --> Schema[Pydantic Structured Output]\n    end\n    subgraph \"OpenCode UI\"\n        Schema --> Agent1[Security Specialist]\n        Schema --> Agent2[Staff Architect]\n        Schema --> Agent3[Test Engineer]\n    end\n    Agent3 -->|Writes| Tests[Unit & Integration Tests]\n    User[Developer] -->|Natural Language| OpenCode",
     "artifacts": {
