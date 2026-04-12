@@ -1,8 +1,8 @@
 [
   {
     "id": "1",
-    "name": "GenAI",
-    "title": "GenAI Coding Assistant",
+    "name": "Artificial Intelligence",
+    "title": "AI Coding Assistant",
     "emoji": "🤖",
     "headline": "Agentic GraphRAG for Security, Architecture, and Testing",
     "summary": "A local-first intelligence suite for security, architecture, and testing. Combines Code Property Graphs (CPG) with specialized AI agents to to automate security audits, architectural reviews, and test suite generation.",
@@ -32,7 +32,7 @@
     "id": "2",
     "name": "Stream Processing",
     "title": "Real-time Browser Monitoring",
-    "emoji": "🏎️",
+    "emoji": "⚡",
     "headline": "Streaming Web Performance Analytics",
     "summary": "A high-velocity stream processing pipeline to monitor browser performance metrics in real-time. Captures events from Chrome DevTools Protocol (CDP) and aggregates them for immediate visual insights.",
     "stack": ["Spark Streaming", "Redpanda", "Redis", "Grafana", "Docker"],
