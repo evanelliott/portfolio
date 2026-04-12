@@ -40,7 +40,7 @@ const activeProject = computed(() =>
       <!-- 2. SCROLLABLE VIEWPORT -->
       <!-- This is the container that allows sticky headers to work -->
       <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full w-full">
-        <div class="max-w-5xl mx-auto px-0 pb-0 space-y-4 text-slate-700">
+        <div class="mx-auto px-0 pb-0 space-y-4 text-slate-700">
           
           <!-- EXECUTIVE SUMMARY -->
           <section class="mt-0 pb-0 space-y-1">

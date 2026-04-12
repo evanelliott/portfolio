@@ -51,7 +51,7 @@ onUnmounted(() => {
     <!-- HEADER -->
     <header class="w-full shrink-0 z-50">
       <div class="max-w-7xl mx-auto px-2 flex flex-col justify-start">
-        <div :class="['flex items-center gap-4 mt-2 mb-4', isPortrait ? 'justify-center' : 'justify-start']">
+        <div :class="['flex items-center gap-4 mb-4', isPortrait ? 'justify-center mt-16' : 'justify-start mt-2']">
           <h4 :class="['font-bold leading-none pt-0 text-[18px]', isPortrait ? 'text-center' : 'text-left']">
             Project Portfolio
           </h4>
@@ -72,7 +72,7 @@ onUnmounted(() => {
       <!-- PORTRAIT PROMPT -->
       <div v-if="isPortrait" class="flex-1 flex flex-col items-center justify-center p-10 text-center">
         <div class="rotate-icon text-5xl mb-6">📱</div>
-        <h2 class="font-bold leading-none pt-0 text-[12px]">Rotate</h2>
+        <h2 class="font-bold leading-none pt-0 text-[12px]">Please rotate your device to landscape mode</h2>
       </div>
 
       <!-- LANDSCAPE CONTENT -->

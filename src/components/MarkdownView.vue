@@ -43,7 +43,7 @@ const selectVideo = (index: number) => {
     <!-- 2. SCROLLABLE VIEWPORT -->
     <!-- This is the container that allows sticky headers to work -->
     <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full">
-      <div class="max-w-5xl mx-auto px-0 pb-0 space-y-16 text-slate-700">
+      <div class="mx-auto px-0 pb-0 space-y-16 text-slate-700">
         
         <!-- EXECUTIVE SUMMARY -->
         <div class="grid grid-cols-1 md:grid-cols-1 gap-4 pt-0">
