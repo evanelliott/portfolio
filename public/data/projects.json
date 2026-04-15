@@ -4,7 +4,7 @@
     "name": "Artificial Intelligence",
     "title": "Agentic Coding Assistants",
     "emoji": "🤖",
-    "headline": "Code Property Graph (CGP) RAG Engine",
+    "headline": "Code Property Graph (CPG) RAG Engine",
     "summary": "A high-performance, local-first framework leveraging CPG and LLM orchestration to enable complex static analysis. Designed to analyse architectural patterns, generate test cases, and flag potential security weaknesses.",
     "stack": ["OpenCode", "Ollama", "LangChain", "FastAPI", "Pydantic", "Neo4j", "Docker"],
     "kpis": [
@@ -31,25 +31,25 @@
   {
     "id": "2",
     "name": "Stream Processing",
-    "title": "Real-time Browser Monitoring",
+    "title": "Web Browser Observability",
     "emoji": "⚡",
-    "headline": "Streaming Web Performance Analytics",
-    "summary": "A high-velocity stream processing pipeline to monitor browser performance metrics in real-time. Captures events from Chrome DevTools Protocol (CDP) and aggregates them for immediate visual insights.",
-    "stack": ["Spark Streaming", "Redpanda", "Redis", "Grafana", "Docker"],
+    "headline": "Event Streaming & Real-time Analytics",
+    "summary": "A high-velocity stream processing engine for real-time web browsing analytics. Transforms raw Chrome DevTools Protocol (CDP) events into immediate visual insights using a distributed message bus and stateful stream processing.",
+    "stack": ["Spark Streaming", "Redpanda", "Redis", "Grafana", "MinIO", "Docker"],
     "kpis": [
-      { "value": "Sub-50ms", "label": "End-to-End Latency" }, 
-      { "value": "Real-time", "label": "Ingestion" }
+      { "value": "Sub-50ms", "label": "E2E Latency" }, 
+      { "value": "Exactly-Once", "label": "Semantics" }
     ],
     "imageUrl": "https://placehold.co/600x400",
     "rationale": [
-      { "title": "Event Streaming", "description": "Leveraging Chrome DevTools Protocol to capture granular RUM (Real User Monitoring) data." },
-      { "title": "Messaging Bus", "description": "Redpanda (Kafka-compatible) chosen for its low-latency performance and simplified C++ architecture." },
-      { "title": "Data Enrichment", "description": "Redis acts as a real-time, in-memory lookup to enrich data streams with sub-millisecond latency." }
+      { "title": "Stateful Fault Tolerance", "description": "Checkpoints persist streaming state to MinIO (S3-compatible). This allows the pipeline to recover rapidly from node failures." },
+      { "title": "Lightweight Message Bus", "description": "Redpanda (Kafka-compatible) chosen for its zero-JVM, C++ architecture." },
+      { "title": "Real-time Feature Enrichment", "description": "Redis acts as a real-time, in-memory lookup to enrich data streams with sub-millisecond latency." }
     ],
     "videos": [
-      { "title": "Live Grafana Dashboard", "desc": "Visualising Core Web Vitals as they happen." },
-      { "title": "Spark Windowing", "desc": "Deep dive into the temporal aggregation logic." },
-      { "title": "Redpanda Connect", "desc": "Configuring the source-to-broker mapping." }
+      { "title": "Redpanda Connect", "desc": "Configuring the source-to-broker mapping." },
+      { "title": "Spark Windowing", "desc": "Deep-dive into the temporal aggregation logic." },
+      { "title": "Live Grafana Dashboard", "desc": "Visualising insights as they happen." }
     ],
     "mermaidDiagram": "graph LR\n    A[Browser / CDP] -->|Events| B[Redpanda]\n    B -->|Stream| C[Spark Streaming]\n    C -->|Aggregate| D[(Redis)]\n    D --> E[Grafana Dashboard]",
     "artifacts": {
@@ -62,12 +62,12 @@
     "name": "Data Lakehouse",
     "title": "Data Lakehouse for Football Analytics",
     "emoji": "🥇",
-    "headline": "End-to-End Sports Analytics Lakehouse",
-    "summary": "A scalable Medallion architecture to ingest, transform, and query complex football datasets. Leverages Iceberg for table management, and Spark and Trino for high-performance distributed queries.",
+    "headline": "Medallion Architecture & Data Modelling",
+    "summary": "A high-integrity analytical platform designed to integrate multi-source data into a unified Master Data model. The system leverages a decoupled storage-compute architecture with Iceberg and Trino to perform high-performance batch ELT.",
     "stack": ["Spark", "Trino", "Airflow", "Iceberg", "MinIO", "Docker"],
     "kpis": [
-      { "value": "ACID", "label": "Transactions" }, 
-      { "value": "S3-compatible", "label": "Object Storage" }
+      { "value": "Star Schema", "label": "Data Model" }, 
+      { "value": "Multi-Source", "label": "Entity Resolution" }
     ],
     "imageUrl": "https://placehold.co/600x400",
     "rationale": [
