@@ -5,7 +5,7 @@ import projectsData from '../../public/data/projects.json'
 
 /**
  * Updated Project Data Schema (Zod)
- * Perfectly mirrors the projects.json structure
+ * Reflects the shift from Mermaid strings to structured diagram URLs
  */
 const ProjectSchema = z.object({
   id: z.string().min(1),
@@ -22,6 +22,14 @@ const ProjectSchema = z.object({
     })
   ),
   imageUrl: z.string().url(),
+  // New Diagram structure
+  systemArchitectureUrl: z.string().url(),
+  additionalDiagrams: z.array(
+    z.object({
+      name: z.string(),
+      url: z.string().url()
+    })
+  ),
   rationale: z.array(
     z.object({
       title: z.string(),
@@ -32,10 +40,9 @@ const ProjectSchema = z.object({
     z.object({
       title: z.string(),
       desc: z.string(),
-      url: z.string().url().optional() // Optional since some entries lacked URLs
+      url: z.string().url().optional()
     })
   ),
-  mermaidDiagram: z.string(),
   artifacts: z.object({
     githubUrl: z.string().url(),
     adrUrl: z.string().url()
@@ -45,7 +52,7 @@ const ProjectSchema = z.object({
 const ProjectsListSchema = z.array(ProjectSchema)
 
 describe('Portfolio Data Integrity', () => {
-  it('should have exactly 5 projects as per the projects.json', () => {
+  it('should have exactly 5 projects as per the current projects.json', () => {
     expect(projectsData.length).toBe(5)
   })
 
@@ -60,7 +67,7 @@ describe('Portfolio Data Integrity', () => {
   })
 
   it('should ensure all project IDs are unique', () => {
-    const ids = projectsData.map(p => p.id)
+    const ids = projectsData.map(p => (p as any).id)
     const uniqueIds = new Set(ids)
     expect(ids.length).toBe(uniqueIds.size)
   })
