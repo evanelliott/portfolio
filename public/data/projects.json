@@ -2,20 +2,20 @@
   {
     "id": "1",
     "name": "Artificial Intelligence",
-    "title": "AI Coding Assistant",
+    "title": "GraphRAG Engine",
     "emoji": "🤖",
-    "headline": "Agentic GraphRAG for Security, Architecture, and Testing",
-    "summary": "A local-first intelligence suite for security, architecture, and testing. Combines Code Property Graphs (CPG) with specialized AI agents to to automate security audits, architectural reviews, and test suite generation.",
+    "headline": "Agentic Graph-based Source Code Analysis",
+    "summary": "A high-performance, local-first framework leveraging Code Property Graphs (CPG) and LLM orchestration to automate complex static analysis. Designed to discover architectural patterns, generate test cases, and perform security auditing.",
     "stack": ["OpenCode", "Ollama", "LangChain", "FastAPI", "Pydantic", "Neo4j", "Docker"],
     "kpis": [
-      { "value": "Multi-Agent", "label": "Orchestration" }, 
-      { "value": "Local-First", "label": "Security" }
+      { "value": "Local-First", "label": "Security" },
+      { "value": "Multi-Agent", "label": "Orchestration" }
     ],
     "imageUrl": "https://placehold.co/600x400",
     "rationale": [
-      { "title": "Specialized Subagents", "description": "Defining a team of agents specialising in security, architecture, and testing to provide deep, domain-specific code insights." },
-      { "title": "Model Context Protocol (MCP)", "description": "Exposing Cypher query patterns as structured tools for LLMs via a unified FastAPI service." },
-      { "title": "Structured Evidence Extraction", "description": "Using Pydantic models to turn raw graph data into high-integrity structures that improve agent reasoning." }
+      { "title": "Expert Agents", "description": "Created a team of agents specialising in security, architecture, and testing to provide deep, domain-specific code insights." },
+      { "title": "Structured Evidence Extraction", "description": "Using Pydantic models to turn raw graph data into high-integrity structures that improve agent reasoning." },
+      { "title": "Model Context Protocol (MCP)", "description": "Exposing Cypher query patterns as structured tools for LLMs via a unified FastAPI service." }
     ],
     "videos": [
       { "title": "Architectural Auditing", "desc": "Detecting circular dependencies and 'spaghetti' patterns via the Architect.", "url": "https://lorem.video/720p" },
