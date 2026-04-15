@@ -67,7 +67,7 @@ describe('Portfolio Data Integrity', () => {
   })
 
   it('should ensure all project IDs are unique', () => {
-    const ids = projectsData.map(p => (p as any).id)
+    const ids = projectsData.map(p => p.id)
     const uniqueIds = new Set(ids)
     expect(ids.length).toBe(uniqueIds.size)
   })
