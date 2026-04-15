@@ -83,6 +83,18 @@ const selectVideo = (index: number) => {
 
           </div>
 
+          <div class="grid grid-cols-3 md:grid-cols-3 px-6 gap-8">
+            <div v-for="item in project.rationale" :key="item.title" class="space-y-2">
+              <h4 class="text-[10px] font-bold flex items-center gap-2">
+                <span class="w-1.5 h-1.5 bg-indigo-600 rounded-full"></span>
+                {{ item.title }}
+              </h4>
+              <p class="text-[10px] text-slate-600">
+                {{ item.description }}
+              </p>
+            </div>
+          </div>
+
         </div>
 
         <!-- 2. ARCHITECTURAL BLUEPRINT -->
@@ -95,18 +107,6 @@ const selectVideo = (index: number) => {
           <div class="px-6">
             <div class="px-32">
               <img :src="project.imageUrl" alt="Project screenshot" class="rounded-lg border border-slate-100 shadow-sm">
-            </div>
-          </div>
-
-          <div class="grid grid-cols-3 md:grid-cols-3 px-6 gap-8">
-            <div v-for="item in project.rationale" :key="item.title" class="space-y-2">
-              <h4 class="text-[10px] font-bold flex items-center gap-2">
-                <span class="w-1.5 h-1.5 bg-indigo-600 rounded-full"></span>
-                {{ item.title }}
-              </h4>
-              <p class="text-[10px] text-slate-600">
-                {{ item.description }}
-              </p>
             </div>
           </div>
         </section>
