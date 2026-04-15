@@ -63,7 +63,7 @@
     "title": "Data Lakehouse for Football Analytics",
     "emoji": "🥇",
     "headline": "Medallion Architecture & Data Modelling",
-    "summary": "A high-integrity analytical platform designed to integrate multi-source data into a unified Master Data model. The system leverages a decoupled storage-compute architecture with Iceberg and Trino to perform high-performance batch ELT.",
+    "summary": "A high-integrity analytical platform designed to integrate multi-source data into a unified Master Data model. The system leverages a decoupled storage-compute architecture with Iceberg, Spark and Trino to perform high-performance batch ELT.",
     "stack": ["Spark", "Trino", "Airflow", "Iceberg", "MinIO", "Docker"],
     "kpis": [
       { "value": "Star Schema", "label": "Data Model" }, 
@@ -76,9 +76,9 @@
       { "title": "Scalability", "description": "Decoupled storage (MinIO) from compute (Spark & Trino) to allow independent scaling of infrastructure." }
     ],
     "videos": [
-      { "title": "Medallion Pipeline", "desc": "Walking through Bronze to Gold transformation logic." },
-      { "title": "Trino Query Performance", "desc": "Demonstrating sub-second latency on large-scale analytical joins." },
-      { "title": "Airflow Monitoring", "desc": "Handling backfills and failure retries." }
+      { "title": "Medallion Architecture & Data Model", "desc": "Walking through Bronze to Gold transformation logic." },
+      { "title": "Performance Optimisation", "desc": "Comparing different storage layouts and query patterns." },
+      { "title": "Airflow", "desc": "Demonstrating idempotent, fault-tolerant orchestration." }
     ],
     "mermaidDiagram": "graph LR\n    subgraph \"Data Sources (External)\"\n        US[Understat]\n        FB[FBref]\n        TM[Transfermarkt]\n        PI[Premier Injuries]\n    end\n\n    subgraph \"Data Lakehouse (Apache Iceberg / S3)\"\n        direction TB\n        subgraph \"Bronze Layer: Raw Landing\"\n            B1[(Immutable Raw JSON)]\n        end\n\n        subgraph \"Silver Layer: Cleansed & Integrated\"\n            S1[Entity Resolution]\n            S2[Data Contracts]\n            S1 --> S2\n            S2 --> S3[(Master-Mapped Tables)]\n        end\n\n        subgraph \"Gold Layer: Analytical Star Schema\"\n            G1[Fact Match Events]\n            G2[Dim Players - SCD Type 2]\n            G3[Incremental Materialization]\n        end\n    end\n\n    US & FB & TM & PI --> B1\n    B1 --> S1\n    S3 --> G1\n    S3 --> G2\n    G1 & G2 --> G3\n    G3 --> Dash[Scouting Dashboards]\n\n    style B1 fill:#f96,stroke:#333\n    style S3 fill:#6cf,stroke:#333\n    style G3 fill:#9f9,stroke:#333",
     "artifacts": {
