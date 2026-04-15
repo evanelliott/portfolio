@@ -14,8 +14,8 @@
     "imageUrl": "https://placehold.co/600x400",
     "rationale": [
       { "title": "Expert Agents", "description": "Created a team of agents specialising in security, architecture, and testing to provide deep, domain-specific code insights." },
-      { "title": "Structured Evidence Extraction", "description": "Using Pydantic models to turn raw graph data into high-integrity structures that improve agent reasoning." },
-      { "title": "Model Context Protocol (MCP)", "description": "Exposing Cypher query patterns as structured tools for LLMs via a unified FastAPI service." }
+      { "title": "Structured Evidence Extraction", "description": "Leveraged Pydantic validation to ensure high-integrity data structures that improve LLM comprehension." },
+      { "title": "Model Context Protocol (MCP)", "description": "Wrapped Cypher query templates as Tools for agents to access via a unified FastAPI service." }
     ],
     "videos": [
       { "title": "Architectural Auditing", "desc": "Detecting circular dependencies and 'spaghetti' patterns via the Architect.", "url": "https://lorem.video/720p" },
