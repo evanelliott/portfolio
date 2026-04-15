@@ -2,10 +2,10 @@
   {
     "id": "1",
     "name": "Artificial Intelligence",
-    "title": "GraphRAG Engine",
+    "title": "Agentic Coding Assistants",
     "emoji": "🤖",
-    "headline": "Agentic Graph-based Source Code Analysis",
-    "summary": "A high-performance, local-first framework leveraging Code Property Graphs (CPG) and LLM orchestration to automate complex static analysis. Designed to discover architectural patterns, generate test cases, and perform security auditing.",
+    "headline": "Code Property Graph (CGP) RAG Engine",
+    "summary": "A high-performance, local-first framework leveraging CPG and LLM orchestration to enable complex static analysis. Designed to analyse architectural patterns, generate test cases, and flag potential security weaknesses.",
     "stack": ["OpenCode", "Ollama", "LangChain", "FastAPI", "Pydantic", "Neo4j", "Docker"],
     "kpis": [
       { "value": "Local-First", "label": "Security" },
@@ -13,14 +13,14 @@
     ],
     "imageUrl": "https://placehold.co/600x400",
     "rationale": [
-      { "title": "Expert Agents", "description": "Created a team of agents specialising in security, architecture, and testing to provide deep, domain-specific code insights." },
-      { "title": "Structured Evidence Extraction", "description": "Leveraged Pydantic validation to ensure high-integrity data structures that improve LLM comprehension." },
-      { "title": "Model Context Protocol (MCP)", "description": "Wrapped Cypher query templates as Tools for agents to access via a unified FastAPI service." }
+      { "title": "Expert Agents", "description": "A team of agents specialise in security, architecture, and testing to provide deep, domain-specific code insights." },
+      { "title": "Structured Evidence Extraction", "description": "Pydantic validation ensures high-integrity data structures that improve LLM comprehension." },
+      { "title": "Model Context Protocol (MCP)", "description": "Neo4j Cypher query templates are wrapped as Tools for agents to access via a unified FastAPI MCP service." }
     ],
     "videos": [
       { "title": "Architectural Auditing", "desc": "Detecting circular dependencies and 'spaghetti' patterns via the Architect.", "url": "https://lorem.video/720p" },
-      { "title": "Automated Test Generation", "desc": "TestEngineer generating integration tests based on graph-discovered paths.", "url": "https://lorem.video/720p" },
-      { "title": "Security Taint Analysis", "desc": "Watching the SecurityResearcher trace user input to a sink.", "url": "https://lorem.video/720p" }
+      { "title": "Automated Test Generation", "desc": "TestEngineer generating test cases based on graph-discovered paths.", "url": "https://lorem.video/720p" },
+      { "title": "Security Taint Analysis", "desc": "Watching the SecurityResearcher identify a security weakness and enrich it with CWE data.", "url": "https://lorem.video/720p" }
     ],
     "mermaidDiagram": "graph TD\n    Code[Source Code] -->|Joern| CPG[(Neo4j Graph)]\n    subgraph \"Unified Service (MCP)\"\n        CPG --> Tool[Cypher Tool Provider]\n        Tool --> Schema[Pydantic Structured Output]\n    end\n    subgraph \"OpenCode UI\"\n        Schema --> Agent1[Security Specialist]\n        Schema --> Agent2[Staff Architect]\n        Schema --> Agent3[Test Engineer]\n    end\n    Agent3 -->|Writes| Tests[Unit & Integration Tests]\n    User[Developer] -->|Natural Language| OpenCode",
     "artifacts": {
