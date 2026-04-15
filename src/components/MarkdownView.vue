@@ -3,7 +3,7 @@ import { ref, computed } from 'vue';
 import ProjectDemo from './ProjectDemo.vue';
 import type { Project } from '@/types/Project';
 
-const props = defineProps<{
+defineProps<{
   project: Project 
 }>();
 
@@ -142,7 +142,7 @@ const endPan = () => isPanning.value = false;
 
         </div>
         
-                <!-- 2. ARCHITECTURAL BLUEPRINT (MODIFIED SECTION) -->
+        <!-- 2. ARCHITECTURAL BLUEPRINT (MODIFIED SECTION) -->
         <section class="mt-0 bg-slate-000 space-y-8">
           <!-- Sticky Section Header -->
           <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 mr-2 flex items-center gap-4 border-b border-slate-100">
