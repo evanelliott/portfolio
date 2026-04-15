@@ -24,6 +24,11 @@ export interface ProjectArtifacts {
   adrUrl: string;    // Link to Technical Specs or ADRs
 }
 
+export interface AdditionalDiagram {
+  name: string; // Display name for the thumbnail/overlay
+  url: string;  // Path or URL to the diagram image
+}
+
 export interface Project {
   // Identification
   id: string;        // Used for selection state (e.g., "1", "2")
@@ -39,7 +44,8 @@ export interface Project {
   imageUrl: string;  // Path or URL to the project cover image
   
   // The "Brain" (Architecture)
-  mermaidDiagram: string;
+  systemArchitectureUrl: string;       // Mandatory primary system diagram
+  additionalDiagrams: AdditionalDiagram[]; // Optional array of supporting diagrams
   rationale: DesignRationale[];
   
   // The "Meat" (Implementation)

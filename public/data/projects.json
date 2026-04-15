@@ -22,7 +22,14 @@
       { "title": "Automated Test Generation", "desc": "TestEngineer generating test cases based on graph-discovered paths.", "url": "https://lorem.video/720p" },
       { "title": "Security Taint Analysis", "desc": "Watching the SecurityResearcher identify a security weakness and enrich it with CWE data.", "url": "https://lorem.video/720p" }
     ],
-    "mermaidDiagram": "graph TD\n    Code[Source Code] -->|Joern| CPG[(Neo4j Graph)]\n    subgraph \"Unified Service (MCP)\"\n        CPG --> Tool[Cypher Tool Provider]\n        Tool --> Schema[Pydantic Structured Output]\n    end\n    subgraph \"OpenCode UI\"\n        Schema --> Agent1[Security Specialist]\n        Schema --> Agent2[Staff Architect]\n        Schema --> Agent3[Test Engineer]\n    end\n    Agent3 -->|Writes| Tests[Unit & Integration Tests]\n    User[Developer] -->|Natural Language| OpenCode",
+    "systemArchitectureUrl": "https://placehold.co/600x400",
+    "additionalDiagrams": [
+      { "name": "Container Orchestration Diagram", "url": "https://placehold.co/600x400" },
+      { "name": "Data Flow Diagram", "url": "https://placehold.co/600x400" },
+      { "name": "Pydantic Data Models", "url": "https://placehold.co/600x400" },
+      { "name": "FastAPI Endpoints", "url": "https://placehold.co/600x400" },
+      { "name": "Sequence Diagram", "url": "https://placehold.co/600x400" }
+    ],
     "artifacts": {
       "githubUrl": "https://github.com",
       "adrUrl": "https://github.com"
@@ -51,7 +58,14 @@
       { "title": "Spark Windowing", "desc": "Deep-dive into the temporal aggregation logic." },
       { "title": "Live Grafana Dashboard", "desc": "Visualising insights as they happen." }
     ],
-    "mermaidDiagram": "graph LR\n    A[Browser / CDP] -->|Events| B[Redpanda]\n    B -->|Stream| C[Spark Streaming]\n    C -->|Aggregate| D[(Redis)]\n    D --> E[Grafana Dashboard]",
+    "systemArchitectureUrl": "https://placehold.co/600x400",
+    "additionalDiagrams": [
+      { "name": "Container Orchestration Diagram", "url": "https://placehold.co/600x400" },
+      { "name": "Data Flow Diagram", "url": "https://placehold.co/600x400" },
+      { "name": "Logical Data Model", "url": "https://placehold.co/600x400" },
+      { "name": "Physical Data Model", "url": "https://placehold.co/600x400" },
+      { "name": "Sequence Diagram", "url": "https://placehold.co/600x400" }
+    ],
     "artifacts": {
       "githubUrl": "https://github.com",
       "adrUrl": "https://github.com/docs/adr.md"
@@ -80,7 +94,14 @@
       { "title": "Performance Optimisation", "desc": "Comparing different storage layouts and query patterns." },
       { "title": "Airflow", "desc": "Demonstrating idempotent, fault-tolerant orchestration." }
     ],
-    "mermaidDiagram": "graph LR\n    subgraph \"Data Sources (External)\"\n        US[Understat]\n        FB[FBref]\n        TM[Transfermarkt]\n        PI[Premier Injuries]\n    end\n\n    subgraph \"Data Lakehouse (Apache Iceberg / S3)\"\n        direction TB\n        subgraph \"Bronze Layer: Raw Landing\"\n            B1[(Immutable Raw JSON)]\n        end\n\n        subgraph \"Silver Layer: Cleansed & Integrated\"\n            S1[Entity Resolution]\n            S2[Data Contracts]\n            S1 --> S2\n            S2 --> S3[(Master-Mapped Tables)]\n        end\n\n        subgraph \"Gold Layer: Analytical Star Schema\"\n            G1[Fact Match Events]\n            G2[Dim Players - SCD Type 2]\n            G3[Incremental Materialization]\n        end\n    end\n\n    US & FB & TM & PI --> B1\n    B1 --> S1\n    S3 --> G1\n    S3 --> G2\n    G1 & G2 --> G3\n    G3 --> Dash[Scouting Dashboards]\n\n    style B1 fill:#f96,stroke:#333\n    style S3 fill:#6cf,stroke:#333\n    style G3 fill:#9f9,stroke:#333",
+    "systemArchitectureUrl": "https://placehold.co/600x400",
+    "additionalDiagrams": [
+      { "name": "Container Orchestration Diagram", "url": "https://placehold.co/600x400" },
+      { "name": "Data Flow Diagram", "url": "https://placehold.co/600x400" },
+      { "name": "Logical Data Model", "url": "https://placehold.co/600x400" },
+      { "name": "Physical Data Model", "url": "https://placehold.co/600x400" },
+      { "name": "Sequence Diagram", "url": "https://placehold.co/600x400" }
+    ],
     "artifacts": {
       "githubUrl": "https://github.com",
       "adrUrl": "https://github.com/blob/main/docs/adr/001.md"
@@ -110,7 +131,12 @@
       { "title": "Feature Engineering", "desc": "Calculating rolling team performance metrics." },
       { "title": "Inference Demo", "desc": "Generating probabilities for upcoming fixtures." }
     ],
-    "mermaidDiagram": "graph TD\n    subgraph Data_Layer [Data & Storage]\n        A[DuckDB] -->|Point-in-Time Joins| B(Feature Store)\n    end\n\n    subgraph Modeling_Layer [Modeling & Tracking]\n        B -->|Historical Match Data| C[Statsmodels / SciPy]\n        C -->|Poisson GLM Fitting| D{MLflow}\n        D -->|Coefficients & Metadata| E(Model Registry)\n    end\n\n    subgraph Inference_Layer [Inference & UI]\n        E -->|Stored Parameters| F[Streamlit Dashboard]\n        F -->|Monte Carlo Simulation| G(Match Outcome Probabilities)\n    end\n\n    subgraph Infrastructure [DevOps & DX]\n        H[Docker Compose] --- Data_Layer\n        H --- Modeling_Layer\n        H --- Inference_Layer\n        I[Multi-stage Docker Build] --> H\n        J[Makefile] -->|One-command Setup| H\n    end",
+    "systemArchitectureUrl": "https://placehold.co/600x400",
+    "additionalDiagrams": [
+      { "name": "Container Orchestration Diagram", "url": "https://placehold.co/600x400" },
+      { "name": "Data Flow Diagram", "url": "https://placehold.co/600x400" },
+      { "name": "Sequence Diagram: ML Training", "url": "https://placehold.co/600x400" }
+    ],
     "artifacts": {
       "githubUrl": "https://github.com",
       "adrUrl": "https://github.com/docs/adr.md"
@@ -139,7 +165,10 @@
       { "title": "Vitest Suite", "desc": "Demonstrating high-speed component testing." },
       { "title": "Lighthouse Reports", "desc": "Analyzing automated performance and accessibility scores." }
     ],
-    "mermaidDiagram": "graph LR\n    Commit[Code Commit] -->|Trigger| GHA[GitHub Actions]\n    GHA --> Test[Vitest Unit Tests]\n    GHA --> Audit[Lighthouse CI]\n    Audit & Test --> Deploy[Vercel / S3 Deployment]",
+    "systemArchitectureUrl": "https://placehold.co/600x400",
+    "additionalDiagrams": [
+      { "name": "Sequence Diagram", "url": "https://placehold.co/600x400" }
+    ],
     "artifacts": {
       "githubUrl": "https://github.com",
       "adrUrl": "https://github.com/docs/adr.md"

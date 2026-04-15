@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import ProjectDemo from './ProjectDemo.vue';
 import type { Project } from '@/types/Project';
 
-defineProps<{
+const props = defineProps<{
   project: Project 
 }>();
 
@@ -13,6 +13,51 @@ const activeVideoIndex = ref(0);
 const selectVideo = (index: number) => {
   activeVideoIndex.value = index;
 };
+
+// --- LIGHTBOX LOGIC ---
+const fullscreenImage = ref<string | null>(null);
+const fullscreenCaption = ref('');
+const scale = ref(1);
+const offset = ref({ x: 0, y: 0 });
+const isPanning = ref(false);
+const startPos = ref({ x: 0, y: 0 });
+
+const imageStyle = computed(() => ({
+  transform: `translate(${offset.value.x}px, ${offset.value.y}px) scale(${scale.value})`,
+  cursor: isPanning.value ? 'grabbing' : 'grab',
+  transition: isPanning.value ? 'none' : 'transform 0.15s ease-out'
+}));
+
+const openFullscreen = (url: string, title: string) => {
+  fullscreenImage.value = url;
+  fullscreenCaption.value = title;
+  scale.value = 1;
+  offset.value = { x: 0, y: 0 };
+};
+
+const closeFullscreen = () => {
+  fullscreenImage.value = null;
+};
+
+const zoomIn = () => scale.value = Math.min(scale.value + 0.5, 4);
+const zoomOut = () => scale.value = Math.max(scale.value - 0.5, 0.5);
+
+const handleWheel = (e: WheelEvent) => {
+  const delta = e.deltaY > 0 ? -0.2 : 0.2;
+  scale.value = Math.min(Math.max(0.5, scale.value + delta), 4);
+};
+
+const startPan = (e: MouseEvent) => {
+  isPanning.value = true;
+  startPos.value = { x: e.clientX - offset.value.x, y: e.clientY - offset.value.y };
+};
+
+const doPan = (e: MouseEvent) => {
+  if (!isPanning.value) return;
+  offset.value = { x: e.clientX - startPos.value.x, y: e.clientY - startPos.value.y };
+};
+
+const endPan = () => isPanning.value = false;
 
 </script>
 
@@ -96,20 +141,40 @@ const selectVideo = (index: number) => {
           </div>
 
         </div>
-
-        <!-- 2. ARCHITECTURAL BLUEPRINT -->
+        
+                <!-- 2. ARCHITECTURAL BLUEPRINT (MODIFIED SECTION) -->
         <section class="mt-0 bg-slate-000 space-y-8">
-          <!-- Sticky Section Header: Sticks to the top of the main container -->
+          <!-- Sticky Section Header -->
           <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 mr-2 flex items-center gap-4 border-b border-slate-100">
             <h4 class="px-2 text-[10px] font-bold">➤ Architectural Blueprints</h4>
           </div>
           
           <div class="px-6">
-            <div class="px-32">
-              <img :src="project.imageUrl" alt="Project screenshot" class="rounded-lg border border-slate-100 shadow-sm">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-12">
+              <!-- Mandatory System Architecture -->
+              <div class="group relative cursor-pointer aspect-video rounded-lg border border-slate-200 overflow-hidden bg-slate-50"
+                   @click="openFullscreen(project.systemArchitectureUrl, 'System Architecture')">
+                <img :src="project.systemArchitectureUrl" class="w-full h-full object-cover">
+                <!-- Static Dark Overlay & Title -->
+                <div class="absolute inset-0 bg-slate-900/40 flex items-center justify-center">
+                  <span class="text-white text-[8px] font-bold text-center px-2">System Architecture</span>
+                </div>
+              </div>
+
+              <!-- Additional Diagrams -->
+              <div v-for="diag in project.additionalDiagrams" :key="diag.name"
+                   class="group relative cursor-pointer aspect-video rounded-lg border border-slate-200 overflow-hidden bg-slate-50"
+                   @click="openFullscreen(diag.url, diag.name)">
+                <img :src="diag.url" class="w-full h-full object-cover">
+                <!-- Static Dark Overlay & Title -->
+                <div class="absolute inset-0 bg-slate-900/40 flex items-center justify-center">
+                  <span class="text-white text-[8px] font-bold text-center px-2">{{ diag.name }}</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>
+
 
         <!-- 3. IMPLEMENTATION CINEMA -->
         <section v-if="project.videos?.length" class="mt-0 pb-0 space-y-2">
@@ -183,6 +248,23 @@ const selectVideo = (index: number) => {
       
       <div class="sticky bottom-0 h-1/10 w-full bg-gradient-to-t from-slate-600 to-transparent pointer-events-none z-50"></div>
     </main>
+
+    <!-- FULLSCREEN LIGHTBOX -->
+    <div v-if="fullscreenImage" class="fixed inset-0 z-50 bg-slate-900/95 flex flex-col" @click.self="closeFullscreen">
+      <div class="flex justify-between items-center px-4 h-12 border-b border-slate-700 bg-slate-900 text-white">
+        <h4 class="text-[10px] font-bold uppercase tracking-widest">{{ fullscreenCaption }}</h4>
+        <div class="flex gap-4">
+          <button @click="zoomIn" class="text-xl font-bold hover:text-indigo-400">+</button>
+          <button @click="zoomOut" class="text-xl font-bold hover:text-indigo-400">-</button>
+          <button @click="closeFullscreen" class="text-xl font-bold hover:text-indigo-400">✕</button>
+        </div>
+      </div>
+      <div class="flex-1 overflow-hidden relative cursor-move" @mousedown="startPan" @mousemove="doPan" @mouseup="endPan" @wheel.prevent="handleWheel">
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <img :src="fullscreenImage" :style="imageStyle" draggable="false" class="max-w-[90%] max-h-[90%] object-contain shadow-2xl" />
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
