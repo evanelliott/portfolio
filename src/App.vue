@@ -46,7 +46,7 @@ onUnmounted(() => {
 
 <template>
   <!-- h-screen + overflow-hidden prevents the browser from ever showing a scrollbar -->
-  <div class="project-root flex flex-col h-screen bg-slate-200 text-slate-900 overflow-hidden">
+  <div class="project-root flex flex-col bg-slate-200 text-slate-900 fixed inset-0">
     
     <!-- HEADER -->
     <header class="w-full shrink-0 z-50">
@@ -132,15 +132,29 @@ onUnmounted(() => {
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-/* 1. The 101% trick */
-.project-root {
-  height: 100dvh; 
+}/* Prevent the whole body from scrolling/bouncing */
+html, body {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  position: fixed; /* Hard lock for iOS */
+  top: 0;
+  left: 0;
 }
 
-#app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Use dvh (dynamic viewport height) for the root */
+.project-root {
+  height: 100dvh; 
+  width: 100vw;
+  overflow: hidden;
+  /* Stops the "rubber band" effect on the container */
+  touch-action: none; 
+}
+
+/* Allow scrolling ONLY where you actually want it (the sidebar) */
+.overflow-y-auto {
+  -webkit-overflow-scrolling: touch; /* Smooth scroll for iOS */
+  touch-action: pan-y; /* Allows vertical swiping only here */
 }
 
 
