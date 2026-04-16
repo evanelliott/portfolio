@@ -93,7 +93,7 @@ const endPan = () => isPanning.value = false;
         <!-- EXECUTIVE SUMMARY -->
         <div class="grid grid-cols-1 md:grid-cols-1 gap-4 pt-0">
           <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
-            <h4 class="pl-2 font-bold">■ Executive Summary</h4><i>Core impact and KPI breakdown</i>
+            <h4 class="pl-2 font-bold">▪ Executive Summary</h4>
           </div>
           
           <div class="px-6 space-x-3">
@@ -146,7 +146,7 @@ const endPan = () => isPanning.value = false;
         <section class="mt-0 bg-slate-000 space-y-8">
           <!-- Sticky Section Header -->
           <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
-            <h4 class="pl-2 font-bold">■ Architectural Blueprints</h4><i>Visual overview of the system structure and logic</i>
+            <h4 class="pl-2 font-bold">▪ Architectural Blueprints</h4>
           </div>
           
           <div class="px-8">
@@ -179,7 +179,7 @@ const endPan = () => isPanning.value = false;
         <!-- 3. IMPLEMENTATION CINEMA -->
         <section v-if="project.videos?.length" class="mt-0 pb-0 space-y-2">
           <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
-            <h4 class="pl-2 font-bold">■ Deep-Dive Cinema</h4><i>A collection of videos exploring the project in detail</i>
+            <h4 class="pl-2 font-bold">▪ Deep-Dive Cinema</h4>
           </div>
 
           <div class="px-12 space-y-2">
@@ -231,7 +231,7 @@ const endPan = () => isPanning.value = false;
         <!-- 4. ARTIFACTS -->
         <footer v-if="project.artifacts" class="pt-0">
           <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
-            <h4 class="pl-2 font-bold">■ Artifacts</h4><i>Links to source code and documentation</i>
+            <h4 class="pl-2 font-bold">▪ Artifacts</h4>
           </div>
           <div class="bg-slate-100 p-6 flex flex-col md:flex-row justify-between items-center gap-4 shadow-2xl shadow-indigo-200">
             <!-- <div class="text-center md:text-left space-y-1"> -->

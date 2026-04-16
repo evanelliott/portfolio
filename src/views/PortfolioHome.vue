@@ -32,20 +32,20 @@ const activeProject = computed(() =>
             <h4 class="text-sm font-bold leading-none">
               <span class="pointing-finger">👈</span> Select a project to begin
             </h4>
-            <p class="text-[10px] text-indigo-600 font-bold mt-0">Includes:</p>
           </div>
         </div>
       </header>
-
+      
       <!-- 2. SCROLLABLE VIEWPORT -->
       <!-- This is the container that allows sticky headers to work -->
       <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full w-full bg-slate-100">
         <div class="mx-auto px-0 pb-0 space-y-0 text-[10px]">
+          <p class="px-2 py-2 text-[10px] font-bold mt-0">Includes:</p>
           
           <!-- EXECUTIVE SUMMARY -->
           <section class="mt-0 pb-0 space-y-1">
             <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
-              <h4 class="pl-2 font-bold">■ Executive Summary</h4><i>Core impact and KPI breakdown</i>
+              <h4 class="pl-2 font-bold">▪ Executive Summary</h4><i>Overview of the project's aims and outcomes</i>
             </div>
             
           </section>
@@ -53,21 +53,21 @@ const activeProject = computed(() =>
           <!-- 2. ARCHITECTURAL BLUEPRINT -->
           <section class="mt-0 pb-0 space-y-1">
             <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
-              <h4 class="pl-2 font-bold">■ Architectural Blueprints</h4><i>Visual overview of the system structure and logic</i>
+              <h4 class="pl-2 font-bold">▪ Architectural Blueprints</h4><i>Technical diagrams detailing the solution's structure and logic</i>
             </div>
           </section>
 
           <!-- 3. IMPLEMENTATION CINEMA -->
           <section class="mt-0 pb-0 space-y-1">
             <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
-              <h4 class="pl-2 font-bold">■ Deep-Dive Cinema</h4><i>A collection of videos exploring the project in detail</i>
+              <h4 class="pl-2 font-bold">▪ Deep-Dive Cinema</h4><i>A collection of videos exploring specific areas of interest</i>
             </div>
           </section>
           
           <!-- 4. ARTIFACTS -->
           <section class="mt-0 pb-0 space-y-1">
             <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
-              <h4 class="pl-2 font-bold">■ Artifacts</h4><i>Links to source code and documentation</i>
+              <h4 class="pl-2 font-bold">▪ Artifacts</h4><i>Links to source code and documentation</i>
             </div>
           </section>
         </div>

@@ -153,4 +153,14 @@ onUnmounted(() => {
   opacity: 0;
   transform: translateY(10px);
 }
+
+html, body {
+  overflow: hidden; /* Prevents the main page from scrolling */
+  height: 100%;
+}
+.scroll-container {
+  overflow-y: auto; /* Put your scroll here instead */
+  height: 100vh;
+  -webkit-overflow-scrolling: touch;
+}
 </style>
