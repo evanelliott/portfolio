@@ -91,10 +91,10 @@ onUnmounted(() => {
         </main>
 
         <!-- SIDEBAR -->
-        <aside class="w-1/8 max-w-70 -ml-6 mt-0 shrink-0 flex flex-col overflow-hidden"> 
+        <aside class="w-1/8 max-w-70 -ml-6 mt-0 shrink-0 flex flex-col"> 
           <!-- Added 'flex flex-col' to the aside to help define the height context -->
           
-          <nav class="flex flex-col h-full space-y-1 overflow-y-auto scrollbar-hide"> 
+          <nav class="flex flex-col h-full space-y-1 overflow-y-auto"> 
             <!-- 
               1. 'flex flex-col' makes the nav a flexbox
               2. 'h-full' ensures the nav stretches to the bottom of the sidebar
@@ -105,7 +105,7 @@ onUnmounted(() => {
               :project="project" 
               :isActive="selectedId === project.id" 
               @click="handleProjectSelect(project.id)"
-              class="shrink-0 max-h-1/5" 
+              class="flex-1" 
             />
             <!-- 
               3. 'flex-1' tells each ProjectPane to grow and shrink equally 
@@ -136,7 +136,6 @@ onUnmounted(() => {
 /* 1. The 101% trick */
 .project-root {
   min-height: 100dvh; 
-  /* The extra 1% provides the "scroll room" Safari needs to hide the bar */
 }
 
 #app {
