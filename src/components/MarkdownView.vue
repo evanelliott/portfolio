@@ -246,7 +246,7 @@ const endPan = () => isPanning.value = false;
         </footer>
       </div>
       
-      <div class="sticky bottom-0 h-1/10 w-full bg-gradient-to-t from-slate-600 to-transparent pointer-events-none z-50"></div>
+      <div class="sticky bottom-0 h-1/6 w-full bg-gradient-to-t from-white to-transparent pointer-events-none z-50"></div>
     </main>
 
     <!-- FULLSCREEN LIGHTBOX -->
