@@ -9,7 +9,7 @@ import projectsData from '../../public/data/projects.json'
  */
 const ProjectSchema = z.object({
   id: z.string().min(1),
-  name: z.string().min(3),
+  name: z.string().min(2),
   title: z.string().min(3),
   emoji: z.string(), 
   headline: z.string().max(200),
