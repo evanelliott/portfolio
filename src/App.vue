@@ -46,7 +46,7 @@ onUnmounted(() => {
 
 <template>
   <!-- h-screen + overflow-hidden prevents the browser from ever showing a scrollbar -->
-  <div class="flex flex-col h-screen bg-slate-200 text-slate-900 overflow-hidden">
+  <div class="project-root flex flex-col h-screen bg-slate-200 text-slate-900 overflow-hidden">
     
     <!-- HEADER -->
     <header class="w-full shrink-0 z-50">
@@ -131,6 +131,10 @@ onUnmounted(() => {
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.project-root {
+  height: 100dvh; /* Uses the dynamic height fix we discussed */
 }
 
 /* Animated Rotation Symbol */
