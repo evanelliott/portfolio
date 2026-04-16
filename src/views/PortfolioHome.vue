@@ -28,50 +28,47 @@ const activeProject = computed(() =>
       <!-- This stays at the top and does not scroll -->
       <header class="z-30 bg-white border-b-2 border-slate-600 px-2 h-12 flex justify-start items-center w-full">
         <div class="flex items-baseline gap-3 py-4 min-w-0">
-          <div>
+          <div class="space-y-0.5">
             <h4 class="text-sm font-bold leading-none">
               <span class="pointing-finger">👈</span> Select a project to begin
             </h4>
-            <!-- <p class="text-[10px] text-indigo-600 font-bold mt-0">Includes:</p> -->
+            <p class="text-[10px] text-indigo-600 font-bold mt-0">Includes:</p>
           </div>
         </div>
       </header>
 
       <!-- 2. SCROLLABLE VIEWPORT -->
       <!-- This is the container that allows sticky headers to work -->
-      <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full w-full">
-        <div class="mx-auto px-0 pb-0 space-y-4">
+      <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full w-full bg-slate-100">
+        <div class="mx-auto px-0 pb-0 space-y-0 text-[10px]">
           
           <!-- EXECUTIVE SUMMARY -->
           <section class="mt-0 pb-0 space-y-1">
-            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-4 border-b border-slate-100">
-              <h4 class="px-2 text-[10px] font-bold">➤ Executive Summary</h4>
+            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
+              <h4 class="pl-2 font-bold">■ Executive Summary</h4><i>Core impact and KPI breakdown</i>
             </div>
-            <p class="text-[10px] px-6">Core impact and KPI breakdown.</p>
+            
           </section>
 
           <!-- 2. ARCHITECTURAL BLUEPRINT -->
           <section class="mt-0 pb-0 space-y-1">
-            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-4 border-b border-slate-100">
-              <h4 class="px-2 text-[10px] font-bold">➤ Architectural Blueprints</h4>
+            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
+              <h4 class="pl-2 font-bold">■ Architectural Blueprints</h4><i>Visual overview of the system structure and logic</i>
             </div>
-            <p class="text-[10px] px-6">Visual overview of the system structure and logic.</p>
           </section>
 
           <!-- 3. IMPLEMENTATION CINEMA -->
           <section class="mt-0 pb-0 space-y-1">
-            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-4 border-b border-slate-100">
-              <h4 class="px-2 text-[10px] font-bold">➤ Deep-Dive Cinema</h4>
+            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
+              <h4 class="pl-2 font-bold">■ Deep-Dive Cinema</h4><i>A collection of videos exploring the project in detail</i>
             </div>
-            <p class="text-[10px] px-6">A collection of videos exploring the project in detail.</p>
           </section>
           
           <!-- 4. ARTIFACTS -->
           <section class="mt-0 pb-0 space-y-1">
-            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-4 border-b border-slate-100">
-              <h4 class="px-2 text-[10px] font-bold">➤ Artifacts</h4>
+            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
+              <h4 class="pl-2 font-bold">■ Artifacts</h4><i>Links to source code and documentation</i>
             </div>
-            <p class="text-[10px] px-6">Links to source code and documentation.</p>
           </section>
         </div>
       </main>

@@ -88,12 +88,12 @@ const endPan = () => isPanning.value = false;
     <!-- 2. SCROLLABLE VIEWPORT -->
     <!-- This is the container that allows sticky headers to work -->
     <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full">
-      <div class="mx-auto px-0 pb-0 space-y-16">
+      <div class="mx-auto px-0 pb-0 space-y-16 text-[10px]">
         
         <!-- EXECUTIVE SUMMARY -->
         <div class="grid grid-cols-1 md:grid-cols-1 gap-4 pt-0">
-          <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 mr-2 flex items-center gap-4 border-b border-slate-100">
-            <h4 class="px-2 text-[10px] font-bold">➤ Executive Summary</h4>
+          <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
+            <h4 class="pl-2 font-bold">■ Executive Summary</h4><i>Core impact and KPI breakdown</i>
           </div>
           
           <div class="px-6 space-x-3">
@@ -145,30 +145,30 @@ const endPan = () => isPanning.value = false;
         <!-- 2. ARCHITECTURAL BLUEPRINT (MODIFIED SECTION) -->
         <section class="mt-0 bg-slate-000 space-y-8">
           <!-- Sticky Section Header -->
-          <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 mr-2 flex items-center gap-4 border-b border-slate-100">
-            <h4 class="px-2 text-[10px] font-bold">➤ Architectural Blueprints</h4>
+          <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
+            <h4 class="pl-2 font-bold">■ Architectural Blueprints</h4><i>Visual overview of the system structure and logic</i>
           </div>
           
-          <div class="px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 px-12">
+          <div class="px-8">
+            <div class="grid grid-cols-4 md:grid-cols-4 gap-4 px-0">
               <!-- Mandatory System Architecture -->
-              <div class="group relative cursor-pointer aspect-video rounded-lg border border-slate-200 overflow-hidden bg-slate-50"
+              <div class="group relative cursor-pointer aspect-square rounded-lg border border-slate-200 overflow-hidden bg-slate-50"
                    @click="openFullscreen(project.systemArchitectureUrl, 'System Architecture')">
                 <img :src="project.systemArchitectureUrl" class="w-full h-full object-cover">
                 <!-- Static Dark Overlay & Title -->
-                <div class="absolute inset-0 bg-slate-900/40 flex items-center justify-center">
-                  <span class="text-white text-[8px] font-bold text-center px-2">System Architecture</span>
+                <div class="absolute inset-0 bg-slate-900/50 flex items-center justify-center">
+                  <span class="text-white text-[10px] font-bold text-center px-2">System Architecture</span>
                 </div>
               </div>
 
               <!-- Additional Diagrams -->
               <div v-for="diag in project.additionalDiagrams" :key="diag.name"
-                   class="group relative cursor-pointer aspect-video rounded-lg border border-slate-200 overflow-hidden bg-slate-50"
+                   class="group relative cursor-pointer aspect-square rounded-lg border border-slate-200 overflow-hidden bg-slate-50"
                    @click="openFullscreen(diag.url, diag.name)">
                 <img :src="diag.url" class="w-full h-full object-cover">
                 <!-- Static Dark Overlay & Title -->
-                <div class="absolute inset-0 bg-slate-900/40 flex items-center justify-center">
-                  <span class="text-white text-[8px] font-bold text-center px-2">{{ diag.name }}</span>
+                <div class="absolute inset-0 bg-slate-900/50 flex items-center justify-center">
+                  <span class="text-white text-[10px] font-bold text-center px-2">{{ diag.name }}</span>
                 </div>
               </div>
             </div>
@@ -178,8 +178,8 @@ const endPan = () => isPanning.value = false;
 
         <!-- 3. IMPLEMENTATION CINEMA -->
         <section v-if="project.videos?.length" class="mt-0 pb-0 space-y-2">
-          <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-2 flex items-center gap-4 border-b border-slate-100">
-            <h4 class="px-2 text-[10px] font-bold">➤ Deep-Dive Cinema</h4>
+          <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
+            <h4 class="pl-2 font-bold">■ Deep-Dive Cinema</h4><i>A collection of videos exploring the project in detail</i>
           </div>
 
           <div class="px-12 space-y-2">
@@ -230,8 +230,8 @@ const endPan = () => isPanning.value = false;
         
         <!-- 4. ARTIFACTS -->
         <footer v-if="project.artifacts" class="pt-0">
-          <div class="sticky top-0 z-20 bg-slate-100 mt-0 py-1 mr-2 flex items-center gap-4 border-b border-slate-100">
-            <h4 class="px-2 text-[10px] font-bold">➤ Artifacts</h4>
+          <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
+            <h4 class="pl-2 font-bold">■ Artifacts</h4><i>Links to source code and documentation</i>
           </div>
           <div class="bg-slate-100 p-6 flex flex-col md:flex-row justify-between items-center gap-4 shadow-2xl shadow-indigo-200">
             <!-- <div class="text-center md:text-left space-y-1"> -->
