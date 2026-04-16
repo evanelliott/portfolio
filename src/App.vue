@@ -135,17 +135,8 @@ onUnmounted(() => {
 }
 /* 1. The 101% trick */
 .project-root {
-  min-height: 101dvh; 
+  min-height: 100dvh; 
   /* The extra 1% provides the "scroll room" Safari needs to hide the bar */
-}
-
-/* 2. Global setup to allow the "trick" to work */
-html, body {
-  /* We remove overflow: hidden if it was there globally */
-  overflow-x: hidden; 
-  height: auto;
-  margin: 0;
-  background-color: #e2e8f0; /* Matches bg-slate-200 to prevent white flashes */
 }
 
 #app {
