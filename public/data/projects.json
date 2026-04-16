@@ -110,13 +110,13 @@
   {
     "id": "4",
     "name": "MLOps",
-    "title": "Match Forecasting MLOps",
+    "title": "Football Prediction MLOps",
     "emoji": "🚀",
-    "headline": "Predictive Modeling & Experiment Tracking",
-    "summary": "A professional MLOps platform for football forecasting that uses MLflow to track experiments, version models, and streamline the journey from training to production.",
+    "headline": "ML Lifecycle Management",
+    "summary": "A specialized MLOps platform designed to accelerate the journey from notebook-based experimentation to production-grade deployments. It enforces operational stability by automatically wrapping each deployed model in a standardised layer of governance, observability, and drift monitoring.",
     "stack": ["MLflow", "Python", "Scikit-Learn", "Jupyter", "Docker"],
     "kpis": [
-      { "value": "100%", "label": "Reproducibility" }, 
+      { "value": "One-click", "label": "Model Promotion" }, 
       { "value": "Versioning", "label": "Model Registry" }, 
       { "value": "S3-compatible", "label": "Object Storage" }
     ],
@@ -124,7 +124,7 @@
     "rationale": [
       { "title": "Experiment Tracking", "description": "MLflow integration ensures every hyperparameter tweak and dataset version is logged for auditability." },
       { "title": "Environment Parity", "description": "Containerised Jupyter environments ensure consistent library versions across development and production." },
-      { "title": "Model Governance", "description": "MinIO and MLflow provide a robust governance framework by combining logical lifecycle tracking with immutable physical storage." }
+      { "title": "Model Governance", "description": "MLflow and MinIO provide a robust governance framework by combining logical lifecycle tracking with immutable physical storage." }
     ],
     "videos": [
       { "title": "MLflow Dashboard", "desc": "Comparing model runs and loss curves." },
