@@ -135,7 +135,7 @@ onUnmounted(() => {
 }
 /* 1. The 101% trick */
 .project-root {
-  min-height: 100dvh; 
+  height: 100dvh; 
 }
 
 #app {
