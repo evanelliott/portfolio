@@ -77,30 +77,6 @@ onUnmounted(() => {
 
       <!-- LANDSCAPE CONTENT -->
       <template v-else>
-        <!-- SIDEBAR -->
-        <aside class="w-1/8 max-w-70 -ml-6 mt-0 shrink-0 flex flex-col"> 
-          <!-- Added 'flex flex-col' to the aside to help define the height context -->
-          
-          <nav class="flex flex-col h-full space-y-1"> 
-            <!-- 
-              1. 'flex flex-col' makes the nav a flexbox
-              2. 'h-full' ensures the nav stretches to the bottom of the sidebar
-            -->
-            <ProjectPane 
-              v-for="project in projects" 
-              :key="project.id" 
-              :project="project" 
-              :isActive="selectedId === project.id" 
-              @click="handleProjectSelect(project.id)"
-              class="flex-1" 
-            />
-            <!-- 
-              3. 'flex-1' tells each ProjectPane to grow and shrink equally 
-                to fill the available vertical space.
-            -->
-          </nav>
-        </aside>
-
         <!-- VIEWPORT: Grows to fill space, but doesn't allow overflow -->
         <main class="grow min-w-0 overflow-hidden ">
           <RouterView v-slot="{ Component }">
@@ -113,6 +89,31 @@ onUnmounted(() => {
             </Transition>
           </RouterView>
         </main>
+
+        <!-- SIDEBAR -->
+        <aside class="w-1/8 max-w-70 -ml-6 mt-0 shrink-0 flex flex-col overflow-hidden"> 
+          <!-- Added 'flex flex-col' to the aside to help define the height context -->
+          
+          <nav class="flex flex-col h-full space-y-1 overflow-y-auto scrollbar-hide"> 
+            <!-- 
+              1. 'flex flex-col' makes the nav a flexbox
+              2. 'h-full' ensures the nav stretches to the bottom of the sidebar
+            -->
+            <ProjectPane 
+              v-for="project in projects" 
+              :key="project.id" 
+              :project="project" 
+              :isActive="selectedId === project.id" 
+              @click="handleProjectSelect(project.id)"
+              class="shrink-0 max-h-1/5" 
+            />
+            <!-- 
+              3. 'flex-1' tells each ProjectPane to grow and shrink equally 
+                to fill the available vertical space.
+            -->
+          </nav>
+        </aside>
+
       </template>
     </div>
     
@@ -156,5 +157,14 @@ onUnmounted(() => {
 .fade-enter-from, .fade-leave-to {
   opacity: 0;
   transform: translateY(10px);
+}
+
+/* Add this to your style block to keep the scrollbar subtle */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(79, 70, 229, 0.2); /* Light indigo */
+  border-radius: 10px;
 }
 </style>

@@ -25,14 +25,14 @@ defineEmits<{
     class="relative w-full h-full flex flex-col text-left transition-all duration-200 ease-out group"
     :class="[
       isActive 
-        ? 'translate-x-1' 
+        ? '-translate-x-1' 
         : 'opacity-100 hover:opacity-100'
     ]"
   >
     <!-- Selection Indicator -->
     <div 
       v-if="isActive"
-      class="absolute left-4 top-1 bottom-1 w-1 bg-indigo-600 rounded-full"
+      class="absolute -right-1 top-1 bottom-1 w-1 bg-indigo-600 rounded-full"
     ></div>
 
     <!-- Card Container -->

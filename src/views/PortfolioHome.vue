@@ -30,7 +30,7 @@ const activeProject = computed(() =>
         <div class="flex items-baseline gap-3 py-4 min-w-0">
           <div class="space-y-0.5">
             <h4 class="text-sm font-bold leading-none">
-              <span class="pointing-finger">👈</span> Select a project to begin
+              Select a project to begin <span class="pointing-finger text-[20px] ml-4">👉</span> 
             </h4>
           </div>
         </div>
