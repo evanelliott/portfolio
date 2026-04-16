@@ -134,9 +134,6 @@ onUnmounted(() => {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.project-root {
-  height: 100dvh; /* Uses the dynamic height fix we discussed */
-}
 
 /* Animated Rotation Symbol */
 .rotate-icon {
