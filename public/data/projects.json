@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "name": "Artificial Intelligence",
+    "name": "AI",
     "title": "Agentic Coding Assistants",
     "emoji": "🤖",
     "headline": "Code Property Graph (CPG) RAG Engine",
@@ -37,7 +37,7 @@
   },
   {
     "id": "2",
-    "name": "Stream Processing",
+    "name": "Streaming",
     "title": "Web Browser Observability",
     "emoji": "⚡",
     "headline": "Event Streaming & Real-time Analytics",
@@ -73,7 +73,7 @@
   },
   {
     "id": "3",
-    "name": "Data Lakehouse",
+    "name": "Lakehouse",
     "title": "Data Lakehouse for Football Analytics",
     "emoji": "🥇",
     "headline": "Medallion Architecture & Data Modelling",
