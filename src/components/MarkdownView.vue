@@ -250,7 +250,7 @@ const endPan = () => isPanning.value = false;
     </main>
 
     <!-- FULLSCREEN LIGHTBOX -->
-    <div v-if="fullscreenImage" class="fixed inset-0 z-50 bg-slate-900/95 flex flex-col" @click.self="closeFullscreen">
+    <div v-if="fullscreenImage" class="fixed inset-0 z-9999 bg-slate-900/95 flex flex-col" @click.self="closeFullscreen">
       <div class="flex justify-between items-center px-4 h-12 border-b border-slate-700 bg-slate-900 text-white">
         <h4 class="text-[10px] font-bold">{{ fullscreenCaption }}</h4>
         <div class="flex gap-4">
