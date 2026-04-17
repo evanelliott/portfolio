@@ -85,9 +85,9 @@ onUnmounted(() => {
       </template>
     </div>
     
-    <footer class="w-full py-2 px-0 text-center shrink-0">
+    <footer class="w-full py-0 px-0 text-center shrink-0">
       <div class="max-w-7xl mx-auto text-[7px]">
-        &copy; {{ new Date().getFullYear() }} Evan Elliott.
+        &copy; {{ new Date().getFullYear() }} Evan Elliott. No rights reserved.
       </div>
     </footer>
 
