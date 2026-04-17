@@ -64,69 +64,71 @@ const endPan = () => isPanning.value = false;
 <template>
   <!-- ROOT: Must be flex-col and h-full to create the scrolling context -->
   <div class="flex flex-col h-full px-0 overflow-hidden bg-white">
-    
-    <!-- 1. FIXED TOP HEADER -->
-    <header class="z-30 bg-white border-b-2 border-slate-600 px-2 h-12 flex justify-between items-center shrink-0">
-      <div class="flex items-baseline gap-3 py-4 min-w-0">
-        <div class="space-y-0.5">
-          <h4 class="text-sm font-bold leading-none">
-            {{ project.title }}
-          </h4>
-          <p class="text-[10px] text-indigo-600 font-bold mt-0">{{ project.headline }}</p>
-        </div>
-      </div>
+    <!-- 1. UPDATED HEADER: Removed fixed h-12 and overflow-hidden -->
+<header class="z-30 bg-white border-b-2 border-slate-600 px-3 py-2 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 shrink-0">
+  
+  <!-- Title Section -->
+  <div class="flex items-baseline gap-3 min-w-1/2">
+    <div class="space-y-0.5">
+      <h4 class="text-sm font-bold leading-tight">
+        {{ project.title }}
+      </h4>
+      <p class="text-[10px] text-indigo-600 font-bold mt-0">{{ project.headline }}</p>
+    </div>
+  </div>
 
-      <div class="flex flex-wrap justify-end gap-1 max-w-[40%] shrink-0 pb-0">
-        <span v-for="tech in project.stack" :key="tech" 
-              class="px-1.5 py-0.5 bg-indigo-200 text-indigo-600 text-[8px] tracking-[0.1em] font-mono font-semibold rounded border border-indigo-600 whitespace-nowrap">
-          {{ tech }}
-        </span>
-      </div>
-    </header>
+  <!-- Tech Stack: flex-wrap allows items to move to a second line if space runs out -->
+  <div class="flex flex-wrap justify-start sm:justify-end gap-1.5 pb-1">
+    <span v-for="tech in project.stack" :key="tech" 
+          class="px-1.5 py-0.5 bg-indigo-100 text-indigo-600 text-[8px] tracking-[0.05em] font-mono font-semibold rounded border border-indigo-600 whitespace-nowrap">
+      {{ tech }}
+    </span>
+  </div>
+</header>
+
 
     <!-- 2. SCROLLABLE VIEWPORT -->
     <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full custom-scrollbar">
       <div class="mx-auto px-0 pb-0 space-y-16 text-[10px]">
         
         <!-- EXECUTIVE SUMMARY -->
-        <div class="grid grid-cols-1 md:grid-cols-1 gap-4 pt-0">
+        <div class="grid grid-cols-1 gap-4 pt-0">
           <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
             <h4 class="pl-2 font-bold">▪ Executive Summary</h4>
           </div>
           
-          <div class="px-6 space-x-3">
-            
-            <div class="flex md:flex-row gap-6">
-              <div class="w-2/5 space-y-4">
+          <div class="px-8">
+            <!-- Mobile: flex-col (Photo top) | Tablet+: flex-row (Side-by-side) -->
+            <div class="flex flex-col sm:flex-row gap-6">
+              
+              <!-- PHOTO: Order 1 on mobile, Order 2 on Desktop -->
+              <div class="w-full sm:w-3/5 order-1 sm:order-2">
+                <img :src="project.imageUrl" alt="Project screenshot" class="w-full rounded-lg border border-slate-100 shadow-sm object-cover">
+              </div>
 
-                <div class="">
-                  <div class="space-y-2">
-                    <p class="text-[10px] text-slate-900">
-                      {{ project.summary }}
-                    </p>
-                  </div>
+              <!-- TEXT & KPIs: Order 2 on mobile, Order 1 on Desktop -->
+              <div class="w-full sm:w-2/5 space-y-4 order-2 sm:order-1">
+                <div>
+                  <p class="text-[10px] text-slate-900 leading-relaxed">
+                    {{ project.summary }}
+                  </p>
                 </div>
                 
-                <div class="md:col-span-5 grid grid-cols-2 gap-3">
+                <!-- KPI Grid -->
+                <div class="grid grid-cols-2 gap-3">
                   <div v-for="kpi in project.kpis" :key="kpi.label" 
                       class="p-2 bg-slate-100 rounded-xl border border-slate-200 flex flex-col justify-center text-center">
                     <span class="text-[10px] font-bold text-indigo-600 leading-none">{{ kpi.value }}</span>
                     <span class="text-[9px] font-semibold text-slate-600 mt-1">{{ kpi.label }}</span>
                   </div>
                 </div>
-
               </div>
 
-              <div class="w-3/5 min-w-0 overflow-hidden md:flex">
-                <div>
-                  <img :src="project.imageUrl" alt="Project screenshot" class="rounded-lg border border-slate-100 shadow-sm">
-                </div>
-              </div>
             </div>
-
           </div>
 
-          <div class="grid grid-cols-3 md:grid-cols-3 px-6 gap-8">
+          <!-- Rationale Grid (3 columns on all sizes, or adjust if needed) -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 px-4 gap-4 mt-4">
             <div v-for="item in project.rationale" :key="item.title" class="space-y-2">
               <h4 class="text-[10px] font-bold flex items-center gap-2">
                 <span class="w-1.5 h-1.5 bg-indigo-600 rounded-full"></span>
@@ -137,7 +139,6 @@ const endPan = () => isPanning.value = false;
               </p>
             </div>
           </div>
-
         </div>
         
         <!-- 2. ARCHITECTURAL BLUEPRINT (MODIFIED SECTION) -->
@@ -147,8 +148,8 @@ const endPan = () => isPanning.value = false;
             <h4 class="pl-2 font-bold">▪ Architectural Blueprints</h4>
           </div>
           
-          <div class="px-8">
-            <div class="grid grid-cols-4 md:grid-cols-4 gap-4 px-0">
+          <div class="px-4">
+            <div class="grid grid-cols-4 sm:grid-cols-6 gap-2 sm:gap-4 px-0">
               <!-- Mandatory System Architecture -->
               <div class="group relative cursor-pointer aspect-square rounded-lg border border-slate-200 overflow-hidden bg-slate-50"
                    @click="openFullscreen(project.systemArchitectureUrl, 'System Architecture')">
@@ -180,7 +181,7 @@ const endPan = () => isPanning.value = false;
             <h4 class="pl-2 font-bold">▪ Deep-Dive Cinema</h4>
           </div>
 
-          <div class="px-12 space-y-2">
+          <div class="px-4 sm:px-12 space-y-2">
             <!-- MAIN VIEWER -->
             <div class="group relative aspect-video w-full overflow-hidden rounded-3xl bg-slate-900 shadow-2xl border-3 border-slate-400">
               <transition name="fade" mode="out-in">
@@ -206,7 +207,7 @@ const endPan = () => isPanning.value = false;
                 :key="index"
                 @click="selectVideo(Number(index))"
                 :class="[
-                  'relative shrink-0 w-36 aspect-video rounded-xl overflow-hidden border-2 transition-all duration-300 text-left',
+                  'relative shrink-0 w-30 sm:w-36 aspect-video rounded-xl overflow-hidden border-2 transition-all duration-300 text-left',
                   activeVideoIndex === index 
                     ? 'border-indigo-600 ring-4 ring-indigo-600/40 scale-95' 
                     : 'border-slate-200 opacity-60 hover:opacity-100'
