@@ -26,7 +26,7 @@ defineEmits<{
     :class="[
       isActive 
         ? '-translate-x-1' 
-        : 'opacity-100 hover:opacity-100'
+        : ''
     ]"
   >
     <!-- Selection Indicator -->

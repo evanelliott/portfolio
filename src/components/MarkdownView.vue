@@ -250,7 +250,7 @@ const endPan = () => isPanning.value = false;
     </main>
 
     <!-- FULLSCREEN LIGHTBOX -->
-    <div v-if="fullscreenImage" class="fixed inset-0 z-9999 bg-slate-900/95 flex flex-col" @click.self="closeFullscreen">
+    <div v-if="fullscreenImage" class="lightbox fixed inset-0 z-9999 bg-slate-900/95 flex flex-col" @click.self="closeFullscreen">
       <div class="flex justify-between items-center px-4 h-12 border-b border-slate-700 bg-slate-900 text-white">
         <h4 class="text-[10px] font-bold">{{ fullscreenCaption }}</h4>
         <div class="flex gap-4">
@@ -302,5 +302,11 @@ const endPan = () => isPanning.value = false;
 .scroll-container-fade {
   -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+.lightbox {
+  z-index: 9999 !important;
+  transform: translateZ(0); 
+  -webkit-transform: translateZ(0); /* Specific for iOS Safari */
 }
 </style>
