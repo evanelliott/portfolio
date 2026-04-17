@@ -9,31 +9,20 @@ const projects = ref<Project[]>(projectsData);
 const selectedId = ref<string | null>(null);
 
 const handleProjectSelect = (id: string) => {
-  // If the clicked ID is already the selectedId, set it back to null
-  if (selectedId.value === id) {
-    selectedId.value = null;
-  } else {
-    selectedId.value = id;
-  }
+  selectedId.value = selectedId.value === id ? null : id;
 };
 
-// 1. Define the media query for portrait orientation
+// --- Mobile/Orientation Logic ---
 const portraitQuery = window.matchMedia("(orientation: portrait)");
 const isPortrait = ref(portraitQuery.matches);
 
-// 2. Define a robust handler for orientation changes
 const handleOrientationChange = (event: MediaQueryListEvent | MediaQueryList) => {
-  // We only show the prompt if it's portrait AND on a mobile-sized screen
   const isSmallScreen = window.innerWidth < 700; 
   isPortrait.value = event.matches && isSmallScreen;
 };
 
 onMounted(() => {
-  // Initial check
   handleOrientationChange(portraitQuery);
-  
-  // Modern browsers use 'change' event on the MediaQueryList
-  // We also keep 'resize' as a fallback for window size changes
   portraitQuery.addEventListener('change', handleOrientationChange);
   window.addEventListener('resize', () => handleOrientationChange(portraitQuery));
 });
@@ -45,60 +34,44 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <!-- h-screen + overflow-hidden prevents the browser from ever showing a scrollbar -->
-  <div class="project-root flex flex-col bg-slate-200 text-slate-900 fixed inset-0">
+  <!-- 
+    1. 'fixed inset-0' + 'overflow-hidden' locks the app background 
+    2. 'isolate' prevents children from fighting over z-index layers 
+  -->
+  <div class="project-root fixed inset-0 flex flex-col bg-slate-200 text-slate-900 overflow-hidden isolate">
     
-    <!-- HEADER -->
-    <header class="w-full shrink-0 z-50">
-      <div class="max-w-7xl mx-auto px-2 flex flex-col justify-start">
+    <header class="w-full shrink-0 z-10 relative">
+      <div class="max-w-7xl mx-auto px-2 flex flex-col">
         <div :class="['flex items-center gap-4 mb-4', isPortrait ? 'justify-center mt-32' : 'justify-start mt-2']">
-          <h4 :class="['font-bold leading-none pt-0 text-[18px]', isPortrait ? 'text-center' : 'text-left']">
+          <h4 :class="['font-bold leading-none text-[18px]', isPortrait ? 'text-center' : 'text-left']">
             Project Portfolio
           </h4>
         </div>
         <div v-if="!isPortrait" class="flex items-center gap-2 -mt-3 pb-2 text-[10px] font-bold">
-          <span class="leading-none">Evan Elliott</span>
-          <span class="border-l pl-2 leading-none">Technical Lead</span>
-          <span class="border-l pl-2 leading-none">
-            Data Science & Engineering Specialist (Remote)
-          </span>
+          <span>Evan Elliott</span>
+          <span class="border-l pl-2">Technical Lead</span>
+          <span class="border-l pl-2">Data Science & Engineering Specialist</span>
         </div>
       </div>
     </header>
 
-    <!-- MAIN CONTENT AREA: No overflow here -->
-    <div class="flex-1 flex max-w-7xl w-full mx-auto px-1 py-0 gap-2 overflow-hidden">
-      
-      <!-- PORTRAIT PROMPT -->
+    <div class="flex-1 flex max-w-7xl w-full mx-auto px-1 py-0 gap-2 overflow-hidden relative">
       <div v-if="isPortrait" class="flex-1 flex flex-col items-center justify-start mt-10 p-10 text-center">
-        <div class="rotate-icon text-5xl mb-0">📱</div>
-        <h2 class="font-bold pt-0 text-[12px]">Please rotate your device to landscape mode</h2>
+        <div class="rotate-icon text-5xl mb-4">📱</div>
+        <h2 class="font-bold text-[12px]">Please rotate your device to landscape mode</h2>
       </div>
 
-      <!-- LANDSCAPE CONTENT -->
       <template v-else>
-        <!-- VIEWPORT: Grows to fill space, but doesn't allow overflow -->
-        <main class="grow min-w-0 overflow-hidden ">
+        <main class="grow min-w-0 overflow-hidden">
           <RouterView v-slot="{ Component }">
             <Transition name="page" mode="out-in">
-              <component 
-                :is="Component" 
-                :selectedId="selectedId" 
-                :projects="projects"
-              />
+              <component :is="Component" :selectedId="selectedId" :projects="projects" />
             </Transition>
           </RouterView>
         </main>
 
-        <!-- SIDEBAR -->
-        <aside class="w-1/8 max-w-70 -ml-6 mt-0 shrink-0 flex flex-col"> 
-          <!-- Added 'flex flex-col' to the aside to help define the height context -->
-          
-          <nav class="flex flex-col h-full space-y-1 overflow-y-auto"> 
-            <!-- 
-              1. 'flex flex-col' makes the nav a flexbox
-              2. 'h-full' ensures the nav stretches to the bottom of the sidebar
-            -->
+        <aside class="w-1/8 max-w-70 -ml-6 shrink-0 flex flex-col"> 
+          <nav class="flex flex-col h-full space-y-1 overflow-y-auto custom-scrollbar"> 
             <ProjectPane 
               v-for="project in projects" 
               :key="project.id" 
@@ -107,84 +80,62 @@ onUnmounted(() => {
               @click="handleProjectSelect(project.id)"
               class="flex-1" 
             />
-            <!-- 
-              3. 'flex-1' tells each ProjectPane to grow and shrink equally 
-                to fill the available vertical space.
-            -->
           </nav>
         </aside>
-
       </template>
     </div>
     
-    <!-- FOOTER: Always visible at the bottom -->
-    <footer class="w-full border-none border-slate-200 py-0 px-0 text-center shrink-0">
+    <footer class="w-full py-2 px-0 text-center shrink-0">
       <div class="max-w-7xl mx-auto text-[7px]">
-        &copy; {{ new Date().getFullYear() }} Evan Elliott. No rights reserved.
+        &copy; {{ new Date().getFullYear() }} Evan Elliott.
       </div>
     </footer>
+
+    <!-- 
+       CRITICAL: Any Lightbox component should be wrapped in <Teleport to="body"> 
+       inside its respective component to jump over the header/sidebar layers.
+    -->
   </div>
 </template>
 
-
-
 <style>
-#app {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}/* Prevent the whole body from scrolling/bouncing */
+/* Reset for mobile Safari address bar issues */
 html, body {
   overflow: hidden;
   height: 100%;
   width: 100%;
-  position: fixed; /* Hard lock for iOS */
-  top: 0;
-  left: 0;
+  position: fixed; /* Stops rubber-banding */
+  margin: 0;
 }
 
-/* Use dvh (dynamic viewport height) for the root */
+#app {
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
 .project-root {
-  height: 100dvh; 
-  width: 100vw;
-  overflow: hidden;
-  /* Stops the "rubber band" effect on the container */
-  touch-action: none; 
+  height: 100dvh; /* Dynamic viewport height respects Safari bars */
+  touch-action: none; /* Prevents global page dragging */
 }
 
-/* Allow scrolling ONLY where you actually want it (the sidebar) */
-.overflow-y-auto {
-  -webkit-overflow-scrolling: touch; /* Smooth scroll for iOS */
-  touch-action: pan-y; /* Allows vertical swiping only here */
+/* Re-enable scrolling ONLY for the navigation */
+nav.overflow-y-auto {
+  touch-action: pan-y; 
+  -webkit-overflow-scrolling: touch;
 }
 
-
-/* Animated Rotation Symbol */
 .rotate-icon {
-  font-size: 4rem;
   animation: rotate-device 2s ease-in-out infinite;
 }
 
 @keyframes rotate-device {
-  0% { transform: rotate(0deg); }
-  30% { transform: rotate(-90deg); }
-  70% { transform: rotate(-90deg); }
-  100% { transform: rotate(0deg); }
+  0%, 100% { transform: rotate(0deg); }
+  30%, 70% { transform: rotate(-90deg); }
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-.fade-enter-from, .fade-leave-to {
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-/* Add this to your style block to keep the scrollbar subtle */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
-}
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(79, 70, 229, 0.2); /* Light indigo */
+  background: rgba(79, 70, 229, 0.2);
   border-radius: 10px;
 }
 </style>

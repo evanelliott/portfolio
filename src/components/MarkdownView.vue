@@ -66,7 +66,6 @@ const endPan = () => isPanning.value = false;
   <div class="flex flex-col h-full px-0 overflow-hidden bg-white">
     
     <!-- 1. FIXED TOP HEADER -->
-    <!-- This stays at the top and does not scroll -->
     <header class="z-30 bg-white border-b-2 border-slate-600 px-2 h-12 flex justify-between items-center shrink-0">
       <div class="flex items-baseline gap-3 py-4 min-w-0">
         <div class="space-y-0.5">
@@ -86,8 +85,7 @@ const endPan = () => isPanning.value = false;
     </header>
 
     <!-- 2. SCROLLABLE VIEWPORT -->
-    <!-- This is the container that allows sticky headers to work -->
-    <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full">
+    <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full custom-scrollbar">
       <div class="mx-auto px-0 pb-0 space-y-16 text-[10px]">
         
         <!-- EXECUTIVE SUMMARY -->
@@ -245,26 +243,37 @@ const endPan = () => isPanning.value = false;
           </div>
         </footer>
       </div>
-      
-      <div class="sticky bottom-0 h-1/6 w-full bg-gradient-to-t from-white to-transparent pointer-events-none z-50"></div>
+      <div class="sticky bottom-0 h-1/6 w-full bg-gradient-to-t from-white to-transparent pointer-events-none z-10"></div>
     </main>
 
-    <!-- FULLSCREEN LIGHTBOX -->
-    <div v-if="fullscreenImage" class="lightbox fixed inset-0 z-9999 bg-slate-900/95 flex flex-col" @click.self="closeFullscreen">
-      <div class="flex justify-between items-center px-4 h-12 border-b border-slate-700 bg-slate-900 text-white">
-        <h4 class="text-[10px] font-bold">{{ fullscreenCaption }}</h4>
-        <div class="flex gap-4">
-          <button @click="zoomIn" class="text-xl font-bold hover:text-indigo-400">+</button>
-          <button @click="zoomOut" class="text-xl font-bold hover:text-indigo-400">-</button>
-          <button @click="closeFullscreen" class="text-xl font-bold hover:text-indigo-400">✕</button>
+    <!-- FULLSCREEN LIGHTBOX (TELEPORTED) -->
+    <Teleport to="body">
+      <Transition name="fade">
+        <div v-if="fullscreenImage" 
+             class="lightbox fixed inset-0 z-[9999] bg-slate-900/95 flex flex-col touch-none" 
+             @click.self="closeFullscreen">
+          
+          <div class="flex justify-between items-center px-4 h-12 border-b border-slate-700 bg-slate-900 text-white z-[10000]">
+            <h4 class="text-[10px] font-bold">{{ fullscreenCaption }}</h4>
+            <div class="flex gap-4">
+              <button @click="zoomIn" class="text-xl font-bold hover:text-indigo-400">+</button>
+              <button @click="zoomOut" class="text-xl font-bold hover:text-indigo-400">-</button>
+              <button @click="closeFullscreen" class="text-xl font-bold hover:text-indigo-400">✕</button>
+            </div>
+          </div>
+
+          <div class="flex-1 overflow-hidden relative cursor-move" 
+               @mousedown="startPan" @mousemove="doPan" @mouseup="endPan" @wheel.prevent="handleWheel">
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <img :src="fullscreenImage" 
+                   :style="imageStyle" 
+                   draggable="false" 
+                   class="max-w-[90%] max-h-[90%] object-contain shadow-2xl pointer-events-auto" />
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="flex-1 overflow-hidden relative cursor-move" @mousedown="startPan" @mousemove="doPan" @mouseup="endPan" @wheel.prevent="handleWheel">
-        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <img :src="fullscreenImage" :style="imageStyle" draggable="false" class="max-w-[90%] max-h-[90%] object-contain shadow-2xl" />
-        </div>
-      </div>
-    </div>
+      </Transition>
+    </Teleport>
   </div>
 </template>
 
@@ -273,21 +282,6 @@ const endPan = () => isPanning.value = false;
 
 .btn-artifact {
   @apply px-4 py-2 bg-indigo-200 text-indigo-600 hover:bg-white hover:text-slate-900 rounded-lg border border-indigo-600 text-[10px] font-bold transition-all;
-}
-
-:deep(.mermaid svg) {
-  height: auto !important;
-  max-width: 100% !important;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
 }
 
 /* Hide scrollbar for the filmstrip but allow scrolling */
@@ -303,10 +297,17 @@ const endPan = () => isPanning.value = false;
   -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
 }
-
+/* Previous styles remain same, ensuring z-index is high for teleport */
 .lightbox {
-  z-index: 9999 !important;
-  transform: translateZ(0); 
-  -webkit-transform: translateZ(0); /* Specific for iOS Safari */
+  z-index: 9999;
+  /* GPU acceleration for smooth Safari rendering */
+  -webkit-transform: translate3d(0,0,0);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
 }
 </style>
