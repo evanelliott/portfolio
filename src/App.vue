@@ -53,7 +53,7 @@ const handleProjectSelect = (id: string) => {
     </aside>
     
     <!-- Footer -->
-    <footer class="w-full py-1 text-center shrink-0 bg-slate-950">
+    <footer class="w-full py-1 text-center shrink-0 bg-slate-950 mb-16 sm:mb-0">
       <div class="text-[7px]">
         &copy; {{ new Date().getFullYear() }} Evan Elliott. No rights reserved.
       </div>
@@ -71,9 +71,9 @@ html, body {
   margin: 0;
 }
 
-.project-root {
+/* .project-root {
   height: 100dvh;
-}
+} */
 
 /* Ensure the horizontal scroll is smooth and handles touch well */
 nav {
