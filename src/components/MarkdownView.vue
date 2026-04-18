@@ -99,28 +99,24 @@ const endPan = () => isPanning.value = false;
           
           <div class="px-8">
             <!-- Mobile: flex-col (Photo top) | Tablet+: flex-row (Side-by-side) -->
-            <div class="flex flex-col sm:flex-row gap-6">
+            <div class="flex flex-col gap-6">
               
-              <!-- PHOTO: Order 1 on mobile, Order 2 on Desktop -->
-              <div class="w-full sm:w-3/5 order-1 sm:order-2">
+              <div>
+                <p class="text-[10px] text-zinc-900 leading-relaxed">
+                  {{ project.summary }}
+                </p>
+              </div>
+              
+              <div class="w-full">
                 <img :src="project.imageUrl" alt="Project screenshot" class="w-full rounded-lg border border-zinc-950 shadow-sm object-cover">
               </div>
 
-              <!-- TEXT & KPIs: Order 2 on mobile, Order 1 on Desktop -->
-              <div class="w-full sm:w-2/5 space-y-4 order-2 sm:order-1">
-                <div>
-                  <p class="text-[10px] text-zinc-900 leading-relaxed">
-                    {{ project.summary }}
-                  </p>
-                </div>
-                
-                <!-- KPI Grid -->
-                <div class="grid grid-cols-2 gap-3">
-                  <div v-for="kpi in project.kpis" :key="kpi.label" 
-                      class="p-2 bg-zinc-100 rounded-xl border border-zinc-950 flex flex-col justify-center text-center">
-                    <span class="text-[10px] font-bold text-indigo-600 leading-none">{{ kpi.value }}</span>
-                    <span class="text-[9px] font-semibold text-zinc-600 mt-1">{{ kpi.label }}</span>
-                  </div>
+              <!-- KPI Grid -->
+              <div class="grid grid-cols-2 gap-3">
+                <div v-for="kpi in project.kpis" :key="kpi.label" 
+                    class="p-2 bg-zinc-100 rounded-xl border border-zinc-950 flex flex-col justify-center text-center">
+                  <span class="text-[10px] font-bold text-indigo-600 leading-none">{{ kpi.value }}</span>
+                  <span class="text-[9px] font-semibold text-zinc-600 mt-1">{{ kpi.label }}</span>
                 </div>
               </div>
 
@@ -128,7 +124,7 @@ const endPan = () => isPanning.value = false;
           </div>
 
           <!-- Rationale Grid (3 columns on all sizes, or adjust if needed) -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 px-4 gap-4 mt-4">
+          <div class="grid grid-cols-1 sm:grid-cols-3 px-8 gap-4 mt-4">
             <div v-for="item in project.rationale" :key="item.title" class="space-y-2">
               <h4 class="text-[10px] font-bold flex items-center gap-2">
                 <span class="w-1.5 h-1.5 bg-indigo-600 rounded-full"></span>
