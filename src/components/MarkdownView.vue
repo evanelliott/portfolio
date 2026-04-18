@@ -278,7 +278,7 @@ const endPan = () => isPanning.value = false;
 @reference "tailwindcss";
 
 .btn-artifact {
-  @apply px-4 py-2 bg-zinc-200 text-zinc-600 hover:bg-white hover:text-zinc-900 rounded-lg border border-zinc-950 text-[10px] text-center font-bold transition-all;
+  @apply px-4 py-2 bg-zinc-200 text-indigo-600 hover:bg-white hover:text-zinc-900 rounded-lg border border-zinc-950 text-[10px] text-center font-bold transition-all;
 }
 
 /* Hide scrollbar for the filmstrip but allow scrolling */
