@@ -14,7 +14,7 @@ const activeProject = computed(() =>
 </script>
 
 <template>
-  <section class="border-2 rounded-md border-zinc-600 bg-white overflow-hidden h-full">
+  <section class="border-2 rounded-md border-zinc-950 bg-zinc-300 overflow-hidden h-full">
     <div v-if="activeProject" class="flex flex-col md:flex-row h-full">
       <div class="flex-1 overflow-y-auto p-0 md:p-0 prose prose-zinc prose-sm max-w-none custom-scrollbar scroll-pt-0">
         <MarkdownView :project="activeProject" />
@@ -30,7 +30,7 @@ const activeProject = computed(() =>
         <div class="flex items-baseline gap-3 py-4 min-w-0">
           <div class="space-y-0.5">
             <h4 class="text-sm font-bold leading-none">
-              Select a project to begin <span class="pointing-finger text-[20px] ml-0">👇</span> 
+              Select a project to begin 
             </h4>
           </div>
         </div>

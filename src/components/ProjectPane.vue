@@ -25,24 +25,26 @@ defineEmits<{
     class="relative w-full h-full flex flex-col text-left transition-all duration-200 ease-out group"
     :class="[
       isActive 
-        ? '-translate-y-2' 
+        ? 'translate-y-2 sm:translate-y-0 sm:translate-x-2'
         : ''
     ]"
   >
     <!-- Selection Indicator -->
+    <!-- Mobile: Horizontal bar at top | Desktop (sm): Vertical bar on left -->
     <div 
       v-if="isActive"
-      class="absolute right-1 left-1 -bottom-2 h-1 bg-indigo-600 rounded-full"
+      class="absolute bg-indigo-600 rounded-full transition-all
+             right-1 left-1 -top-2 h-1 
+             sm:top-1 sm:bottom-1 sm:-left-2 sm:right-auto sm:h-auto sm:w-1"
     ></div>
 
     <!-- Card Container -->
-    <!-- Added 'flex items-center justify-center' to center content vertically and horizontally -->
     <div 
       class="flex-1 flex items-center justify-center p-1.5 rounded-md border transition"
       :class="[
         isActive 
-          ? 'border-indigo-600 bg-indigo-300 shadow-sm mt-5 sm:mt-3 mb-0' 
-          : 'border-zinc-600 bg-zinc-300 mt-5 sm:mt-3 mr-0'
+          ? 'border-indigo-600 bg-indigo-300 shadow-sm' 
+          : 'border-zinc-600 bg-zinc-300'
       ]"
     >
       <!-- Project Emoji & Name -->
@@ -59,16 +61,9 @@ defineEmits<{
   </button>
 </template>
 
-
 <style scoped>
-/* Ensure smooth movement when selected */
 button {
   outline: none;
 }
-
-.line-clamp-2 {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
+/* Removed fixed margins like mb-5 to allow the flex-1 distribution in App.vue to work perfectly */
 </style>

@@ -97,7 +97,7 @@ const endPan = () => isPanning.value = false;
             <h4 class="pl-3 font-bold">Executive Summary</h4>
           </div>
           
-          <div class="px-8">
+          <div class="px-3">
             <!-- Mobile: flex-col (Photo top) | Tablet+: flex-row (Side-by-side) -->
             <div class="flex flex-col gap-6">
               
@@ -124,7 +124,7 @@ const endPan = () => isPanning.value = false;
           </div>
 
           <!-- Rationale Grid (3 columns on all sizes, or adjust if needed) -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 px-8 gap-4 mt-4">
+          <div class="grid grid-cols-1 sm:grid-cols-3 px-5 gap-4 mt-4">
             <div v-for="item in project.rationale" :key="item.title" class="space-y-2">
               <h4 class="text-[10px] font-bold flex items-center gap-2">
                 <span class="w-1.5 h-1.5 bg-indigo-600 rounded-full"></span>
@@ -145,13 +145,13 @@ const endPan = () => isPanning.value = false;
           </div>
           
           <div class="px-3">
-            <div class="grid grid-cols-4 sm:grid-cols-6 gap-2 sm:gap-4 px-0">
+            <div class="grid grid-cols-4 sm:grid-cols-6 gap-2 sm:gap-2 px-0">
               <!-- Mandatory System Architecture -->
               <div class="group relative cursor-pointer aspect-square rounded-lg border border-zinc-950 overflow-hidden bg-zinc-950"
                    @click="openFullscreen(project.systemArchitectureUrl, 'System Architecture')">
                 <img :src="project.systemArchitectureUrl" class="w-full h-full object-cover">
                 <!-- Static Dark Overlay & Title -->
-                <div class="absolute inset-0 bg-zinc-900/50 flex items-center justify-center">
+                <div class="absolute inset-0 bg-zinc-950/50 flex items-center justify-center">
                   <span class="text-white text-[10px] font-bold text-center px-2">System Architecture</span>
                 </div>
               </div>
@@ -162,7 +162,7 @@ const endPan = () => isPanning.value = false;
                    @click="openFullscreen(diag.url, diag.name)">
                 <img :src="diag.url" class="w-full h-full object-cover">
                 <!-- Static Dark Overlay & Title -->
-                <div class="absolute inset-0 bg-zinc-900/50 flex items-center justify-center">
+                <div class="absolute inset-0 bg-zinc-950/50 flex items-center justify-center">
                   <span class="text-white text-[10px] font-bold text-center px-2">{{ diag.name }}</span>
                 </div>
               </div>
@@ -278,7 +278,7 @@ const endPan = () => isPanning.value = false;
 @reference "tailwindcss";
 
 .btn-artifact {
-  @apply px-4 py-2 bg-zinc-200 text-zinc-600 hover:bg-white hover:text-zinc-900 rounded-lg border border-zinc-950 text-[10px] font-bold transition-all;
+  @apply px-4 py-2 bg-zinc-200 text-zinc-600 hover:bg-white hover:text-zinc-900 rounded-lg border border-zinc-950 text-[10px] text-center font-bold transition-all;
 }
 
 /* Hide scrollbar for the filmstrip but allow scrolling */
