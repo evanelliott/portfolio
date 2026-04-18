@@ -40,7 +40,7 @@ defineEmits<{
 
     <!-- Card Container -->
     <div 
-      class="flex-1 flex items-center justify-center p-1.5 rounded-md border transition"
+      class="flex-1 flex items-center justify-center p-2 rounded-md border transition"
       :class="[
         isActive 
           ? 'border-indigo-600 bg-indigo-300 shadow-sm' 

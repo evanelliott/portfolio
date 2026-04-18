@@ -34,7 +34,7 @@ const handleProjectSelect = (id: string) => {
       
       <!-- Project Pane Bar -->
       <!-- sm:h-full ensures it stretches the vertical height on desktop -->
-      <aside class="order-1 sm:order-1 w-full sm:w-20 h-auto sm:h-full shrink-0 bg-zinc-950 z-10">
+      <aside class="order-1 sm:order-1 w-full sm:w-22 h-auto sm:h-full shrink-0 bg-zinc-950 z-10 pb-2 sm:pb-0 sm:pr-2">
         <!-- flex-1 on the panes inside this flex container will force them to distribute evenly -->
         <nav class="flex flex-row sm:flex-col h-full w-full p-2 gap-2 sm:gap-4"> 
           <ProjectPane 
