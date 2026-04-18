@@ -25,7 +25,7 @@ defineEmits<{
     class="relative w-full h-full flex flex-col text-left transition-all duration-200 ease-out group"
     :class="[
       isActive 
-        ? 'translate-y-2 sm:translate-y-0 sm:translate-x-2'
+        ? 'translate-y-2'
         : ''
     ]"
   >
@@ -34,8 +34,7 @@ defineEmits<{
     <div 
       v-if="isActive"
       class="absolute bg-indigo-600 rounded-full transition-all
-             right-1 left-1 -top-2 h-1 
-             sm:top-1 sm:bottom-1 sm:-left-2 sm:right-auto sm:h-auto sm:w-1"
+             right-1 left-1 -top-2 h-1"
     ></div>
 
     <!-- Card Container -->

@@ -23,21 +23,6 @@ const activeProject = computed(() =>
     
     <!-- Updated Empty State with info about sections -->
     <div v-else class="flex flex-col items-start justify-start h-full px-0 pt-0 text-start">
-
-      <!-- 1. FIXED TOP HEADER -->
-      <!-- This stays at the top and does not scroll -->
-      <header class="z-30 bg-zinc-300 px-3 h-12 flex justify-start items-center w-full">
-        <div class="flex items-baseline gap-3 py-4 min-w-0">
-          <div class="space-y-0.5">
-            <h4 class="text-sm font-bold leading-none">
-              Select a project to begin 
-            </h4>
-          </div>
-        </div>
-      </header>
-      
-      <!-- 2. SCROLLABLE VIEWPORT -->
-      <!-- This is the container that allows sticky headers to work -->
       <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full w-full bg-zinc-300">
       </main>
     </div>
@@ -88,8 +73,7 @@ const activeProject = computed(() =>
     transform: translateY(0);
   }
   50% {
-    transform: translateY(6px); /* Moves 6px towards the sidebar */
+    transform: translateY(-6px); /* Moves 6px towards the sidebar */
   }
 }
-
 </style>
