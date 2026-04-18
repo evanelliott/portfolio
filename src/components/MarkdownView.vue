@@ -65,35 +65,35 @@ const endPan = () => isPanning.value = false;
   <!-- ROOT: Must be flex-col and h-full to create the scrolling context -->
   <div class="flex flex-col h-full px-0 overflow-hidden bg-white">
     <!-- 1. UPDATED HEADER: Removed fixed h-12 and overflow-hidden -->
-<header class="z-30 bg-white border-b-2 border-slate-600 px-3 py-2 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 shrink-0">
-  
-  <!-- Title Section -->
-  <div class="flex items-baseline gap-3 min-w-1/2">
-    <div class="space-y-0.5">
-      <h4 class="text-sm font-bold leading-tight">
-        {{ project.title }}
-      </h4>
-      <p class="text-[10px] text-indigo-600 font-bold mt-0">{{ project.headline }}</p>
-    </div>
-  </div>
+    <header class="z-30 bg-zinc-300 border-b border-zinc-950 px-3 py-2 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 shrink-0">
+      
+      <!-- Title Section -->
+      <div class="flex items-baseline gap-3 min-w-1/2">
+        <div class="space-y-0.5">
+          <h4 class="text-sm font-bold leading-tight">
+            {{ project.title }}
+          </h4>
+          <p class="text-[10px] text-indigo-600 font-bold mt-0">{{ project.headline }}</p>
+        </div>
+      </div>
 
-  <!-- Tech Stack: flex-wrap allows items to move to a second line if space runs out -->
-  <div class="flex flex-wrap justify-start sm:justify-end gap-1.5 pb-1">
-    <span v-for="tech in project.stack" :key="tech" 
-          class="px-1.5 py-0.5 bg-indigo-100 text-indigo-600 text-[8px] tracking-[0.05em] font-mono font-semibold rounded border border-indigo-600 whitespace-nowrap">
-      {{ tech }}
-    </span>
-  </div>
-</header>
+      <!-- Tech Stack: flex-wrap allows items to move to a second line if space runs out -->
+      <div class="flex flex-wrap justify-start sm:justify-end gap-1.5 pb-1">
+        <span v-for="tech in project.stack" :key="tech" 
+              class="px-1.5 py-0.5 bg-indigo-100 text-indigo-600 text-[8px] tracking-[0.05em] font-mono font-semibold rounded border border-indigo-600 whitespace-nowrap">
+          {{ tech }}
+        </span>
+      </div>
+    </header>
 
 
     <!-- 2. SCROLLABLE VIEWPORT -->
     <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full custom-scrollbar">
-      <div class="mx-auto px-0 pb-0 space-y-16 text-[10px]">
+      <div class="mx-auto px-0 pb-0 space-y-16 text-[10px] bg-whie">
         
         <!-- EXECUTIVE SUMMARY -->
         <div class="grid grid-cols-1 gap-4 pt-0">
-          <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
+          <div class="sticky top-0 z-20 bg-white py-1 flex items-center gap-3 border-b shadow border-zinc-950">
             <h4 class="pl-2 font-bold">▪ Executive Summary</h4>
           </div>
           
@@ -103,13 +103,13 @@ const endPan = () => isPanning.value = false;
               
               <!-- PHOTO: Order 1 on mobile, Order 2 on Desktop -->
               <div class="w-full sm:w-3/5 order-1 sm:order-2">
-                <img :src="project.imageUrl" alt="Project screenshot" class="w-full rounded-lg border border-slate-100 shadow-sm object-cover">
+                <img :src="project.imageUrl" alt="Project screenshot" class="w-full rounded-lg border border-zinc-950 shadow-sm object-cover">
               </div>
 
               <!-- TEXT & KPIs: Order 2 on mobile, Order 1 on Desktop -->
               <div class="w-full sm:w-2/5 space-y-4 order-2 sm:order-1">
                 <div>
-                  <p class="text-[10px] text-slate-900 leading-relaxed">
+                  <p class="text-[10px] text-zinc-900 leading-relaxed">
                     {{ project.summary }}
                   </p>
                 </div>
@@ -117,9 +117,9 @@ const endPan = () => isPanning.value = false;
                 <!-- KPI Grid -->
                 <div class="grid grid-cols-2 gap-3">
                   <div v-for="kpi in project.kpis" :key="kpi.label" 
-                      class="p-2 bg-slate-100 rounded-xl border border-slate-200 flex flex-col justify-center text-center">
+                      class="p-2 bg-zinc-100 rounded-xl border border-zinc-950 flex flex-col justify-center text-center">
                     <span class="text-[10px] font-bold text-indigo-600 leading-none">{{ kpi.value }}</span>
-                    <span class="text-[9px] font-semibold text-slate-600 mt-1">{{ kpi.label }}</span>
+                    <span class="text-[9px] font-semibold text-zinc-600 mt-1">{{ kpi.label }}</span>
                   </div>
                 </div>
               </div>
@@ -134,7 +134,7 @@ const endPan = () => isPanning.value = false;
                 <span class="w-1.5 h-1.5 bg-indigo-600 rounded-full"></span>
                 {{ item.title }}
               </h4>
-              <p class="text-[10px] text-slate-600">
+              <p class="text-[10px] text-zinc-600">
                 {{ item.description }}
               </p>
             </div>
@@ -142,31 +142,31 @@ const endPan = () => isPanning.value = false;
         </div>
         
         <!-- 2. ARCHITECTURAL BLUEPRINT (MODIFIED SECTION) -->
-        <section class="mt-0 bg-slate-000 space-y-8">
+        <section class="mt-0 bg-zinc-000 space-y-8">
           <!-- Sticky Section Header -->
-          <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
+          <div class="sticky top-0 z-20 bg-white py-1 flex items-center gap-3 border-b border-t shadow border-zinc-950">
             <h4 class="pl-2 font-bold">▪ Architectural Blueprints</h4>
           </div>
           
           <div class="px-4">
             <div class="grid grid-cols-4 sm:grid-cols-6 gap-2 sm:gap-4 px-0">
               <!-- Mandatory System Architecture -->
-              <div class="group relative cursor-pointer aspect-square rounded-lg border border-slate-200 overflow-hidden bg-slate-50"
+              <div class="group relative cursor-pointer aspect-square rounded-lg border border-zinc-950 overflow-hidden bg-zinc-950"
                    @click="openFullscreen(project.systemArchitectureUrl, 'System Architecture')">
                 <img :src="project.systemArchitectureUrl" class="w-full h-full object-cover">
                 <!-- Static Dark Overlay & Title -->
-                <div class="absolute inset-0 bg-slate-900/50 flex items-center justify-center">
+                <div class="absolute inset-0 bg-zinc-900/50 flex items-center justify-center">
                   <span class="text-white text-[10px] font-bold text-center px-2">System Architecture</span>
                 </div>
               </div>
 
               <!-- Additional Diagrams -->
               <div v-for="diag in project.additionalDiagrams" :key="diag.name"
-                   class="group relative cursor-pointer aspect-square rounded-lg border border-slate-200 overflow-hidden bg-slate-50"
+                   class="group relative cursor-pointer aspect-square rounded-lg border border-zinc-950 overflow-hidden bg-zinc-950"
                    @click="openFullscreen(diag.url, diag.name)">
                 <img :src="diag.url" class="w-full h-full object-cover">
                 <!-- Static Dark Overlay & Title -->
-                <div class="absolute inset-0 bg-slate-900/50 flex items-center justify-center">
+                <div class="absolute inset-0 bg-zinc-900/50 flex items-center justify-center">
                   <span class="text-white text-[10px] font-bold text-center px-2">{{ diag.name }}</span>
                 </div>
               </div>
@@ -177,13 +177,13 @@ const endPan = () => isPanning.value = false;
 
         <!-- 3. IMPLEMENTATION CINEMA -->
         <section v-if="project.videos?.length" class="mt-0 pb-0 space-y-2">
-          <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
+          <div class="sticky top-0 z-20 bg-white py-1 flex items-center gap-3 border-b border-t shadow border-zinc-950">
             <h4 class="pl-2 font-bold">▪ Deep-Dive Cinema</h4>
           </div>
 
           <div class="px-4 sm:px-12 space-y-2">
             <!-- MAIN VIEWER -->
-            <div class="group relative aspect-video w-full overflow-hidden rounded-3xl bg-slate-900 shadow-2xl border-3 border-slate-400">
+            <div class="group relative aspect-video w-full overflow-hidden rounded-3xl bg-zinc-900 shadow-2xl border-3 border-zinc-400">
               <transition name="fade" mode="out-in">
                 <div :key="activeVideoIndex" class="w-full h-full">
                   <ProjectDemo 
@@ -194,9 +194,9 @@ const endPan = () => isPanning.value = false;
               </transition>
               
               <!-- Active Video Overlay Info -->
-              <div class="absolute top-0 left-0 right-0 p-4 bg-gradient-to-b from-slate-950/100 to-transparent">
-                <h4 class="text-slate-50 text-[16px] font-bold">{{ project.videos[activeVideoIndex].title }}</h4>
-                <p class="text-slate-300 text-[12px] font-semibold mb-12 max-w-2xl">{{ project.videos[activeVideoIndex].desc }}</p>
+              <div class="absolute top-0 left-0 right-0 p-4 bg-gradient-to-b from-zinc-950/100 to-transparent">
+                <h4 class="text-zinc-50 text-[16px] font-bold">{{ project.videos[activeVideoIndex].title }}</h4>
+                <p class="text-zinc-300 text-[12px] font-semibold mb-12 max-w-2xl">{{ project.videos[activeVideoIndex].desc }}</p>
               </div>
             </div>
 
@@ -210,12 +210,12 @@ const endPan = () => isPanning.value = false;
                   'relative shrink-0 w-30 sm:w-36 aspect-video rounded-xl overflow-hidden border-2 transition-all duration-300 text-left',
                   activeVideoIndex === index 
                     ? 'border-indigo-600 ring-4 ring-indigo-600/40 scale-95' 
-                    : 'border-slate-200 opacity-60 hover:opacity-100'
+                    : 'border-zinc-200 opacity-60 hover:opacity-100'
                 ]"
               >
                 <!-- Thumbnail Placeholder (Can be an img if you have thumbs) -->
-                <div class="absolute inset-0 bg-slate-800 flex items-center justify-center">
-                   <span class="text-[10px] font-bold text-slate-400 px-4 text-center">
+                <div class="absolute inset-0 bg-zinc-800 flex items-center justify-center">
+                   <span class="text-[10px] font-bold text-zinc-400 px-4 text-center">
                      {{ video.title }}
                    </span>
                 </div>
@@ -229,13 +229,13 @@ const endPan = () => isPanning.value = false;
         
         <!-- 4. ARTIFACTS -->
         <footer v-if="project.artifacts" class="pt-0">
-          <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
+          <div class="sticky top-0 z-20 bg-white py-1 flex items-center gap-3 border-t border-b shadow border-zinc-950">
             <h4 class="pl-2 font-bold">▪ Artifacts</h4>
           </div>
-          <div class="bg-slate-100 p-6 flex flex-col md:flex-row justify-between items-center gap-4 shadow-2xl shadow-indigo-200">
+          <div class="bg-white p-6 flex flex-col md:flex-row justify-between items-center gap-4 shadow-2xl shadow-indigo-200">
             <!-- <div class="text-center md:text-left space-y-1"> -->
               <!-- <h4 class="font-bold text-[12px]">Technical Artifacts</h4> -->
-              <!-- <p class="text-slate-600 text-[10px] font-medium">Review the codebase and technical documentation:</p> -->
+              <!-- <p class="text-zinc-600 text-[10px] font-medium">Review the codebase and technical documentation:</p> -->
             <!-- </div> -->
             <div class="flex gap-8 w-full justify-center">
               <a :href="project.artifacts.githubUrl" target="_blank" class="btn-artifact">Source Code (GitHub) →</a>
@@ -251,10 +251,10 @@ const endPan = () => isPanning.value = false;
     <Teleport to="body">
       <Transition name="fade">
         <div v-if="fullscreenImage" 
-             class="lightbox fixed inset-0 z-[9999] bg-slate-900/95 flex flex-col touch-none" 
+             class="lightbox fixed inset-0 z-[9999] bg-zinc-950/95 flex flex-col touch-none" 
              @click.self="closeFullscreen">
           
-          <div class="flex justify-between items-center px-4 h-12 border-b border-slate-700 bg-slate-900 text-white z-[10000]">
+          <div class="flex justify-between items-center px-4 h-12 border-b border-zinc-950 bg-zinc-950 text-white z-[10000]">
             <h4 class="text-[10px] font-bold">{{ fullscreenCaption }}</h4>
             <div class="flex gap-4">
               <button @click="zoomIn" class="text-xl font-bold hover:text-indigo-400">+</button>
@@ -282,7 +282,7 @@ const endPan = () => isPanning.value = false;
 @reference "tailwindcss";
 
 .btn-artifact {
-  @apply px-4 py-2 bg-indigo-200 text-indigo-600 hover:bg-white hover:text-slate-900 rounded-lg border border-indigo-600 text-[10px] font-bold transition-all;
+  @apply px-4 py-2 bg-zinc-200 text-zinc-600 hover:bg-white hover:text-zinc-900 rounded-lg border border-zinc-950 text-[10px] font-bold transition-all;
 }
 
 /* Hide scrollbar for the filmstrip but allow scrolling */

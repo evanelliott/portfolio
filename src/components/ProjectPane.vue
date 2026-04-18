@@ -41,8 +41,8 @@ defineEmits<{
       class="flex-1 flex items-center justify-center p-1.5 rounded-md border-2 transition"
       :class="[
         isActive 
-          ? 'border-indigo-600 bg-indigo-200 shadow-sm mt-6 mb-0' 
-          : 'border-slate-600 bg-white hover:bg-indigo-100 mt-6 mr-0'
+          ? 'border-indigo-600 bg-indigo-200 shadow-sm mt-4 mb-0' 
+          : 'border-zinc-600 bg-zinc-200 hover:bg-indigo-100 mt-4 mr-0'
       ]"
     >
       <!-- Project Emoji & Name -->
@@ -50,7 +50,7 @@ defineEmits<{
         <span class="text-[15px] leading-none">{{ project.emoji }}</span>
         <span 
           class="text-[8px] font-bold block text-center leading-tight"
-          :class="isActive ? 'text-indigo-600' : 'text-slate-900'"
+          :class="isActive ? 'text-indigo-600' : 'text-zinc-950'"
         >
           {{ project.name }}
         </span>
