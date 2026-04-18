@@ -14,7 +14,7 @@ const handleProjectSelect = (id: string) => {
 </script>
 
 <template>
-  <div class="project-root fixed inset-0 flex flex-col bg-zinc-900 text-zinc-100 overflow-hidden isolate sm:px-12">
+  <div class="project-root fixed inset-0 flex flex-col bg-zinc-950 text-zinc-100 overflow-hidden isolate sm:px-12">
     
     <!-- Top Header -->
     <header class="w-full shrink-0 z-10 py-2 mt-4">
