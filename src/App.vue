@@ -51,7 +51,7 @@ const handleProjectSelect = (id: string) => {
     </div>
 
     <!-- MOVED FOOTER HERE: Outside the main flex flow -->
-    <footer class="w-full py-2 text-center bg-zinc-950 z-20">
+    <footer class="w-full py-4 text-center bg-zinc-950 z-20">
       <div class="text-[7px] text-zinc-500">
         &copy; {{ new Date().getFullYear() }} Evan Elliott. No rights reserved.
       </div>
