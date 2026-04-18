@@ -97,7 +97,7 @@ const endPan = () => isPanning.value = false;
             <h4 class="pl-3 font-bold">Executive Summary</h4>
           </div>
           
-          <div class="px-3">
+          <div class="px-8">
             <!-- Mobile: flex-col (Photo top) | Tablet+: flex-row (Side-by-side) -->
             <div class="flex flex-col gap-6">
               
@@ -112,7 +112,7 @@ const endPan = () => isPanning.value = false;
               </div>
 
               <!-- KPI Grid -->
-              <div class="grid grid-cols-2 gap-3">
+              <div class="grid grid-cols-2 gap-3 px-6">
                 <div v-for="kpi in project.kpis" :key="kpi.label" 
                     class="p-2 bg-zinc-100 rounded-xl border border-zinc-950 flex flex-col justify-center text-center">
                   <span class="text-[10px] font-bold text-indigo-600 leading-none">{{ kpi.value }}</span>
@@ -124,7 +124,7 @@ const endPan = () => isPanning.value = false;
           </div>
 
           <!-- Rationale Grid (3 columns on all sizes, or adjust if needed) -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 px-5 gap-4 mt-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 px-9 gap-4 mt-4">
             <div v-for="item in project.rationale" :key="item.title" class="space-y-2">
               <h4 class="text-[10px] font-bold flex items-center gap-2">
                 <span class="w-1.5 h-1.5 bg-indigo-600 rounded-full"></span>
@@ -145,7 +145,7 @@ const endPan = () => isPanning.value = false;
           </div>
           
           <div class="px-3">
-            <div class="grid grid-cols-4 sm:grid-cols-6 gap-2 sm:gap-2 px-0">
+            <div class="grid grid-cols-4 sm:grid-cols-5 gap-2 sm:gap-2 px-0">
               <!-- Mandatory System Architecture -->
               <div class="group relative cursor-pointer aspect-square rounded-lg border border-zinc-950 overflow-hidden bg-zinc-950"
                    @click="openFullscreen(project.systemArchitectureUrl, 'System Architecture')">
@@ -177,7 +177,7 @@ const endPan = () => isPanning.value = false;
             <h4 class="pl-3 font-bold">Deep-Dive Cinema</h4>
           </div>
 
-          <div class="px-3 sm:px-12 space-y-2">
+          <div class="px-3 sm:px-16 space-y-2">
             <!-- MAIN VIEWER -->
             <div class="group relative aspect-video w-full overflow-hidden rounded-3xl bg-zinc-900 shadow-2xl border-3 border-zinc-400">
               <transition name="fade" mode="out-in">
@@ -203,7 +203,7 @@ const endPan = () => isPanning.value = false;
                 :key="index"
                 @click="selectVideo(Number(index))"
                 :class="[
-                  'relative shrink-0 w-30 sm:w-36 aspect-video rounded-xl overflow-hidden border-2 transition-all duration-300 text-left',
+                  'relative shrink-0 w-30 sm:w-30 aspect-video rounded-xl overflow-hidden border-2 transition-all duration-300 text-left',
                   activeVideoIndex === index 
                     ? 'border-indigo-600 ring-4 ring-indigo-600/40 scale-95' 
                     : 'border-zinc-200 opacity-60 hover:opacity-100'
