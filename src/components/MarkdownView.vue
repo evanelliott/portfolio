@@ -78,9 +78,9 @@ const endPan = () => isPanning.value = false;
       </div>
 
       <!-- Tech Stack: flex-wrap allows items to move to a second line if space runs out -->
-      <div class="flex flex-wrap justify-start sm:justify-end gap-1.5">
+      <div class="flex flex-wrap justify-start sm:justify-end gap-1">
         <span v-for="tech in project.stack" :key="tech" 
-              class="px-1.5 py-0.5 bg-indigo-100 text-indigo-600 text-[8px] tracking-[0.05em] font-mono font-semibold rounded border border-indigo-600 whitespace-nowrap">
+              class="px-1 py-0.5 bg-indigo-100 text-indigo-600 text-[7px] tracking-[0.05em] font-mono font-semibold rounded border border-indigo-600 whitespace-nowrap">
           {{ tech }}
         </span>
       </div>
