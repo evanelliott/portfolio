@@ -5,7 +5,7 @@
     "title": "Agentic Coding Assistants",
     "emoji": "🤖",
     "headline": "Code Property Graph (CPG) RAG Engine",
-    "summary": "A high-performance, local-first framework leveraging CPG and LLM orchestration to enable complex static analysis. Designed to analyse architectural patterns, generate test cases, and flag potential security weaknesses.",
+    "summary": "A high-performance, local-first AI coding framework leveraging CPG to enable complex static analysis. Designed to analyse architectural patterns, generate test cases, and flag potential security weaknesses.",
     "stack": ["OpenCode", "Ollama", "LangChain", "FastAPI", "Pydantic", "Neo4j", "Docker"],
     "kpis": [
       { "value": "Local-First", "label": "Security" },
@@ -13,7 +13,7 @@
     ],
     "imageUrl": "https://placehold.co/600x400",
     "rationale": [
-      { "title": "Expert Agents", "description": "A team of agents specialise in security, architecture, and testing to provide deep, domain-specific code insights." },
+      { "title": "Expert Agents", "description": "A team of agents specialising in security, architecture and testing to provide deep, domain-specific code insights." },
       { "title": "Structured Evidence Extraction", "description": "Pydantic validation ensures high-integrity data structures that improve LLM comprehension." },
       { "title": "Model Context Protocol (MCP)", "description": "Neo4j Cypher query templates are wrapped as Tools for agents to access via a unified FastAPI MCP service." }
     ],
