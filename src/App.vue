@@ -63,12 +63,17 @@ const handleProjectSelect = (id: string) => {
 </template>
 
 <style>
-html, body {
-  overflow: hidden;
-  height: 100%;
-  width: 100%;
-  position: fixed;
+/* Add this to your global CSS or a style tag in index.html */
+html, body, #app {
   margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #09090b; /* Or whatever your main background is */
+}
+
+.project-root {
+  /* This ensures your "Select a project" text doesn't sit under the clock */
+  padding-top: env(safe-area-inset-top);
 }
 
 /* .project-root {
