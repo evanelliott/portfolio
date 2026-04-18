@@ -38,11 +38,11 @@ defineEmits<{
     <!-- Card Container -->
     <!-- Added 'flex items-center justify-center' to center content vertically and horizontally -->
     <div 
-      class="flex-1 flex items-center justify-center p-1.5 rounded-md border-2 transition"
+      class="flex-1 flex items-center justify-center p-1.5 rounded-md border transition"
       :class="[
         isActive 
-          ? 'border-indigo-600 bg-indigo-200 shadow-sm mt-4 mb-0' 
-          : 'border-zinc-600 bg-zinc-200 hover:bg-indigo-100 mt-4 mr-0'
+          ? 'border-indigo-600 bg-indigo-300 shadow-sm mt-4 mb-0' 
+          : 'border-zinc-600 bg-zinc-300 mt-4 mr-0'
       ]"
     >
       <!-- Project Emoji & Name -->
