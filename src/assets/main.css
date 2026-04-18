@@ -15,13 +15,15 @@
   --border-default: #d0d7de;
   --link-color: #0969da;
 }
-
+html {
+  background-color: #09090b; /* Match your zinc-950 exactly */
+}
 body {
   font-family: var(--font-sans);
   font-size: 14px; /* GitHub's standard UI size */
   line-height: 1.5;
   color: var(--text-primary);
-  background-color: var(--bg-default);
+  background-color: #09090b;
   margin: 0;
   padding: 0rem;
   -webkit-font-smoothing: antialiased;
