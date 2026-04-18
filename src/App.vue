@@ -14,7 +14,7 @@ const handleProjectSelect = (id: string) => {
 </script>
 
 <template>
-  <div class="project-root min-h-screen flex flex-col bg-zinc-950 text-zinc-100 sm:px-16 overflow-hidden isolate">
+  <div class="project-root min-h-screen flex flex-col bg-zinc-950 text-zinc-100 sm:px-16 isolate">
     
     <!-- Top Header -->
     <header class="w-full shrink-0 z-20 pt-8 sm:pt-0 pb-2 sm:pb-1">
@@ -30,7 +30,7 @@ const handleProjectSelect = (id: string) => {
 
     <!-- Main Layout Container -->
     <!-- On mobile, Project Bar is horizontal (col). On Desktop, it's vertical (row) -->
-    <div class="flex-1 flex flex-col sm:flex-row overflow-hidden">
+    <div class="flex-1 flex flex-col sm:flex-row">
       
       <!-- Project Pane Bar -->
       <!-- sm:h-full ensures it stretches the vertical height on desktop -->
