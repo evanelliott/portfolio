@@ -14,7 +14,7 @@ const handleProjectSelect = (id: string) => {
 </script>
 
 <template>
-  <div class="project-root fixed inset-0 flex flex-col bg-zinc-900 text-gray-100 overflow-hidden isolate sm:px-12">
+  <div class="project-root fixed inset-0 flex flex-col bg-zinc-900 text-zinc-100 overflow-hidden isolate sm:px-12">
     
     <!-- Top Header -->
     <header class="w-full shrink-0 z-10 py-2 mt-4">
@@ -30,7 +30,7 @@ const handleProjectSelect = (id: string) => {
     </header>
 
     <!-- Center Viewport -->
-    <main class="flex-1 w-full max-w-7xl mx-auto px-0 overflow-hidden relative text-gray-950">
+    <main class="flex-1 w-full max-w-7xl mx-auto px-0 overflow-hidden relative text-slate-950">
       <RouterView v-slot="{ Component }">
         <Transition name="page" mode="out-in">
           <component :is="Component" :selectedId="selectedId" :projects="projects" />
@@ -39,7 +39,7 @@ const handleProjectSelect = (id: string) => {
     </main>
 
     <!-- Bottom Project Pane (Horizontal) -->
-    <aside class="w-full shrink-0 bg-gray-950 backdrop-blur-sm pb-0">
+    <aside class="w-full shrink-0 bg-zinc-950 backdrop-blur-sm pb-0">
       <nav class="flex flex-row w-full max-w-7xl mx-auto px-4 gap-2 overflow-x-auto overflow-y-hidden custom-scrollbar pb-0"> 
         <ProjectPane 
           v-for="project in projects" 
@@ -53,7 +53,7 @@ const handleProjectSelect = (id: string) => {
     </aside>
     
     <!-- Footer -->
-    <footer class="w-full py-1 text-center shrink-0 bg-gray-950">
+    <footer class="w-full py-1 text-center shrink-0 bg-slate-950">
       <div class="text-[7px]">
         &copy; {{ new Date().getFullYear() }} Evan Elliott. No rights reserved.
       </div>
