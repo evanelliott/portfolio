@@ -18,10 +18,11 @@
 html, body {
   /* Forces Safari to use this color for the bottom overscroll and UI bars */
   background-color: #09090b !important; 
-  /* Prevents "rubber-banding" from showing white gaps */
-  overscroll-behavior-y: none; 
-}
-html {
+  /* Prevents Safari from adding artificial space below your content */
+  max-height: 100%; 
+  overflow-x: hidden;
+  /* Hardware acceleration can sometimes snap the UI back to the correct tint */
+  transform: translateZ(0); 
 }
 body {
   font-family: var(--font-sans);
@@ -32,6 +33,11 @@ body {
   margin: 0;
   padding: 0rem;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Ensure your project root doesn't have accidental overflow */
+.project-root {
+  overflow: hidden; 
 }
 
 /* 2. Headings - Clean and Bold */
