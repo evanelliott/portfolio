@@ -74,7 +74,7 @@
   {
     "id": "3",
     "name": "Lakehouse",
-    "title": "Data Lakehouse for Football Analytics",
+    "title": "Football Data Lakehouse",
     "emoji": "🥇",
     "headline": "Medallion Architecture & Data Modelling",
     "summary": "A high-integrity analytical platform designed to integrate multi-source data into a unified Master Data model. The system leverages a decoupled storage-compute architecture with Iceberg, Spark and Trino to perform high-performance batch ELT.",
@@ -110,7 +110,7 @@
   {
     "id": "4",
     "name": "MLOps",
-    "title": "Football Prediction MLOps",
+    "title": "Football MLOps",
     "emoji": "🚀",
     "headline": "ML Lifecycle Management",
     "summary": "A specialized MLOps platform designed to accelerate the journey from notebook-based experimentation to production-grade deployments. It enforces operational stability by automatically wrapping each deployed model in a standardised layer of governance, observability, and drift monitoring.",
@@ -147,7 +147,7 @@
     "name": "CI/CD",
     "title": "Modern CI/CD Pipeline",
     "emoji": "✅",
-    "headline": "Automated Quality Assurance and Deployment",
+    "headline": "Automated QA and Deployment",
     "summary": "A professional-grade CI/CD workflow for a GitHub repository. Automates the entire lifecycle from linting and testing to performance auditing and deployment.",
     "stack": ["GitHub Actions", "Vue 3", "Vite", "Vitest", "Lighthouse"],
     "kpis": [
