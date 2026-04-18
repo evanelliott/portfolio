@@ -14,7 +14,7 @@ const handleProjectSelect = (id: string) => {
 </script>
 
 <template>
-  <div class="project-root fixed inset-0 flex flex-col bg-zinc-950 text-zinc-100 sm:px-16 overflow-hidden isolate">
+  <div class="project-root min-h-screen flex flex-col bg-zinc-950 text-zinc-100 sm:px-16 overflow-hidden isolate">
     
     <!-- Top Header -->
     <header class="w-full shrink-0 z-20 pt-8 sm:pt-0 pb-2 sm:pb-1">
@@ -49,7 +49,7 @@ const handleProjectSelect = (id: string) => {
       </aside>
 
       <!-- Main Viewport -->
-      <main class="order-2 sm:order-2 flex-1 relative overflow-y-auto text-slate-950 bg-zinc-900/20 custom-scrollbar">
+      <main class="order-2 sm:order-2 flex-1 relative overflow-y-auto text-zinc-950 bg-zinc-950 custom-scrollbar">
         <RouterView v-slot="{ Component }">
           <Transition name="page" mode="out-in">
             <component :is="Component" :selectedId="selectedId" :projects="projects" />
@@ -58,40 +58,28 @@ const handleProjectSelect = (id: string) => {
       </main>
 
     </div>
-    
-    <footer class="w-full py-0.5 text-center shrink-0 bg-zinc-950 z-20">
-      <div class="text-[7px] text-zinc-500">
-        &copy; {{ new Date().getFullYear() }} Evan Elliott. No rights reserved.
-      </div>
-    </footer>
   </div>
 </template>
 
 
 <style>
-html, body, #app {
+/* Important: Removed height: 100% to allow the document to grow and scroll */
+html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
   background-color: #09090b;
+  /* Helps with smooth momentum scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
 }
 
 .project-root {
   padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
-nav {
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
-}
-
-.custom-scrollbar::-webkit-scrollbar { 
-  width: 4px; 
-  height: 4px; 
-}
-.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+/* Ensure images/content don't break the layout width */
+img, video {
+  max-width: 100%;
+  height: auto;
 }
 </style>
