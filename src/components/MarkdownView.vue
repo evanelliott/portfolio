@@ -147,7 +147,7 @@ const endPan = () => isPanning.value = false;
           <div class="px-3">
             <div class="grid grid-cols-4 sm:grid-cols-5 gap-2 sm:gap-2 px-0">
               <!-- Mandatory System Architecture -->
-              <div class="group relative cursor-pointer aspect-square rounded-lg border border-zinc-950 overflow-hidden bg-zinc-950"
+              <div class="flex items-center justify-center group relative cursor-pointer aspect-square rounded-lg border border-zinc-950 overflow-hidden bg-zinc-950"
                    @click="openFullscreen(project.systemArchitectureUrl, 'System Architecture')">
                 <img :src="project.systemArchitectureUrl" class="w-full h-full object-cover">
                 <!-- Static Dark Overlay & Title -->
@@ -158,7 +158,7 @@ const endPan = () => isPanning.value = false;
 
               <!-- Additional Diagrams -->
               <div v-for="diag in project.additionalDiagrams" :key="diag.name"
-                   class="group relative cursor-pointer aspect-square rounded-lg border border-zinc-950 overflow-hidden bg-zinc-950"
+                   class="flex items-center justify-center group relative cursor-pointer aspect-square rounded-lg border border-zinc-950 overflow-hidden bg-zinc-950"
                    @click="openFullscreen(diag.url, diag.name)">
                 <img :src="diag.url" class="w-full h-full object-cover">
                 <!-- Static Dark Overlay & Title -->
@@ -190,7 +190,7 @@ const endPan = () => isPanning.value = false;
               </transition>
               
               <!-- Active Video Overlay Info -->
-              <div class="absolute top-0 left-0 right-0 p-4 bg-gradient-to-b from-zinc-950/100 to-transparent">
+              <div class="absolute top-0 left-0 right-0 p-4 bg-gradient-to-b from-zinc-950/100 to-transparent pointer-events-none">
                 <h4 class="text-zinc-50 text-[16px] font-bold">{{ project.videos[activeVideoIndex].title }}</h4>
                 <p class="text-zinc-300 text-[12px] font-semibold mb-12 max-w-2xl">{{ project.videos[activeVideoIndex].desc }}</p>
               </div>
