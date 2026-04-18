@@ -65,7 +65,7 @@ const endPan = () => isPanning.value = false;
   <!-- ROOT: Must be flex-col and h-full to create the scrolling context -->
   <div class="flex flex-col h-full px-0 overflow-hidden bg-white">
     <!-- 1. UPDATED HEADER: Removed fixed h-12 and overflow-hidden -->
-    <header class="z-30 bg-zinc-300 border-b border-zinc-950 px-3 py-2 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 shrink-0">
+    <header class="z-30 bg-zinc-300 border-b border-zinc-950 px-3 py-2 sm:py-1 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 shrink-0">
       
       <!-- Title Section -->
       <div class="flex items-baseline gap-3 min-w-1/2">
@@ -78,7 +78,7 @@ const endPan = () => isPanning.value = false;
       </div>
 
       <!-- Tech Stack: flex-wrap allows items to move to a second line if space runs out -->
-      <div class="flex flex-wrap justify-start sm:justify-end gap-1.5 pb-1">
+      <div class="flex flex-wrap justify-start sm:justify-end gap-1.5">
         <span v-for="tech in project.stack" :key="tech" 
               class="px-1.5 py-0.5 bg-indigo-100 text-indigo-600 text-[8px] tracking-[0.05em] font-mono font-semibold rounded border border-indigo-600 whitespace-nowrap">
           {{ tech }}

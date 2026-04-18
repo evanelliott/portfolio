@@ -17,13 +17,13 @@ const handleProjectSelect = (id: string) => {
   <div class="project-root fixed inset-0 flex flex-col bg-zinc-950 text-zinc-100 overflow-hidden isolate sm:px-12">
     
     <!-- Top Header -->
-    <header class="w-full shrink-0 z-10 py-2 mt-4">
-      <div class="max-w-7xl mx-auto px-4 flex justify-between items-end">
+    <header class="w-full shrink-0 z-10 py-2 sm:py-1 mt-4 sm:mt-1">
+      <div class="max-w-7xl mx-auto px-4 sm:px-0 flex justify-between items-end">
         <h4 class="font-bold leading-none text-[18px]">Project Portfolio</h4>
         <div class="hidden sm:block text-[10px] font-bold">
           <span class="px-2">Evan Elliott</span>
           <span class="px-2 border-l border-white">Technical Lead</span>
-          <span class="px-2 border-l border-white">Data Science & Engineering Specialist</span>
+          <span class="pl-2 border-l border-white">Data Science & Engineering Specialist</span>
           
         </div>
       </div>
@@ -40,7 +40,7 @@ const handleProjectSelect = (id: string) => {
 
     <!-- Bottom Project Pane (Horizontal) -->
     <aside class="w-full shrink-0 bg-zinc-950 backdrop-blur-sm pb-0">
-      <nav class="flex flex-row w-full max-w-7xl mx-auto px-4 gap-2 overflow-x-auto overflow-y-hidden custom-scrollbar pb-0"> 
+      <nav class="flex flex-row w-full max-w-7xl mx-auto px-4 sm:px-0 gap-2 sm:gap-4 overflow-x-auto overflow-y-hidden custom-scrollbar pb-0"> 
         <ProjectPane 
           v-for="project in projects" 
           :key="project.id" 

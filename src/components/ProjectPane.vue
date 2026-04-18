@@ -41,8 +41,8 @@ defineEmits<{
       class="flex-1 flex items-center justify-center p-1.5 rounded-md border transition"
       :class="[
         isActive 
-          ? 'border-indigo-600 bg-indigo-300 shadow-sm mt-4 mb-0' 
-          : 'border-zinc-600 bg-zinc-300 mt-4 mr-0'
+          ? 'border-indigo-600 bg-indigo-300 shadow-sm mt-5 sm:mt-3 mb-0' 
+          : 'border-zinc-600 bg-zinc-300 mt-5 sm:mt-3 mr-0'
       ]"
     >
       <!-- Project Emoji & Name -->
