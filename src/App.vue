@@ -27,11 +27,8 @@ const handleProjectSelect = (id: string) => {
       </div>
     </header>
 
-    <!-- Main Layout Container -->
     <div class="flex-1 flex flex-col">
-      <!-- Project Pane Bar -->
-      <aside class="top-[80px] z-10 bg-zinc-950 px-4 pb-4">
-        <!-- flex-1 on the panes inside this flex container will force them to distribute evenly -->
+      <aside class="top-[88px] z-10 bg-zinc-950 px-4 pb-4">
         <nav class="flex flex-row h-full w-full p-0 gap-2 sm:gap-5"> 
           <ProjectPane 
             v-for="project in projects" 
@@ -44,8 +41,6 @@ const handleProjectSelect = (id: string) => {
         </nav>
       </aside>
 
-      <!-- REMOVED: overflow-y-auto and flex-1 relative -->
-      <!-- Let the browser handle the scroll -->
       <main class="text-zinc-950 bg-zinc-950">
         <RouterView v-slot="{ Component }">
           <Transition name="page" mode="out-in">
@@ -53,15 +48,20 @@ const handleProjectSelect = (id: string) => {
           </Transition>
         </RouterView>
       </main>
-    
-      <footer class="w-full py-0.5 text-center shrink-0 bg-zinc-950 z-20">
-        <div class="text-[7px] text-zinc-500">
-          &copy; {{ new Date().getFullYear() }} Evan Elliott. No rights reserved.
-        </div>
-      </footer>
     </div>
+
+    <!-- MOVED FOOTER HERE: Outside the main flex flow -->
+    <footer class="w-full py-2 text-center bg-zinc-950 z-20">
+      <div class="text-[7px] text-zinc-500">
+        &copy; {{ new Date().getFullYear() }} Evan Elliott. No rights reserved.
+      </div>
+    </footer>
   </div>
+
+  <!-- The "Invisible Footer" Trick -->
+  <div class="fixed bottom-0 left-0 right-0 h-[10px] pointer-events-none bg-zinc-950 z-[-1]"></div>
 </template>
+
 
 
 <style>

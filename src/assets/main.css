@@ -15,8 +15,13 @@
   --border-default: #d0d7de;
   --link-color: #0969da;
 }
+html, body {
+  /* Forces Safari to use this color for the bottom overscroll and UI bars */
+  background-color: #09090b !important; 
+  /* Prevents "rubber-banding" from showing white gaps */
+  overscroll-behavior-y: none; 
+}
 html {
-  background-color: #09090b; /* Match your zinc-950 exactly */
 }
 body {
   font-family: var(--font-sans);
