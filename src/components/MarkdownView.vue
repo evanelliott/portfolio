@@ -94,7 +94,7 @@ const endPan = () => isPanning.value = false;
         <!-- EXECUTIVE SUMMARY -->
         <div class="grid grid-cols-1 gap-4 pt-0">
           <div class="sticky top-0 z-20 bg-white py-1 flex items-center gap-3 border-b shadow border-zinc-950">
-            <h4 class="pl-2 font-bold">▪ Executive Summary</h4>
+            <h4 class="pl-3 font-bold">Executive Summary</h4>
           </div>
           
           <div class="px-8">
@@ -145,10 +145,10 @@ const endPan = () => isPanning.value = false;
         <section class="mt-0 bg-zinc-000 space-y-8">
           <!-- Sticky Section Header -->
           <div class="sticky top-0 z-20 bg-white py-1 flex items-center gap-3 border-b border-t shadow border-zinc-950">
-            <h4 class="pl-2 font-bold">▪ Architectural Blueprints</h4>
+            <h4 class="pl-3 font-bold">Architectural Blueprints</h4>
           </div>
           
-          <div class="px-4">
+          <div class="px-3">
             <div class="grid grid-cols-4 sm:grid-cols-6 gap-2 sm:gap-4 px-0">
               <!-- Mandatory System Architecture -->
               <div class="group relative cursor-pointer aspect-square rounded-lg border border-zinc-950 overflow-hidden bg-zinc-950"
@@ -178,10 +178,10 @@ const endPan = () => isPanning.value = false;
         <!-- 3. IMPLEMENTATION CINEMA -->
         <section v-if="project.videos?.length" class="mt-0 pb-0 space-y-2">
           <div class="sticky top-0 z-20 bg-white py-1 flex items-center gap-3 border-b border-t shadow border-zinc-950">
-            <h4 class="pl-2 font-bold">▪ Deep-Dive Cinema</h4>
+            <h4 class="pl-3 font-bold">Deep-Dive Cinema</h4>
           </div>
 
-          <div class="px-4 sm:px-12 space-y-2">
+          <div class="px-3 sm:px-12 space-y-2">
             <!-- MAIN VIEWER -->
             <div class="group relative aspect-video w-full overflow-hidden rounded-3xl bg-zinc-900 shadow-2xl border-3 border-zinc-400">
               <transition name="fade" mode="out-in">
@@ -230,7 +230,7 @@ const endPan = () => isPanning.value = false;
         <!-- 4. ARTIFACTS -->
         <footer v-if="project.artifacts" class="pt-0">
           <div class="sticky top-0 z-20 bg-white py-1 flex items-center gap-3 border-t border-b shadow border-zinc-950">
-            <h4 class="pl-2 font-bold">▪ Artifacts</h4>
+            <h4 class="pl-3 font-bold">Artifacts</h4>
           </div>
           <div class="bg-white p-6 flex flex-col md:flex-row justify-between items-center gap-4 shadow-2xl shadow-indigo-200">
             <!-- <div class="text-center md:text-left space-y-1"> -->
