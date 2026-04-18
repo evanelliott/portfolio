@@ -14,9 +14,9 @@ const activeProject = computed(() =>
 </script>
 
 <template>
-  <section class="border-2 rounded-md border-slate-600 bg-white overflow-hidden h-full">
+  <section class="border-2 rounded-md border-zinc-600 bg-white overflow-hidden h-full">
     <div v-if="activeProject" class="flex flex-col md:flex-row h-full">
-      <div class="flex-1 overflow-y-auto p-0 md:p-0 prose prose-slate prose-sm max-w-none custom-scrollbar scroll-pt-0">
+      <div class="flex-1 overflow-y-auto p-0 md:p-0 prose prose-zinc prose-sm max-w-none custom-scrollbar scroll-pt-0">
         <MarkdownView :project="activeProject" />
       </div>
     </div>
@@ -26,11 +26,11 @@ const activeProject = computed(() =>
 
       <!-- 1. FIXED TOP HEADER -->
       <!-- This stays at the top and does not scroll -->
-      <header class="z-30 bg-white border-b-2 border-slate-600 px-2 h-12 flex justify-start items-center w-full">
+      <header class="z-30 bg-zinc-300 border-b border-zinc-600 px-3 h-12 flex justify-start items-center w-full shadow">
         <div class="flex items-baseline gap-3 py-4 min-w-0">
           <div class="space-y-0.5">
             <h4 class="text-sm font-bold leading-none">
-              Select a project to begin <span class="pointing-finger text-[20px] ml-4">👉</span> 
+              Select a project to begin <span class="pointing-finger text-[20px] ml-0">👇</span> 
             </h4>
           </div>
         </div>
@@ -38,39 +38,7 @@ const activeProject = computed(() =>
       
       <!-- 2. SCROLLABLE VIEWPORT -->
       <!-- This is the container that allows sticky headers to work -->
-      <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full w-full bg-slate-100">
-        <div class="mx-auto px-0 pb-0 space-y-0 text-[10px]">
-          <p class="px-2 py-2 text-[10px] font-bold mt-0">Includes:</p>
-          
-          <!-- EXECUTIVE SUMMARY -->
-          <section class="mt-0 pb-0 space-y-1">
-            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
-              <h4 class="pl-2 font-bold">▪ Executive Summary</h4><i>Overview of the project's aims and outcomes</i>
-            </div>
-            
-          </section>
-
-          <!-- 2. ARCHITECTURAL BLUEPRINT -->
-          <section class="mt-0 pb-0 space-y-1">
-            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
-              <h4 class="pl-2 font-bold">▪ Architectural Blueprints</h4><i>Technical diagrams detailing the solution's structure and logic</i>
-            </div>
-          </section>
-
-          <!-- 3. IMPLEMENTATION CINEMA -->
-          <section class="mt-0 pb-0 space-y-1">
-            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
-              <h4 class="pl-2 font-bold">▪ Deep-Dive Cinema</h4><i>A collection of videos exploring specific areas of interest</i>
-            </div>
-          </section>
-          
-          <!-- 4. ARTIFACTS -->
-          <section class="mt-0 pb-0 space-y-1">
-            <div class="sticky top-0 z-20 bg-slate-100 py-1 mr-0.5 flex items-center gap-3 border-b border-slate-100">
-              <h4 class="pl-2 font-bold">▪ Artifacts</h4><i>Links to source code and documentation</i>
-            </div>
-          </section>
-        </div>
+      <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full w-full bg-zinc-100">
       </main>
     </div>
 
@@ -111,16 +79,16 @@ const activeProject = computed(() =>
 }
 
 .pointing-finger {
-  display: inline-block; /* Required for transform to work */
-  animation: nudge-left 1.5s infinite ease-in-out;
+  display: inline-block;
+  animation: nudge-down 1.5s infinite ease-in-out;
 }
 
-@keyframes nudge-left {
+@keyframes nudge-down {
   0%, 100% {
-    transform: translateX(0);
+    transform: translateY(0);
   }
   50% {
-    transform: translateX(-6px); /* Moves 6px towards the sidebar */
+    transform: translateY(6px); /* Moves 6px towards the sidebar */
   }
 }
 
