@@ -17,7 +17,7 @@ const handleProjectSelect = (id: string) => {
   <div class="project-root fixed inset-0 flex flex-col bg-zinc-950 text-zinc-100 sm:px-16 overflow-hidden isolate">
     
     <!-- Top Header -->
-    <header class="w-full shrink-0 z-20 pt-4 sm:pt-0 sm:pb-1">
+    <header class="w-full shrink-0 z-20 pt-4 sm:pt-0 pb-2 sm:pb-1">
       <div class="max-w-7xl mx-auto px-4 sm:px-0 flex justify-between items-end">
         <h4 class="font-bold leading-none text-[18px]">Project Portfolio</h4>
         <div class="hidden sm:block text-[10px] font-bold">
@@ -34,9 +34,9 @@ const handleProjectSelect = (id: string) => {
       
       <!-- Project Pane Bar -->
       <!-- sm:h-full ensures it stretches the vertical height on desktop -->
-      <aside class="order-1 sm:order-1 w-full sm:w-22 h-auto sm:h-full shrink-0 bg-zinc-950 z-10 pb-2 sm:pb-0 sm:pr-2">
+      <aside class="order-1 sm:order-1 w-full sm:w-20 h-auto sm:h-full shrink-0 bg-zinc-950 z-10 pb-4 sm:pb-8 sm:pr-4 sm:py-8">
         <!-- flex-1 on the panes inside this flex container will force them to distribute evenly -->
-        <nav class="flex flex-row sm:flex-col h-full w-full p-2 gap-2 sm:gap-4"> 
+        <nav class="flex flex-row sm:flex-col h-full w-full p-0 gap-2 sm:gap-4"> 
           <ProjectPane 
             v-for="project in projects" 
             :key="project.id" 

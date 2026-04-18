@@ -44,7 +44,7 @@ defineEmits<{
       :class="[
         isActive 
           ? 'border-indigo-600 bg-indigo-300 shadow-sm' 
-          : 'border-zinc-600 bg-zinc-300'
+          : 'border-zinc-950 bg-zinc-300'
       ]"
     >
       <!-- Project Emoji & Name -->
