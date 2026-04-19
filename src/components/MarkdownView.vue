@@ -63,7 +63,7 @@ const endPan = () => isPanning.value = false;
 
 <template>
   <!-- ROOT: Must be flex-col and h-full to create the scrolling context -->
-  <div class="flex flex-col h-full px-0 overflow-hidden bg-white">
+  <div class="flex flex-col h-full px-0 overflow-hidden bg-zinc-950">
     <!-- 1. UPDATED HEADER: Removed fixed h-12 and overflow-hidden -->
     <header class="z-30 bg-zinc-300 border-b border-zinc-950 px-3 py-2 sm:py-1 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 shrink-0">
       
@@ -88,7 +88,7 @@ const endPan = () => isPanning.value = false;
 
 
     <!-- 2. SCROLLABLE VIEWPORT -->
-    <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full custom-scrollbar">
+    <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full bg-white custom-scrollbar">
       <div class="mx-auto px-0 pb-0 space-y-16 text-[10px] bg-whie">
         
         <!-- EXECUTIVE SUMMARY -->
