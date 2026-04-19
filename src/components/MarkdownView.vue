@@ -1,83 +1,72 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
+import VueEasyLightbox from 'vue-easy-lightbox'; // Ensure this is installed
 import ProjectDemo from './ProjectDemo.vue';
 import type { Project } from '@/types/Project';
 
-defineProps<{
+const props = defineProps<{
   project: Project 
 }>();
 
+/** 
+ * LIGHTBOX GALLERY LOGIC
+ */
+const activeIndex = ref(0); // Tracks the current gallery index
+
+// Consolidate all project images into one swipeable array
+const projectGallery = computed(() => {
+  const images = [
+    { src: props.project.imageUrl, title: props.project.title },
+    { src: props.project.systemArchitectureUrl, title: 'System Architecture' }
+  ];
+  
+  props.project.additionalDiagrams?.forEach(diag => {
+    images.push({ src: diag.url, title: diag.name });
+  });
+
+  return images;
+});
+
+// Helper to open the lightbox at a specific image
+const openGalleryAt = (url: string) => {
+  const index = projectGallery.value.findIndex(img => img.src === url);
+  activeIndex.value = index >= 0 ? index : 0;
+  visible.value = true;
+};
+
+const handleHide = () => {
+  visible.value = false;
+};
+
 // Track which video is currently playing
 const activeVideoIndex = ref(0);
-
 const selectVideo = (index: number) => {
   activeVideoIndex.value = index;
 };
 
-// --- LIGHTBOX LOGIC ---
-const fullscreenImage = ref<string | null>(null);
-const fullscreenCaption = ref('');
-const scale = ref(1);
-const offset = ref({ x: 0, y: 0 });
-const isPanning = ref(false);
-const startPos = ref({ x: 0, y: 0 });
+const visible = ref(false);
 
-const imageStyle = computed(() => ({
-  transform: `translate(${offset.value.x}px, ${offset.value.y}px) scale(${scale.value})`,
-  cursor: isPanning.value ? 'grabbing' : 'grab',
-  transition: isPanning.value ? 'none' : 'transform 0.15s ease-out'
-}));
-
-const openFullscreen = (url: string, title: string) => {
-  fullscreenImage.value = url;
-  fullscreenCaption.value = title;
-  scale.value = 1;
-  offset.value = { x: 0, y: 0 };
-};
-
-const closeFullscreen = () => {
-  fullscreenImage.value = null;
-};
-
-const zoomIn = () => scale.value = Math.min(scale.value + 0.5, 4);
-const zoomOut = () => scale.value = Math.max(scale.value - 0.5, 0.5);
-
-const handleWheel = (e: WheelEvent) => {
-  const delta = e.deltaY > 0 ? -0.2 : 0.2;
-  scale.value = Math.min(Math.max(0.5, scale.value + delta), 4);
-};
-
-const startPan = (e: MouseEvent) => {
-  isPanning.value = true;
-  startPos.value = { x: e.clientX - offset.value.x, y: e.clientY - offset.value.y };
-};
-
-const doPan = (e: MouseEvent) => {
-  if (!isPanning.value) return;
-  offset.value = { x: e.clientX - startPos.value.x, y: e.clientY - startPos.value.y };
-};
-
-const endPan = () => isPanning.value = false;
-
+// LOCK SCROLL: This is the critical piece you are missing
+watch(visible, (val) => {
+  if (val) {
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+  }
+});
 </script>
 
 <template>
-  <!-- ROOT: Must be flex-col and h-full to create the scrolling context -->
   <div class="flex flex-col h-full px-0 overflow-hidden bg-zinc-950">
-    <!-- 1. UPDATED HEADER: Removed fixed h-12 and overflow-hidden -->
     <header class="z-30 bg-zinc-300 border-b border-zinc-950 px-3 py-2 sm:py-1 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 shrink-0">
-      
-      <!-- Title Section -->
       <div class="flex items-baseline gap-3 min-w-1/2">
         <div class="space-y-0.5">
-          <h4 class="text-sm font-bold leading-tight">
-            {{ project.title }}
-          </h4>
+          <h4 class="text-sm font-bold leading-tight">{{ project.title }}</h4>
           <p class="text-[10px] text-indigo-600 font-bold mt-0">{{ project.headline }}</p>
         </div>
       </div>
-
-      <!-- Tech Stack: flex-wrap allows items to move to a second line if space runs out -->
       <div class="flex flex-wrap justify-start sm:justify-end gap-1">
         <span v-for="tech in project.stack" :key="tech" 
               class="px-1 py-0.5 bg-indigo-100 text-indigo-600 text-[7px] tracking-[0.05em] font-mono font-semibold rounded border border-indigo-600 whitespace-nowrap">
@@ -86,32 +75,22 @@ const endPan = () => isPanning.value = false;
       </div>
     </header>
 
-
-    <!-- 2. SCROLLABLE VIEWPORT -->
     <main class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full bg-white custom-scrollbar">
-      <div class="mx-auto px-0 pb-0 space-y-16 text-[10px] bg-whie">
+      <div class="mx-auto px-0 pb-0 space-y-16 text-[10px]">
         
         <!-- EXECUTIVE SUMMARY -->
         <div class="grid grid-cols-1 gap-4 pt-0">
           <div class="sticky top-0 z-20 bg-white py-1 flex items-center gap-3 border-b shadow border-zinc-950">
             <h4 class="pl-3 font-bold">Executive Summary</h4>
           </div>
-          
           <div class="px-8">
-            <!-- Mobile: flex-col (Photo top) | Tablet+: flex-row (Side-by-side) -->
             <div class="flex flex-col gap-6">
-              
               <div>
-                <p class="text-[10px] text-zinc-900 leading-relaxed">
-                  {{ project.summary }}
-                </p>
+                <p class="text-[10px] text-zinc-900 leading-relaxed">{{ project.summary }}</p>
               </div>
-              
               <div class="w-full">
                 <img :src="project.imageUrl" alt="Project screenshot" class="w-full rounded-lg border border-zinc-950 shadow-sm object-cover">
               </div>
-
-              <!-- KPI Grid -->
               <div class="grid grid-cols-2 gap-3 px-6">
                 <div v-for="kpi in project.kpis" :key="kpi.label" 
                     class="p-2 bg-zinc-100 rounded-xl border border-zinc-950 flex flex-col justify-center text-center">
@@ -119,49 +98,40 @@ const endPan = () => isPanning.value = false;
                   <span class="text-[9px] font-semibold text-zinc-600 mt-1">{{ kpi.label }}</span>
                 </div>
               </div>
-
             </div>
           </div>
-
-          <!-- Rationale Grid (3 columns on all sizes, or adjust if needed) -->
           <div class="grid grid-cols-1 sm:grid-cols-2 px-9 gap-4 mt-4">
             <div v-for="item in project.rationale" :key="item.title" class="space-y-2">
               <h4 class="text-[10px] font-bold flex items-center gap-2">
                 <span class="w-1.5 h-1.5 bg-indigo-600 rounded-full"></span>
                 {{ item.title }}
               </h4>
-              <p class="text-[10px] text-zinc-600">
-                {{ item.description }}
-              </p>
+              <p class="text-[10px] text-zinc-600">{{ item.description }}</p>
             </div>
           </div>
         </div>
         
-        <!-- 2. ARCHITECTURAL BLUEPRINT (MODIFIED SECTION) -->
-        <section class="mt-0 bg-zinc-000 space-y-8">
-          <!-- Sticky Section Header -->
+        <!-- 2. ARCHITECTURAL BLUEPRINTS -->
+        <section class="mt-0 space-y-8">
           <div class="sticky top-0 z-20 bg-white py-1 flex items-center gap-3 border-b border-t shadow border-zinc-950">
             <h4 class="pl-3 font-bold">Architectural Blueprints</h4>
           </div>
-          
           <div class="px-3">
-            <div class="grid grid-cols-4 sm:grid-cols-5 gap-2 sm:gap-2 px-0">
-              <!-- Mandatory System Architecture -->
-              <div class="flex items-center justify-center group relative cursor-pointer aspect-square rounded-lg border border-zinc-950 overflow-hidden bg-zinc-950"
-                   @click="openFullscreen(project.systemArchitectureUrl, 'System Architecture')">
+            <div class="grid grid-cols-4 sm:grid-cols-5 gap-2 px-0">
+              <!-- Architecture Diagram triggers gallery -->
+              <div @click="openGalleryAt(project.systemArchitectureUrl)"
+                   class="flex items-center justify-center group relative cursor-pointer aspect-square rounded-lg border border-zinc-950 overflow-hidden bg-zinc-950">
                 <img :src="project.systemArchitectureUrl" class="w-full h-full object-cover">
-                <!-- Static Dark Overlay & Title -->
                 <div class="absolute inset-0 bg-zinc-950/50 flex items-center justify-center">
                   <span class="text-white text-[10px] font-bold text-center px-2">System Architecture</span>
                 </div>
               </div>
 
-              <!-- Additional Diagrams -->
+              <!-- Additional Diagrams trigger gallery at their specific index -->
               <div v-for="diag in project.additionalDiagrams" :key="diag.name"
-                   class="flex items-center justify-center group relative cursor-pointer aspect-square rounded-lg border border-zinc-950 overflow-hidden bg-zinc-950"
-                   @click="openFullscreen(diag.url, diag.name)">
+                   @click="openGalleryAt(diag.url)"
+                   class="flex items-center justify-center group relative cursor-pointer aspect-square rounded-lg border border-zinc-950 overflow-hidden bg-zinc-950">
                 <img :src="diag.url" class="w-full h-full object-cover">
-                <!-- Static Dark Overlay & Title -->
                 <div class="absolute inset-0 bg-zinc-950/50 flex items-center justify-center">
                   <span class="text-white text-[10px] font-bold text-center px-2">{{ diag.name }}</span>
                 </div>
@@ -242,37 +212,27 @@ const endPan = () => isPanning.value = false;
       </div>
       <div class="sticky bottom-0 h-1/6 w-full bg-gradient-to-t from-white to-transparent pointer-events-none z-10"></div>
     </main>
-
-    <!-- FULLSCREEN LIGHTBOX (TELEPORTED) -->
     <Teleport to="body">
-      <Transition name="fade">
-        <div v-if="fullscreenImage" 
-             class="lightbox fixed inset-0 z-[9999] bg-zinc-950/95 flex flex-col touch-none" 
-             @click.self="closeFullscreen">
-          
-          <div class="flex justify-between items-center px-4 h-12 border-b border-zinc-950 bg-zinc-950 text-white z-[10000]">
-            <h4 class="text-[10px] font-bold">{{ fullscreenCaption }}</h4>
-            <div class="flex gap-4">
-              <button @click="zoomIn" class="text-xl font-bold hover:text-indigo-400">+</button>
-              <button @click="zoomOut" class="text-xl font-bold hover:text-indigo-400">-</button>
-              <button @click="closeFullscreen" class="text-xl font-bold hover:text-indigo-400">✕</button>
-            </div>
-          </div>
-
-          <div class="flex-1 overflow-hidden relative cursor-move" 
-               @mousedown="startPan" @mousemove="doPan" @mouseup="endPan" @wheel.prevent="handleWheel">
-            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <img :src="fullscreenImage" 
-                   :style="imageStyle" 
-                   draggable="false" 
-                   class="max-w-[90%] max-h-[90%] object-contain shadow-2xl pointer-events-auto" />
-            </div>
-          </div>
-        </div>
-      </Transition>
+      <div v-if="visible" class="fixed-viewport-header">
+        {{ projectGallery[activeIndex]?.title }}
+      </div>
     </Teleport>
+    <vue-easy-lightbox
+      :visible="visible"
+      :imgs="projectGallery"
+      :index="activeIndex"
+      @hide="handleHide"
+      :teleport="'body'"
+      :scroll-disabled="true" 
+    >
+      <template #toolbar>
+        <div class="fixed-lightbox-header">
+          {{ projectGallery[activeIndex]?.title }}
+        </div>
+      </template>
+    </vue-easy-lightbox>
   </div>
-</template>
+  </template>
 
 <style scoped>
 @reference "tailwindcss";
@@ -280,7 +240,6 @@ const endPan = () => isPanning.value = false;
 .btn-artifact {
   @apply px-4 py-2 bg-zinc-200 text-indigo-600 hover:bg-white hover:text-zinc-900 rounded-lg border border-zinc-950 text-[10px] text-center font-bold transition-all;
 }
-
 /* Hide scrollbar for the filmstrip but allow scrolling */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
@@ -289,22 +248,30 @@ const endPan = () => isPanning.value = false;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+.fixed-lightbox-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  /* Use safe-area for your black-translucent status bar */
+  height: calc(50px + env(safe-area-inset-top, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
+  
+  background: rgba(9, 9, 11, 0.95);
+  color: white;
+  z-index: 999999; /* Ensure it stays above library layers */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
 
-.scroll-container-fade {
-  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
-}
-/* Previous styles remain same, ensuring z-index is high for teleport */
-.lightbox {
-  z-index: 9999;
-  /* GPU acceleration for smooth Safari rendering */
-  -webkit-transform: translate3d(0,0,0);
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.2s ease;
-}
-.fade-enter-from, .fade-leave-to {
-  opacity: 0;
+/* Ensure the library container fills the viewport correctly */
+:deep(.vel-container) {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 </style>
