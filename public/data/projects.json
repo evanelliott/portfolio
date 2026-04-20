@@ -149,7 +149,7 @@
     "emoji": "✅",
     "headline": "Automated QA and Deployment",
     "summary": "A professional-grade CI/CD workflow for a GitHub repository. Automates the entire lifecycle from linting and testing to performance auditing and deployment.",
-    "stack": ["GitHub Actions", "Vue 3", "Vite", "Vitest", "Lighthouse"],
+    "stack": ["GitHub Actions", "TypeScript", "Vue 3", "Vite", "Vitest", "ESLint", "Prettier", "Lighthouse"],
     "kpis": [
       { "value": "100%", "label": "Test Coverage" }, 
       { "value": "90+", "label": "Lighthouse Score" }
