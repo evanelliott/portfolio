@@ -1,0 +1,5 @@
+npm run test:unit
+
+npm run build
+
+npx lhci autorun --collect.numberOfRuns=1
