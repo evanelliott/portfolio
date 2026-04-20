@@ -15,7 +15,7 @@
 
 <template>
   <div class="project-root min-h-screen flex flex-col bg-zinc-950 text-zinc-100 sm:px-16 isolate">
-    <header class="w-full shrink-0 z-20 pt-12 pb-4 top-0 bg-zinc-950 backdrop-blur-md">
+    <header class="w-full shrink-0 z-20 pt-4 sm:pt-0 pb-4 top-0 bg-zinc-950 backdrop-blur-md">
       <div class="max-w-7xl mx-auto px-4 sm:px-0 flex justify-between items-end">
         <h4 class="font-bold leading-none text-[18px]">Project Portfolio</h4>
         <div class="hidden sm:block text-[10px] font-bold">
