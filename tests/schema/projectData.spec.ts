@@ -21,13 +21,13 @@ const ProjectSchema = z.object({
       label: z.string()
     })
   ),
-  imageUrl: z.string().url(),
+  imageUrl: z.string().regex(/\.(jpg|jpeg|png|svg|webp)$/),
   // New Diagram structure
   systemArchitectureUrl: z.string().url(),
   additionalDiagrams: z.array(
     z.object({
       name: z.string(),
-      url: z.string().url()
+      url: z.string().regex(/\.(jpg|jpeg|png|svg|webp)$/)
     })
   ),
   rationale: z.array(
