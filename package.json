@@ -19,7 +19,7 @@
     "*.{js,ts,vue}": [
       "eslint --fix",
       "prettier --write",
-      "vue-tsc --noEmit"
+      "vue-tsc -p tsconfig.json --noEmit"
     ]
   },
   "dependencies": {
