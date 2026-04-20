@@ -147,23 +147,33 @@
     "name": "CI/CD",
     "title": "Modern CI/CD Pipeline",
     "emoji": "✅",
-    "headline": "Automated QA and Deployment",
-    "summary": "A professional-grade CI/CD workflow for a GitHub repository. Automates the entire lifecycle from linting and testing to performance auditing and deployment.",
-    "stack": ["GitHub Actions", "TypeScript", "Vue 3", "Vite", "Vitest", "ESLint", "Prettier", "Lighthouse"],
+    "headline": "A Blueprint for Automated Quality & Deployment",
+    "summary": "A robust reference implementation of industry-standard CI/CD workflows. While demonstrated on a Vue 3 stack, the architecture serves as a portable template for enforcing code quality, performance audits, and automated deployments in most modern ecosystems.",
+    "stack": ["GitHub Actions", "TypeScript", "Vue 3", "Vite", "Vitest", "ESLint", "Prettier", "Husky", "Lighthouse"],
     "kpis": [
       { "value": "100%", "label": "Test Coverage" }, 
-      { "value": "90+", "label": "Lighthouse Score" }
+      { "value": "90+", "label": "Lighthouse Score" },
+      { "value": "100%", "label": "Automation" }
     ],
     "imageUrl": "/src/assets/cicd-project.png",
     "rationale": [
-      { "title": "Testing Strategy", "description": "Implemented Vitest for lightning-fast unit and component testing within the Vite ecosystem." },
-      { "title": "Developer Experience", "description": "Strict ESLint and Prettier configurations enforced at the pre-commit and CI stages." },
-      { "title": "Automated Audits", "description": "GitHub Actions trigger Lighthouse CI to prevent performance regressions in pull requests." }
+      { 
+        "title": "Shift-Left Testing", 
+        "description": "Catch bugs before they reach the repo by enforcing formatting, linting and Unit Tests locally via Husky git hooks." 
+      },
+      { 
+        "title": "Automated Quality Gates", 
+        "description": "Prevent UX regressions with Lighthouse CI audits that block deployments if performance or accessibility scores drop." 
+      },
+      { 
+        "title": "Atomic Deployments", 
+        "description": "Ensures the live site only updates after quality gates all pass, maintaining a stable production environment." 
+      }
     ],
     "videos": [
-      { "title": "Action Workflows", "desc": "Tracing a build from commit to deployment." },
-      { "title": "Vitest Suite", "desc": "Demonstrating high-speed component testing." },
-      { "title": "Lighthouse Reports", "desc": "Analyzing automated performance and accessibility scores." }
+      { "title": "The Quality Gate", "desc": "Watch a git push get blocked by a failing test and then pass after a fix." },
+      { "title": "GitHub Actions", "desc": "A deep dive into the end-to-end workflow." },
+      { "title": "Post-Build Insights", "desc": "A tour of the automated reports, including Vitest coverage maps and Lighthouse performance audits." }
     ],
     "systemArchitectureUrl": "/src/assets/cicd-system-architecture.svg",
     "additionalDiagrams": [
