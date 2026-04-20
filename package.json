@@ -8,7 +8,7 @@
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build && mkdir -p dist/portfolio && cp -r dist/assets dist/index.html dist/portfolio/",
-    "type-check": "vue-tsc --build --force",
+    "type-check": "vue-tsc -p tsconfig.json --noEmit",
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
     "test:unit": "vitest",
