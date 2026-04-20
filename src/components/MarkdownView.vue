@@ -8,6 +8,32 @@
     project: Project
   }>()
 
+  // Helper function to resolve dynamic assets
+  // 1. This tells Vite to track and optimize all images in the assets folder
+  const images = import.meta.glob('@/assets/*.{png,jpg,jpeg,svg,webp}', {
+    eager: true,
+    import: 'default',
+  })
+  console.log('Available Vite Images:', Object.keys(images)) // Look at these keys in your browser console!
+
+  const getImageUrl = (path: string) => {
+    if (!path || path.startsWith('http')) return path
+
+    // 1. Get just the filename (e.g., "CICD Project.png")
+    const filename = path.split('/').pop()
+
+    // 2. Find the key in the 'images' object that ends with this filename
+    const key = Object.keys(images).find((k) => k.endsWith(`/${filename}`))
+
+    if (key) {
+      return images[key] as string
+    }
+
+    // 3. If no match, return a placeholder or the raw path to help debug
+    console.warn(`Could not find optimized image for: ${filename}`)
+    return path
+  }
+
   /**
    * LIGHTBOX GALLERY LOGIC
    */
@@ -16,12 +42,14 @@
   // Consolidate all project images into one swipeable array
   const projectGallery = computed(() => {
     const images = [
-      { src: props.project.imageUrl, title: props.project.title },
-      { src: props.project.systemArchitectureUrl, title: 'System Architecture' },
+      // Wrap both primary images in the helper
+      { src: getImageUrl(props.project.imageUrl), title: props.project.title },
+      { src: getImageUrl(props.project.systemArchitectureUrl), title: 'System Architecture' },
     ]
 
     props.project.additionalDiagrams?.forEach((diag) => {
-      images.push({ src: diag.url, title: diag.name })
+      // Wrap additional diagrams too
+      images.push({ src: getImageUrl(diag.url), title: diag.name })
     })
 
     return images
@@ -98,7 +126,7 @@
               </div>
               <div class="w-full">
                 <img
-                  :src="project.imageUrl"
+                  :src="getImageUrl(project.imageUrl)"
                   alt="Project screenshot"
                   class="w-full rounded-lg border border-zinc-950 shadow-sm object-cover"
                 />
@@ -143,11 +171,11 @@
             <div class="grid grid-cols-4 sm:grid-cols-5 gap-2 px-0">
               <!-- Architecture Diagram triggers gallery -->
               <div
-                @click="openGalleryAt(project.systemArchitectureUrl)"
+                @click="openGalleryAt(getImageUrl(project.systemArchitectureUrl))"
                 class="flex items-center justify-center group relative cursor-pointer aspect-square rounded-lg border border-zinc-950 overflow-hidden bg-zinc-950"
               >
                 <img
-                  :src="project.systemArchitectureUrl"
+                  :src="getImageUrl(project.systemArchitectureUrl)"
                   class="w-full h-full object-cover"
                 />
                 <div class="absolute inset-0 bg-zinc-950/50 flex items-center justify-center">
@@ -161,11 +189,11 @@
               <div
                 v-for="diag in project.additionalDiagrams"
                 :key="diag.name"
-                @click="openGalleryAt(diag.url)"
+                @click="openGalleryAt(getImageUrl(diag.url))"
                 class="flex items-center justify-center group relative cursor-pointer aspect-square rounded-lg border border-zinc-950 overflow-hidden bg-zinc-950"
               >
                 <img
-                  :src="diag.url"
+                  :src="getImageUrl(diag.url)"
                   class="w-full h-full object-cover"
                 />
                 <div class="absolute inset-0 bg-zinc-950/50 flex items-center justify-center">
