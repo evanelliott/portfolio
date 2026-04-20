@@ -86,6 +86,21 @@
     padding-bottom: env(safe-area-inset-bottom);
   }
 
+  /* Transition for the Project Content */
+  .page-enter-active,
+  .page-leave-active {
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .page-enter-from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .page-leave-to {
+    opacity: 0;
+  }
+
   /* Ensure images/content don't break the layout width */
   img,
   video {
