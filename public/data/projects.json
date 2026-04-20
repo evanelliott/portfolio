@@ -154,7 +154,7 @@
       { "value": "100%", "label": "Test Coverage" }, 
       { "value": "90+", "label": "Lighthouse Score" }
     ],
-    "imageUrl": "/src/assets/CICD Project.png",
+    "imageUrl": "/src/assets/cicd-project.png",
     "rationale": [
       { "title": "Testing Strategy", "description": "Implemented Vitest for lightning-fast unit and component testing within the Vite ecosystem." },
       { "title": "Developer Experience", "description": "Strict ESLint and Prettier configurations enforced at the pre-commit and CI stages." },
@@ -165,9 +165,9 @@
       { "title": "Vitest Suite", "desc": "Demonstrating high-speed component testing." },
       { "title": "Lighthouse Reports", "desc": "Analyzing automated performance and accessibility scores." }
     ],
-    "systemArchitectureUrl": "https://placehold.co/600x400",
+    "systemArchitectureUrl": "/src/assets/cicd-system-architecture.svg",
     "additionalDiagrams": [
-      { "name": "Sequence Diagram", "url": "https://placehold.co/600x400" }
+      { "name": "Sequence Diagram", "url": "/src/assets/cicd-sequence-diagram-qa-and-deployment.svg" }
     ],
     "artifacts": {
       "githubUrl": "https://github.com",
