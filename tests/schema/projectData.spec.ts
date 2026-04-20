@@ -7,6 +7,10 @@ import projectsData from '../../public/data/projects.json'
  * Updated Project Data Schema (Zod)
  * Reflects the shift from Mermaid strings to structured diagram URLs
  */
+const imageOrUrl = z.string()
+  .url()
+  .or(z.string().regex(/^\/src\/assets\/.*\.(jpg|jpeg|png|svg|webp)$/i))
+
 const ProjectSchema = z.object({
   id: z.string().min(1),
   name: z.string().min(2),
@@ -21,13 +25,13 @@ const ProjectSchema = z.object({
       label: z.string()
     })
   ),
-  imageUrl: z.string().regex(/\.(jpg|jpeg|png|svg|webp)$/),
+  imageUrl: imageOrUrl,
   // New Diagram structure
-  systemArchitectureUrl: z.string().url(),
+  systemArchitectureUrl: imageOrUrl,
   additionalDiagrams: z.array(
     z.object({
       name: z.string(),
-      url: z.string().regex(/\.(jpg|jpeg|png|svg|webp)$/)
+      url: imageOrUrl
     })
   ),
   rationale: z.array(
