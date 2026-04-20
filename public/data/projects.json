@@ -154,7 +154,7 @@
       { "value": "100%", "label": "Test Coverage" }, 
       { "value": "90+", "label": "Lighthouse Score" }
     ],
-    "imageUrl": "https://placehold.co/600x400",
+    "imageUrl": "/src/assets/CICD Project.png",
     "rationale": [
       { "title": "Testing Strategy", "description": "Implemented Vitest for lightning-fast unit and component testing within the Vite ecosystem." },
       { "title": "Developer Experience", "description": "Strict ESLint and Prettier configurations enforced at the pre-commit and CI stages." },
