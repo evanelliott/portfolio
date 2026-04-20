@@ -1,7 +1,7 @@
 import { mount, flushPromises } from '@vue/test-utils'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import MarkdownView from '../MarkdownView.vue'
-import type { Project } from '@/types/Project';
+import type { Project } from '@/types/Project'
 
 // 1. Mock External Dependencies
 vi.mock('mermaid', () => ({
@@ -23,17 +23,15 @@ describe('MarkdownView.vue', () => {
     stack: ['Ollama', 'Neo4j', 'Joern'],
     kpis: [{ value: 'Graph-Based', label: 'Context' }],
     imageUrl: 'https://placehold.co',
-    rationale: [
-      { title: 'Graph Representation', description: 'Using Joern to parse code.' }
-    ],
+    rationale: [{ title: 'Graph Representation', description: 'Using Joern to parse code.' }],
     videos: [
-      { title: 'Graph Traversals', desc: 'Visualising data flow.', url: 'https://lorem.video' }
+      { title: 'Graph Traversals', desc: 'Visualising data flow.', url: 'https://lorem.video' },
     ],
     mermaidDiagram: 'graph TD\n    Code --> CPG',
     artifacts: {
       githubUrl: 'https://github.com',
-      adrUrl: 'https://github.com'
-    }
+      adrUrl: 'https://github.com',
+    },
   }
 
   beforeEach(() => {
@@ -47,11 +45,11 @@ describe('MarkdownView.vue', () => {
 
   it('renders project headline and summary on mount', async () => {
     const wrapper = mount(MarkdownView, {
-      props: { project: mockProject as unknown as Project }
+      props: { project: mockProject as unknown as Project },
     })
 
     await flushPromises()
-    
+
     // Check for the new headline field
     expect(wrapper.text()).toContain('LLM-Powered Code Property Graph (CPG) Queries')
     expect(wrapper.html()).toContain('GenAI Code Analysis')
@@ -59,7 +57,7 @@ describe('MarkdownView.vue', () => {
 
   it('displays the "Videos" or "Demos" section with correct descriptions', async () => {
     const wrapper = mount(MarkdownView, {
-      props: { project: mockProject as unknown as Project }
+      props: { project: mockProject as unknown as Project },
     })
 
     await flushPromises()

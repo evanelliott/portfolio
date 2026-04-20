@@ -1,21 +1,20 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { RouterView } from 'vue-router';
-import projectsData from '@/../public/data/projects.json';
-import ProjectPane from '@/components/ProjectPane.vue';
-import type { Project } from '@/types/Project';
+  import { ref } from 'vue'
+  import { RouterView } from 'vue-router'
+  import projectsData from '@/../public/data/projects.json'
+  import ProjectPane from '@/components/ProjectPane.vue'
+  import type { Project } from '@/types/Project'
 
-const projects = ref<Project[]>(projectsData);
-const selectedId = ref<string | null>(null);
+  const projects = ref<Project[]>(projectsData)
+  const selectedId = ref<string | null>(null)
 
-const handleProjectSelect = (id: string) => {
-  selectedId.value = selectedId.value === id ? null : id;
-};
+  const handleProjectSelect = (id: string) => {
+    selectedId.value = selectedId.value === id ? null : id
+  }
 </script>
 
 <template>
   <div class="project-root min-h-screen flex flex-col bg-zinc-950 text-zinc-100 sm:px-16 isolate">
-    
     <header class="w-full shrink-0 z-20 pt-12 pb-4 top-0 bg-zinc-950 backdrop-blur-md">
       <div class="max-w-7xl mx-auto px-4 sm:px-0 flex justify-between items-end">
         <h4 class="font-bold leading-none text-[18px]">Project Portfolio</h4>
@@ -29,22 +28,29 @@ const handleProjectSelect = (id: string) => {
 
     <div class="flex-1 flex flex-col">
       <aside class="top-[88px] z-10 bg-zinc-950 px-4 pb-4">
-        <nav class="flex flex-row h-full w-full p-0 gap-2 sm:gap-5"> 
-          <ProjectPane 
-            v-for="project in projects" 
-            :key="project.id" 
-            :project="project" 
-            :isActive="selectedId === project.id" 
+        <nav class="flex flex-row h-full w-full p-0 gap-2 sm:gap-5">
+          <ProjectPane
+            v-for="project in projects"
+            :key="project.id"
+            :project="project"
+            :isActive="selectedId === project.id"
             @click="handleProjectSelect(project.id)"
-            class="flex-1 min-w-0 min-h-0" 
+            class="flex-1 min-w-0 min-h-0"
           />
         </nav>
       </aside>
 
       <main class="text-zinc-950 bg-zinc-950">
         <RouterView v-slot="{ Component }">
-          <Transition name="page" mode="out-in">
-            <component :is="Component" :selectedId="selectedId" :projects="projects" />
+          <Transition
+            name="page"
+            mode="out-in"
+          >
+            <component
+              :is="Component"
+              :selectedId="selectedId"
+              :projects="projects"
+            />
           </Transition>
         </RouterView>
       </main>
@@ -62,29 +68,28 @@ const handleProjectSelect = (id: string) => {
   <div class="fixed bottom-0 left-0 right-0 h-[10px] pointer-events-none bg-zinc-950 z-[-1]"></div>
 </template>
 
-
-
 <style>
-html {
-  /* This ensures the 'top' of the bounce and the address bar see this color */
-  background-color: #09090b; 
-}
+  html {
+    /* This ensures the 'top' of the bounce and the address bar see this color */
+    background-color: #09090b;
+  }
 
-body {
-  /* Using dvh here is fine for the body background */
-  min-h: 100dvh;
-  margin: 0;
-}
+  body {
+    /* Using dvh here is fine for the body background */
+    min-h: 100dvh;
+    margin: 0;
+  }
 
-.project-root {
-  /* Essential for the content to go UNDER the translucent bars */
-  padding-top: env(safe-area-inset-top);
-  padding-bottom: env(safe-area-inset-bottom);
-}
+  .project-root {
+    /* Essential for the content to go UNDER the translucent bars */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 
-/* Ensure images/content don't break the layout width */
-img, video {
-  max-width: 100%;
-  height: auto;
-}
+  /* Ensure images/content don't break the layout width */
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
 </style>

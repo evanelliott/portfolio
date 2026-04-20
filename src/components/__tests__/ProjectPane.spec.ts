@@ -22,8 +22,8 @@ describe('ProjectPane.vue', () => {
     const wrapper = mount(ProjectPane, {
       props: {
         project: mockProject as Project,
-        isActive: false
-      }
+        isActive: false,
+      },
     })
 
     // Assert: Verify internal name and headline display as expected
@@ -35,8 +35,8 @@ describe('ProjectPane.vue', () => {
     const wrapper = mount(ProjectPane, {
       props: {
         project: mockProject as Project,
-        isActive: false
-      }
+        isActive: false,
+      },
     })
 
     // Act: Simulate user interaction
@@ -50,14 +50,14 @@ describe('ProjectPane.vue', () => {
     const wrapper = mount(ProjectPane, {
       props: {
         project: mockProject as Project,
-        isActive: true
-      }
+        isActive: true,
+      },
     })
 
     // Assert: Verify visual feedback and Tailwind transitions
     // Assuming your template uses these classes for the active state
     expect(wrapper.classes()).toContain('ease-out')
-    
+
     // Accessibility check: aria-selected should reflect active state
     expect(wrapper.attributes('aria-selected')).toBe('true')
   })
