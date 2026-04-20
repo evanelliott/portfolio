@@ -167,7 +167,7 @@
     ],
     "systemArchitectureUrl": "/src/assets/cicd-system-architecture.svg",
     "additionalDiagrams": [
-      { "name": "Sequence Diagram", "url": "/src/assets/cicd-sequence-diagram-qa-and-deployment.svg" }
+      { "name": "Sequence Diagram", "url": "/src/assets/cicd-sequence-diagram.svg" }
     ],
     "artifacts": {
       "githubUrl": "https://github.com",
