@@ -89,7 +89,9 @@
   /* Transition for the Project Content */
   .page-enter-active,
   .page-leave-active {
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition:
+      opacity 0.8s ease,
+      transform 0.8s ease;
   }
 
   .page-enter-from {
