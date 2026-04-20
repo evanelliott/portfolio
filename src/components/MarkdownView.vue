@@ -1,6 +1,5 @@
-<script setup lang="ts">
-  import { ref, computed, watch } from 'vue'
-  import VueEasyLightbox from 'vue-easy-lightbox' // Ensure this is installed
+<<script setup lang="ts">
+  import { ref, computed } from 'vue'
   import ProjectDemo from './ProjectDemo.vue'
   import type { Project } from '@/types/Project'
 
@@ -9,85 +8,36 @@
   }>()
 
   // Helper function to resolve dynamic assets
-  // 1. This tells Vite to track and optimize all images in the assets folder
   const images = import.meta.glob('@/assets/*.{png,jpg,jpeg,svg,webp}', {
     eager: true,
     import: 'default',
   })
-  console.log('Available Vite Images:', Object.keys(images)) // Look at these keys in your browser console!
 
   const getImageUrl = (path: string) => {
     if (!path || path.startsWith('http')) return path
-
-    // 1. Get just the filename (e.g., "CICD Project.png")
     const filename = path.split('/').pop()
-
-    // 2. Find the key in the 'images' object that ends with this filename
     const key = Object.keys(images).find((k) => k.endsWith(`/${filename}`))
-
-    if (key) {
-      return images[key] as string
-    }
-
-    // 3. If no match, return a placeholder or the raw path to help debug
-    console.warn(`Could not find optimized image for: ${filename}`)
-    return path
+    return key ? (images[key] as string) : path
   }
 
   /**
-   * LIGHTBOX GALLERY LOGIC
+   * NAVIGATION LOGIC
+   * Opens images in a new tab instead of a lightbox
    */
-  const activeIndex = ref(0) // Tracks the current gallery index
-
-  // Consolidate all project images into one swipeable array
-  const projectGallery = computed(() => {
-    const images = [
-      // Wrap both primary images in the helper
-      { src: getImageUrl(props.project.imageUrl), title: props.project.title },
-      { src: getImageUrl(props.project.systemArchitectureUrl), title: 'System Architecture' },
-    ]
-
-    props.project.additionalDiagrams?.forEach((diag) => {
-      // Wrap additional diagrams too
-      images.push({ src: getImageUrl(diag.url), title: diag.name })
-    })
-
-    return images
-  })
-
-  // Helper to open the lightbox at a specific image
-  const openGalleryAt = (url: string) => {
-    const index = projectGallery.value.findIndex((img) => img.src === url)
-    activeIndex.value = index >= 0 ? index : 0
-    visible.value = true
+  const openInNewTab = (url: string) => {
+    window.open(url, '_blank', 'noreferrer')
   }
 
-  const handleHide = () => {
-    visible.value = false
-  }
-
-  // Track which video is currently playing
+  // Video state management
   const activeVideoIndex = ref(0)
   const selectVideo = (index: number) => {
     activeVideoIndex.value = index
   }
-
-  const visible = ref(false)
-
-  // LOCK SCROLL: This is the critical piece you are missing
-  watch(visible, (val) => {
-    if (val) {
-      document.documentElement.style.overflow = 'hidden'
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.documentElement.style.overflow = ''
-      document.body.style.overflow = ''
-    }
-  })
 </script>
 
 <template>
   <div class="flex flex-col h-full px-0 overflow-hidden bg-zinc-950">
+    <!-- STICKY HEADER -->
     <header
       class="z-30 bg-zinc-300 border-b border-zinc-950 px-3 py-2 sm:py-1 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 shrink-0"
     >
@@ -112,7 +62,7 @@
       class="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth h-full bg-white custom-scrollbar"
     >
       <div class="mx-auto px-0 pb-0 space-y-16 text-[10px]">
-        <!-- EXECUTIVE SUMMARY -->
+        <!-- 1. EXECUTIVE SUMMARY -->
         <div class="grid grid-cols-1 gap-4 pt-0">
           <div
             class="sticky top-0 z-20 bg-white py-1 flex items-center gap-3 border-b shadow border-zinc-950"
@@ -160,7 +110,7 @@
           </div>
         </div>
 
-        <!-- 2. ARCHITECTURAL BLUEPRINTS -->
+        <!-- 2. ARCHITECTURAL BLUEPRINTS (Modified for New Tab) -->
         <section class="mt-0 space-y-8">
           <div
             class="sticky top-0 z-20 bg-white py-1 flex items-center gap-3 border-b border-t shadow border-zinc-950"
@@ -169,9 +119,9 @@
           </div>
           <div class="px-3">
             <div class="grid grid-cols-4 sm:grid-cols-5 gap-2 px-0">
-              <!-- Architecture Diagram triggers gallery -->
+              <!-- System Architecture -->
               <div
-                @click="openGalleryAt(getImageUrl(project.systemArchitectureUrl))"
+                @click="openInNewTab(getImageUrl(project.systemArchitectureUrl))"
                 class="flex items-center justify-center group relative cursor-pointer aspect-square rounded-lg border border-zinc-950 overflow-hidden bg-zinc-950"
               >
                 <img
@@ -185,11 +135,11 @@
                 </div>
               </div>
 
-              <!-- Additional Diagrams trigger gallery at their specific index -->
+              <!-- Additional Diagrams -->
               <div
                 v-for="diag in project.additionalDiagrams"
                 :key="diag.name"
-                @click="openGalleryAt(getImageUrl(diag.url))"
+                @click="openInNewTab(getImageUrl(diag.url))"
                 class="flex items-center justify-center group relative cursor-pointer aspect-square rounded-lg border border-zinc-950 overflow-hidden bg-zinc-950"
               >
                 <img
@@ -318,28 +268,6 @@
         class="sticky bottom-0 h-1/6 w-full bg-gradient-to-t from-white to-transparent pointer-events-none z-10"
       ></div>
     </main>
-    <Teleport to="body">
-      <div
-        v-if="visible"
-        class="fixed-viewport-header"
-      >
-        {{ projectGallery[activeIndex]?.title }}
-      </div>
-    </Teleport>
-    <vue-easy-lightbox
-      :visible="visible"
-      :imgs="projectGallery"
-      :index="activeIndex"
-      @hide="handleHide"
-      :teleport="'body'"
-      :scroll-disabled="true"
-    >
-      <template #toolbar>
-        <div class="fixed-lightbox-header">
-          {{ projectGallery[activeIndex]?.title }}
-        </div>
-      </template>
-    </vue-easy-lightbox>
   </div>
 </template>
 
