@@ -1,1 +1,6 @@
-npx lint-staged
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm run lint    # Runs eslint --fix on everything
+npm run format  # Runs prettier --write on everything
+npm run type-check # Runs vue-tsc --noEmit
