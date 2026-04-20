@@ -16,11 +16,14 @@
     "prepare": "husky"
   },
   "lint-staged": {
+    "package.json": [
+      "eslint --fix"
+    ],
     "*.{js,ts,vue}": [
       "eslint --fix",
-      "prettier --write",
-      "vue-tsc -p tsconfig.json --noEmit"
-    ]
+      "prettier --write"
+    ],
+    "**/*.{ts,vue}": "vue-tsc --noEmit" 
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.10",
