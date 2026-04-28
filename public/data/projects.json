@@ -147,7 +147,7 @@
     "name": "CI/CD",
     "title": "Modern CI/CD Pipeline",
     "emoji": "✅",
-    "headline": "A Blueprint for Automated Quality & Deployment",
+    "headline": "A Blueprint for Automated QA & Deployment",
     "summary": "A robust reference implementation of industry-standard CI/CD workflows. While demonstrated on a Vue 3 stack, the architecture serves as a portable template for enforcing code quality, performance audits, and automated deployments in most modern ecosystems.",
     "stack": ["GitHub Actions", "TypeScript", "Vue 3", "Vite", "Vitest", "ESLint", "Prettier", "Husky", "Lighthouse"],
     "kpis": [
