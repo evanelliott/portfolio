@@ -180,7 +180,7 @@
       { "name": "Sequence Diagram", "url": "/src/assets/cicd-sequence-diagram.svg" }
     ],
     "artifacts": {
-      "githubUrl": "https://github.com",
+      "githubUrl": "https://github.com/evanelliott/portfolio/",
       "adrUrl": "https://github.com/docs/adr.md"
     }
   }
