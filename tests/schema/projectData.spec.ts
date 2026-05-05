@@ -56,8 +56,8 @@ const ProjectSchema = z.object({
 const ProjectsListSchema = z.array(ProjectSchema)
 
 describe('Portfolio Data Integrity', () => {
-  it('should have exactly 5 projects as per the current projects.json', () => {
-    expect(projectsData.length).toBe(5)
+  it('should have exactly 1 project as per the current projects.json', () => {
+    expect(projectsData.length).toBe(1) // Update this if more projects are added
   })
 
   it('should satisfy the strict Project Schema for all entries', () => {
