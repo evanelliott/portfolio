@@ -36,7 +36,7 @@
     ],
     "artifacts": {
       "githubUrl": "https://github.com/evanelliott/portfolio/",
-      "adrUrl": "https://github.com/evanelliott/portfolio/adr.md"
+      "adrUrl": "https://github.com/evanelliott/portfolio/blob/main/adr.md"
     }
   }
 ]
