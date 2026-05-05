@@ -19,7 +19,9 @@ Context: Creating a professional portfolio that functions as a live demonstratio
 | State | Pinia | Modular, type-safe state management with less boilerplate than Vuex. |
 | Styling | Tailwind CSS 4 | Utility-first approach ensures minimal CSS bundle size via JIT compilation. |
 
-## 3. Key Architecture Decisions## 3.1. Shift-Left Quality Gates (Husky)
+## 3. Key Architecture Decisions
+
+## 3.1. Shift-Left Quality Gates (Husky)
 Decision: We implement two-tier local git hooks using Husky.
 
 * Pre-commit: Linting and Type-checking to prevent "dirty" code.
