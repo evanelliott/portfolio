@@ -1,0 +1,187 @@
+[
+  {
+    "id": "1",
+    "name": "AI",
+    "title": "Agentic Coding Assistants",
+    "emoji": "🤖",
+    "headline": "Code Property Graph (CPG) RAG Engine",
+    "summary": "A high-performance, local-first AI coding framework leveraging CPG to enable complex static analysis. Designed to analyse architectural patterns, generate test cases, and flag potential security weaknesses.",
+    "stack": ["OpenCode", "Ollama", "LangChain", "FastAPI", "Pydantic", "Neo4j", "Docker"],
+    "kpis": [
+      { "value": "Local-First", "label": "Security" },
+      { "value": "Multi-Agent", "label": "Orchestration" }
+    ],
+    "imageUrl": "https://placehold.co/600x400",
+    "rationale": [
+      { "title": "Expert Agents", "description": "A team of agents specialising in security, architecture and testing to provide deep, domain-specific code insights." },
+      { "title": "Structured Evidence Extraction", "description": "Pydantic validation ensures high-integrity data structures that improve LLM comprehension." },
+      { "title": "Model Context Protocol (MCP)", "description": "Neo4j Cypher query templates are wrapped as Tools for agents to access via a unified FastAPI MCP service." }
+    ],
+    "videos": [
+      { "title": "Architectural Auditing", "desc": "Detecting circular dependencies and 'spaghetti' patterns via the Architect.", "url": "https://lorem.video/720p" },
+      { "title": "Automated Test Generation", "desc": "TestEngineer generating test cases based on graph-discovered paths.", "url": "https://lorem.video/720p" },
+      { "title": "Security Taint Analysis", "desc": "Watching the SecurityResearcher identify a security weakness and enrich it with CWE data.", "url": "https://lorem.video/720p" }
+    ],
+    "systemArchitectureUrl": "https://placehold.co/600x400",
+    "additionalDiagrams": [
+      { "name": "Container Orchestration Diagram", "url": "https://placehold.co/600x400" },
+      { "name": "Data Flow Diagram", "url": "https://placehold.co/600x400" },
+      { "name": "Pydantic Data Models", "url": "https://placehold.co/600x400" },
+      { "name": "FastAPI Endpoints", "url": "https://placehold.co/600x400" },
+      { "name": "Sequence Diagram", "url": "https://placehold.co/600x400" }
+    ],
+    "artifacts": {
+      "githubUrl": "https://github.com",
+      "adrUrl": "https://github.com"
+    }
+  },
+  {
+    "id": "2",
+    "name": "Streaming",
+    "title": "Web Browser Observability",
+    "emoji": "⚡",
+    "headline": "Event Streaming & Real-time Analytics",
+    "summary": "A high-velocity stream processing engine for real-time web browsing analytics. Transforms raw Chrome DevTools Protocol (CDP) events into immediate visual insights using a distributed message bus and stateful stream processing.",
+    "stack": ["Spark Streaming", "Redpanda", "Redis", "Grafana", "MinIO", "Docker"],
+    "kpis": [
+      { "value": "Sub-50ms", "label": "E2E Latency" }, 
+      { "value": "Exactly-Once", "label": "Semantics" }
+    ],
+    "imageUrl": "https://placehold.co/600x400",
+    "rationale": [
+      { "title": "Stateful Fault Tolerance", "description": "Checkpoints persist streaming state to MinIO (S3-compatible). This allows the pipeline to recover rapidly from node failures." },
+      { "title": "Lightweight Message Bus", "description": "Redpanda (Kafka-compatible) chosen for its zero-JVM, C++ architecture." },
+      { "title": "Real-time Feature Enrichment", "description": "Redis acts as a real-time, in-memory lookup to enrich data streams with sub-millisecond latency." }
+    ],
+    "videos": [
+      { "title": "Redpanda Connect", "desc": "Configuring the source-to-broker mapping." },
+      { "title": "Spark Windowing", "desc": "Deep-dive into the temporal aggregation logic." },
+      { "title": "Live Grafana Dashboard", "desc": "Visualising insights as they happen." }
+    ],
+    "systemArchitectureUrl": "https://placehold.co/600x400",
+    "additionalDiagrams": [
+      { "name": "Container Orchestration Diagram", "url": "https://placehold.co/600x400" },
+      { "name": "Data Flow Diagram", "url": "https://placehold.co/600x400" },
+      { "name": "Logical Data Model", "url": "https://placehold.co/600x400" },
+      { "name": "Physical Data Model", "url": "https://placehold.co/600x400" },
+      { "name": "Sequence Diagram", "url": "https://placehold.co/600x400" }
+    ],
+    "artifacts": {
+      "githubUrl": "https://github.com",
+      "adrUrl": "https://github.com/docs/adr.md"
+    }
+  },
+  {
+    "id": "3",
+    "name": "Lakehouse",
+    "title": "Football Data Lakehouse",
+    "emoji": "🥇",
+    "headline": "Medallion Architecture & Data Modelling",
+    "summary": "A high-integrity analytical platform designed to integrate multi-source data into a unified Master Data model. The system leverages a decoupled storage-compute architecture with Iceberg, Spark and Trino to perform high-performance batch ELT.",
+    "stack": ["Spark", "Trino", "Airflow", "Iceberg", "MinIO", "Docker"],
+    "kpis": [
+      { "value": "Star Schema", "label": "Data Model" }, 
+      { "value": "Multi-Source", "label": "Entity Resolution" }
+    ],
+    "imageUrl": "https://placehold.co/600x400",
+    "rationale": [
+      { "title": "Storage Layer", "description": "Apache Iceberg and Parquet provide a reliable lakehouse foundation for high-speed analytical queries." },
+      { "title": "Orchestration", "description": "Airflow DAGs manage complex ELT and maintenance workflows, ensuring data integrity across the entire data lifecycle." },
+      { "title": "Scalability", "description": "Decoupled storage (MinIO) from compute (Spark & Trino) to allow independent scaling of infrastructure." }
+    ],
+    "videos": [
+      { "title": "Medallion Architecture & Data Model", "desc": "Walking through Bronze to Gold transformation logic." },
+      { "title": "Performance Optimisation", "desc": "Comparing different storage layouts and query patterns." },
+      { "title": "Airflow", "desc": "Demonstrating idempotent, fault-tolerant orchestration." }
+    ],
+    "systemArchitectureUrl": "https://placehold.co/600x400",
+    "additionalDiagrams": [
+      { "name": "Container Orchestration Diagram", "url": "https://placehold.co/600x400" },
+      { "name": "Data Flow Diagram", "url": "https://placehold.co/600x400" },
+      { "name": "Logical Data Model", "url": "https://placehold.co/600x400" },
+      { "name": "Physical Data Model", "url": "https://placehold.co/600x400" },
+      { "name": "Sequence Diagram", "url": "https://placehold.co/600x400" }
+    ],
+    "artifacts": {
+      "githubUrl": "https://github.com",
+      "adrUrl": "https://github.com/blob/main/docs/adr/001.md"
+    }
+  },
+  {
+    "id": "4",
+    "name": "MLOps",
+    "title": "Football MLOps",
+    "emoji": "🚀",
+    "headline": "ML Lifecycle Management",
+    "summary": "A specialized MLOps platform designed to accelerate the journey from notebook-based experimentation to production-grade deployments. It enforces operational stability by automatically wrapping each deployed model in a standardised layer of governance, observability, and drift monitoring.",
+    "stack": ["MLflow", "Python", "Scikit-Learn", "Jupyter", "Docker"],
+    "kpis": [
+      { "value": "One-click", "label": "Model Promotion" }, 
+      { "value": "Versioning", "label": "Model Registry" }, 
+      { "value": "S3-compatible", "label": "Object Storage" }
+    ],
+    "imageUrl": "https://placehold.co/600x400",
+    "rationale": [
+      { "title": "Experiment Tracking", "description": "MLflow integration ensures every hyperparameter tweak and dataset version is logged for auditability." },
+      { "title": "Environment Parity", "description": "Containerised Jupyter environments ensure consistent library versions across development and production." },
+      { "title": "Model Governance", "description": "MLflow and MinIO provide a robust governance framework by combining logical lifecycle tracking with immutable physical storage." }
+    ],
+    "videos": [
+      { "title": "MLflow Dashboard", "desc": "Comparing model runs and loss curves." },
+      { "title": "Feature Engineering", "desc": "Calculating rolling team performance metrics." },
+      { "title": "Inference Demo", "desc": "Generating probabilities for upcoming fixtures." }
+    ],
+    "systemArchitectureUrl": "https://placehold.co/600x400",
+    "additionalDiagrams": [
+      { "name": "Container Orchestration Diagram", "url": "https://placehold.co/600x400" },
+      { "name": "Data Flow Diagram", "url": "https://placehold.co/600x400" },
+      { "name": "Sequence Diagram: ML Training", "url": "https://placehold.co/600x400" }
+    ],
+    "artifacts": {
+      "githubUrl": "https://github.com",
+      "adrUrl": "https://github.com/docs/adr.md"
+    }
+  },
+  {
+    "id": "5",
+    "name": "CI/CD",
+    "title": "Modern CI/CD Pipeline",
+    "emoji": "✅",
+    "headline": "A Blueprint for Automated QA & Deployment",
+    "summary": "A robust reference implementation of industry-standard CI/CD workflows. While demonstrated on a Vue 3 stack, the architecture serves as a portable template for enforcing code quality, performance audits, and automated deployments in most modern ecosystems.",
+    "stack": ["GitHub Actions", "TypeScript", "Vue 3", "Vite", "Vitest", "ESLint", "Prettier", "Husky", "Lighthouse"],
+    "kpis": [
+      { "value": "100%", "label": "Test Coverage" }, 
+      { "value": "90+", "label": "Lighthouse Score" },
+      { "value": "100%", "label": "Automation" }
+    ],
+    "imageUrl": "/src/assets/cicd-project.png",
+    "rationale": [
+      { 
+        "title": "Shift-Left Testing", 
+        "description": "Catch bugs before they reach the repo by enforcing formatting, linting and Unit Tests locally via Husky git hooks." 
+      },
+      { 
+        "title": "Automated Quality Gates", 
+        "description": "Prevent UX regressions with Lighthouse CI audits that block deployments if performance or accessibility scores drop." 
+      },
+      { 
+        "title": "Atomic Deployments", 
+        "description": "Ensures the live site only updates after quality gates all pass, maintaining a stable production environment." 
+      }
+    ],
+    "videos": [
+      { "title": "The Quality Gate", "desc": "Watch a git push get blocked by a failing test and then pass after a fix." },
+      { "title": "GitHub Actions", "desc": "A deep dive into the end-to-end workflow." },
+      { "title": "Post-Build Insights", "desc": "A tour of the automated reports, including Vitest coverage maps and Lighthouse performance audits." }
+    ],
+    "systemArchitectureUrl": "/src/assets/cicd-system-architecture.svg",
+    "additionalDiagrams": [
+      { "name": "Sequence Diagram", "url": "/src/assets/cicd-sequence-diagram.svg" }
+    ],
+    "artifacts": {
+      "githubUrl": "https://github.com/evanelliott/portfolio/",
+      "adrUrl": "https://github.com/docs/adr.md"
+    }
+  }
+]
