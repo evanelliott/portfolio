@@ -8,7 +8,8 @@
     "summary": "A robust reference implementation of industry-standard CI/CD workflows. While demonstrated on a Vue 3 stack, the architecture serves as a portable template for enforcing code quality, performance audits, and automated deployments in most modern ecosystems.",
     "stack": ["GitHub Actions", "TypeScript", "Vue 3", "Vite", "Vitest", "ESLint", "Prettier", "Husky", "Lighthouse"],
     "kpis": [
-      { "value": "100%", "label": "Test Coverage" }, 
+      { "value": "100%", "label": "Type Safety" }, 
+      { "value": "80%+", "label": "Test Coverage" }, 
       { "value": "90+", "label": "Lighthouse Score" },
       { "value": "100%", "label": "Automation" }
     ],
@@ -24,13 +25,10 @@
       },
       { 
         "title": "Atomic Deployments", 
-        "description": "Ensures the live site only updates after quality gates all pass, maintaining a stable production environment." 
+        "description": "Ensure the live site only updates after all quality gates pass, maintaining a stable production environment." 
       }
     ],
     "videos": [
-      { "title": "The Quality Gate", "desc": "Watch a git push get blocked by a failing test and then pass after a fix." },
-      { "title": "GitHub Actions", "desc": "A deep dive into the end-to-end workflow." },
-      { "title": "Post-Build Insights", "desc": "A tour of the automated reports, including Vitest coverage maps and Lighthouse performance audits." }
     ],
     "systemArchitectureUrl": "/src/assets/cicd-system-architecture.svg",
     "additionalDiagrams": [
@@ -38,7 +36,7 @@
     ],
     "artifacts": {
       "githubUrl": "https://github.com/evanelliott/portfolio/",
-      "adrUrl": "https://github.com/docs/adr.md"
+      "adrUrl": "https://github.com/evanelliott/portfolio/adr.md"
     }
   }
 ]
